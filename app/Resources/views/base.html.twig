@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Coloration de la barre de navigation sur mobile -->
+    <meta name="theme-color" content="#2b3e50"/>
+    <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mobile.css') }}">
+        <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.ttf') }}">
+        <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
+        <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.woff2') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/jQuery/jquery-ui.min.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('louvre.ico') }}"/>
+    {% block IECompatibility %}
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    {% endblock %}
+</head>
+<body>
+<div id="fb-root"></div>
+<div class="container wrapper-page">
+    {% block header %}
+        <header>
+            <section class="row row-offcanvas row-offcanvas-left">
+                <p class="pull-left visible-xs">
+                    <button type="button" id="btnTextXS" class="btn btn-primary btn-md" data-toggle="offcanvas"><span class="sr-only">Toggle Navigation</span>Menu</button>
+                </p>
+                <div class="navbar-header">
+                    <a href="http://www.louvre.fr"><img src="{{ asset('img/logo.png') }}" id="image-logo" alt="Musée du Louvre" /></a>
+                </div>
+                <nav class="navbar navbar-default col-md-12 col-sm-12 sidebar-offcanvas">
+                    <ul id="listMenu" class="nav navbar-nav">
+                        <li class="active"><a href="#">Billetterie</a></li>
+                        <li><a href="#horairesInfos">Horaires</a></li>
+                        <li><a href="#tarifsInfos">Tarifs</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <section class="row">
+                <div class="col-md-12 image-header">
+                </div>
+            </section>
+        </header>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+        <footer class="row">
+            <div class="col-md-12 col-xs-12  payments">
+                <div class="row">
+                    <p style="color:#000;"><strong>Paiement sécurisé</strong>
+                        <img src="{{ asset('img/mastercard.gif') }}" alt="Mastercard" class="payment-method"/>
+                        <img src="{{ asset('img/visa.gif') }}" alt="Visa" class="payment-method"/>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="small">
+                        <a href="#">Contactez-Nous</a> -
+                        <a href="#"> CGV</a> -
+                        <span style="color:#fff;">Tél: +33 (0)1 40 20 53 17</span>
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
+                         data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
+                                                      href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse">Partager</a>
+                    </div>
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+                    <!-- Bouton aidant à la navigation (uniquement sur mobile) -->
+                    <button type="button" class="btn btn-xs visible-xs" id="back-to-top">
+                        <span class="fa fa-arrow-up" aria-hidden="true"></span><a href="#image-logo"> Haut de la
+                            page</a>
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <span class="small pull-right" id="copyright">© Musée du Louvre - Tous droits de reproduction réservés</span>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+</div>
+{% block javascripts %}
+    <script src="{{ asset('vendor/jQuery/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('vendor/jQuery/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src=" {{ asset('js/form.js') }}"></script>
+{% endblock %}
+</body>
+<footer>
+
+</footer>
+</html>

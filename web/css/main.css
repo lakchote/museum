@@ -1,0 +1,108 @@
+html, body {
+	font-family: 'Arial';
+    overflow-x: hidden;
+    background-color: #d3d3d3;
+}
+
+.ui-dialog-content {
+  font-size:20px;
+  font-family: 'Arial';
+}
+
+.image-header {
+    height: 200px;
+    background: url('../img/header.jpg');
+}
+
+.dialog-hide {
+    display: none;
+}
+
+.wrapper-page {
+    background-color: #fff;
+}
+
+#image-logo {
+    padding-bottom: 5px;
+}
+
+.payments {
+    background-color: #fff;
+    border: 2px solid #000;
+}
+
+.payment-method {
+    height: 20px;
+}
+
+header section
+{
+    background-color:#484848;
+}
+footer,footer a {
+    color: #fff;
+}
+footer
+{
+    margin-top:10px;
+    background-color:#484848;
+}
+em a:hover
+{
+	color:#fff;
+}
+
+a:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+#btnTextXS {
+    border-radius: 3px;
+}
+
+#back-to-top {
+    height: 20px;
+    position: relative;
+    top: -6px;
+    left: 35%;
+    background-color: #222;
+    margin-top: 5px;
+}
+
+.fb-share-button {
+    top: -5px;
+}
+
+form,form > * {
+    padding-top: 15px;
+    background-color: #F5F5F5;
+}
+
+fieldset legend {
+    background-color: #767676;
+    color: #fff;
+}
+
+.form-h3 {
+    background: #f2f5f6;
+/* Old browsers */
+    background: -moz-linear-gradient(top,rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%);
+/* FF3.6-15 */
+    background: -webkit-linear-gradient(top,rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%);
+/* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%);
+/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f5f6',endColorstr='#c8d7dc',GradientType=0);
+/* IE6-9 */
+}
+
+.horaireDispo:hover {
+    background-color: #000;
+    cursor: pointer;
+}
+
+h3 {
+    margin-top: 0;
+}
+

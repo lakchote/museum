@@ -1,0 +1,75 @@
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+
+/* Target XS Devices */
+@media screen and (max-width: 767px) {
+
+  form 
+  {
+    font-size:12px;
+  }
+
+  #labelNaissance, #labelBillets
+  {
+    padding:0;
+    line-height: 12px;
+  }
+
+  body 
+  {
+    overflow-x: hidden;
+  }
+  
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  #image-logo
+  {
+    padding-left: 10px;
+    height:48px;
+    float:right;
+  }
+
+  .image-header 
+  {
+    height:100px !important;
+  }
+
+  #copyright
+  {
+    display:block;
+    float:none !important;
+  }
+  
+  .row-offcanvas-left 
+  {
+    left: 0;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas 
+  {
+    left: -50%; /* 6 columns */
+    z-index: 1;
+    border:1px solid #fff;
+  }
+
+  .row-offcanvas-left.active 
+  {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas 
+  {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+  }
+
+}
