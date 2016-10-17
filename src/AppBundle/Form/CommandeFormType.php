@@ -26,7 +26,9 @@ class CommandeFormType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
             ])
-            ->add('emailVisiteur', EmailType::class)
+            ->add('emailVisiteur', EmailType::class, [
+                'attr' => ['placeholder' => 'votre_email@gmail.com']
+            ])
             ->add('secondEmail', EmailType::class)
             ->add('nbBillets', IntegerType::class,[
                 'attr' => ['min' => '1', 'max' => '100']

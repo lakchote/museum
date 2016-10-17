@@ -56,6 +56,11 @@ class Billets
     private $pays;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isTarifReduit = false;
+
+    /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank()
      */
@@ -155,6 +160,22 @@ class Billets
     public function setTarif($tarif)
     {
         $this->tarif = $tarif;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsTarifReduit()
+    {
+        return $this->isTarifReduit;
+    }
+
+    /**
+     * @param mixed $isTarifReduit
+     */
+    public function setIsTarifReduit($isTarifReduit)
+    {
+        $this->isTarifReduit = $isTarifReduit;
     }
 
 }

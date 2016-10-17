@@ -7,7 +7,7 @@
                 <h1>Commander son billet en ligne</h1>
                 {% for erreur in app.session.flashBag.get('error') %}
                     <div class="alert alert-danger">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span> {{ erreur }}
+                        {{ erreur }}
                     </div>
                 {% endfor %}
                 {{ form_start(commande) }}
@@ -21,7 +21,9 @@
 
                 {{ form_row(commande.nbBillets, {'label' : 'Quantité de billets souhaitée'}) }}
 
-                <div class="text-center"><button type="submit" class="btn btn-primary" formnovalidate>Valider</button></div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" formnovalidate>Valider</button>
+                </div>
                 {{ form_end(commande) }}
             </div>
         </div>

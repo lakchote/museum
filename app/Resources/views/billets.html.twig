@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <section class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <h1>Billets à compléter</h1>
+                {{ form_start(commande) }}
+
+                {% for billet in commande.billets %}
+                  <div class="billet-content">
+                 <label class="">Billet n° {{ loop.index }}</label>
+                {{ form_row(billet.nom) }}
+                {{ form_row(billet.prenom) }}
+                {{ form_row(billet.pays) }}
+                {{ form_row(billet.date_naissance) }}
+                {{ form_row(billet.isTarifReduit) }}
+                  </div>
+                {% endfor %}
+
+                {{ form_end(commande) }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Valider</button>
+                    {# Supprime les billets liés ET la commande de la BDD lors du clic #}
+                    <a href="" id="delete_billets"><button type="submit" class="btn btn-primary">Page précédente</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ asset('js/billets.js') }}"></script>
+{% endblock %}

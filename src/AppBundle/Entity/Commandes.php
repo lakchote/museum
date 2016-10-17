@@ -31,6 +31,11 @@ class Commandes
     private $billets;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFinished = false;
+
+    /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank(
      *     message="Vous devez spécifier la date de votre visite au musée."
@@ -149,4 +154,32 @@ class Commandes
         return $this->billets;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsFinished()
+    {
+        return $this->isFinished;
+    }
+
+    /**
+     * @param mixed $isFinished
+     */
+    public function setIsFinished($isFinished)
+    {
+        $this->isFinished = $isFinished;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getId();
+    }
 }

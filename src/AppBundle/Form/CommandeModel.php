@@ -48,6 +48,12 @@ class CommandeModel
      */
     private $type_billet;
 
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFinished = false;
+
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(
@@ -171,6 +177,14 @@ class CommandeModel
     public function getBillets()
     {
         return $this->billets;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 }
