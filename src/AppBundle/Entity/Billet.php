@@ -8,15 +8,14 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="billets")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BilletRepository")
+ * @ORM\Table(name="billet")
  */
-class Billets
+class Billet
 {
     /**
      * @ORM\Id
@@ -27,31 +26,34 @@ class Billets
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @Assert\Length(min="3", minMessage="Le prénom ne peut faire moins de 3 caractères")
+     * @Assert\NotBlank(message="Vous devez spécifier le Nom pour chaque billet.")
      */
     private $nom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commandes", inversedBy="billets")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commande", inversedBy="billets")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarifs")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tarif")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tarif;
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @Assert\Length(min="3",minMessage="Le prénom ne peut faire moins de 3 caractères")
+     * @Assert\NotBlank(message="Vous devez spécifier le Prénom pour chaque billet.")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Vous devez spécifier le Pays pour chaque billet.")
+     * @Assert\Country(message="Ceci n'est pas un pays valide")
      */
     private $pays;
 
@@ -62,9 +64,10 @@ class Billets
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Vous devez spécifier la date de naissance pour chaque billet.")
+     * @Assert\Date(message="Ceci n'est pas un format de date de naissance valide.")
      */
-    private $date_naissance;
+    private $dateNaissance;
 
     /**
      * @return mixed
@@ -119,19 +122,20 @@ class Billets
      */
     public function getDateNaissance()
     {
-        return $this->date_naissance;
+        return $this->dateNaissance;
     }
 
     /**
-     * @param mixed $date_naissance
+     * @param mixed $dateNaissance
      */
-    public function setDateNaissance($date_naissance)
+    public function setDateNaissance($dateNaissance)
     {
-        $this->date_naissance = $date_naissance;
+        $this->dateNaissance = $dateNaissance;
     }
 
+
     /**
-     * @return mixed
+     * @return Commande[]
      */
     public function getCommande()
     {

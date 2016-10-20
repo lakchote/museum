@@ -11,12 +11,13 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\Constraints as FormConstraint;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="commandes")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
+ * @ORM\Table(name="commande")
  */
-class Commandes
+class Commande
 {
     /**
      * @ORM\Id
@@ -26,7 +27,8 @@ class Commandes
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Billets", mappedBy="commande")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Billet", mappedBy="commande", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $billets;
 
@@ -40,8 +42,13 @@ class Commandes
      * @Assert\NotBlank(
      *     message="Vous devez spécifier la date de votre visite au musée."
      * )
+     * @FormConstraint\NotPastDay()
+     * @FormConstraint\NotHoliday()
+     * @FormConstraint\NotSunday()
+     * @FormConstraint\NotTuesday()
+     * @FormConstraint\NotMaxCapacity()
      */
-    private $date_visite;
+    private $dateVisite;
 
     /**
      * @ORM\Column(type="string")
@@ -49,7 +56,7 @@ class Commandes
      *     message="Vous devez choisir un type de billet (Billet Journée OU Billet Demi-journée)"
      * )
      */
-    private $type_billet;
+    private $typeBillet;
 
     /**
      * @ORM\Column(type="integer")
@@ -60,10 +67,10 @@ class Commandes
      *     min=1,
      *     max=100,
      *     minMessage="Vous devez commander au moins un billet.",
-     *     maxMessage="La quantité de billets demandée ne peut excéder 100"
+     *     maxMessage="La quantité de billets demandée ne peut excéder 100."
      * )
      */
-    private $nb_billets;
+    private $nbBillets;
 
     /**
      * @ORM\Column(type="string")
@@ -75,7 +82,7 @@ class Commandes
      *     message="Vous devez renseigner votre adresse mail."
      * )
      */
-    private $email_visiteur;
+    private $emailVisiteur;
 
     public function __construct()
     {
@@ -87,15 +94,15 @@ class Commandes
      */
     public function getDateVisite()
     {
-        return $this->date_visite;
+        return $this->dateVisite;
     }
 
     /**
-     * @param mixed $date_visite
+     * @param mixed $dateVisite
      */
-    public function setDateVisite($date_visite)
+    public function setDateVisite($dateVisite)
     {
-        $this->date_visite = $date_visite;
+        $this->dateVisite = $dateVisite;
     }
 
     /**
@@ -103,15 +110,15 @@ class Commandes
      */
     public function getTypeBillet()
     {
-        return $this->type_billet;
+        return $this->typeBillet;
     }
 
     /**
-     * @param mixed $type_billet
+     * @param mixed $typeBillet
      */
-    public function setTypeBillet($type_billet)
+    public function setTypeBillet($typeBillet)
     {
-        $this->type_billet = $type_billet;
+        $this->typeBillet = $typeBillet;
     }
 
     /**
@@ -119,15 +126,15 @@ class Commandes
      */
     public function getNbBillets()
     {
-        return $this->nb_billets;
+        return $this->nbBillets;
     }
 
     /**
-     * @param mixed $nb_billets
+     * @param mixed $nbBillets
      */
-    public function setNbBillets($nb_billets)
+    public function setNbBillets($nbBillets)
     {
-        $this->nb_billets = $nb_billets;
+        $this->nbBillets = $nbBillets;
     }
 
     /**
@@ -135,19 +142,19 @@ class Commandes
      */
     public function getEmailVisiteur()
     {
-        return $this->email_visiteur;
+        return $this->emailVisiteur;
     }
 
     /**
-     * @param mixed $email_visiteur
+     * @param mixed $emailVisiteur
      */
-    public function setEmailVisiteur($email_visiteur)
+    public function setEmailVisiteur($emailVisiteur)
     {
-        $this->email_visiteur = $email_visiteur;
+        $this->emailVisiteur = $emailVisiteur;
     }
 
     /**
-     * @return Billets[]|ArrayCollection
+     * @return Billet[]|ArrayCollection
      */
     public function getBillets()
     {
@@ -155,11 +162,14 @@ class Commandes
     }
 
     /**
-     * @return mixed
+     * @param mixed Billet
+     * @return Commande
      */
-    public function getId()
+    public function addBillet($billet)
     {
-        return $this->id;
+        $this->billets->add($billet);
+        $billet->setCommande($this);
+        return $this;
     }
 
     /**
@@ -181,5 +191,13 @@ class Commandes
     public function __toString()
     {
         return (string)$this->getId();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

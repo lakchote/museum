@@ -2,56 +2,61 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Billet;
+use AppBundle\Form\ShowBilletsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Tarifs;
-use AppBundle\Form\ShowBilletsFormType;
-use AppBundle\Entity\Commandes;
-use AppBundle\Entity\Billets;
+use AppBundle\Entity\Tarif;
+use AppBundle\Entity\Commande;
+use Symfony\Component\HttpFoundation\Request;
 
 class BilletsController extends Controller
 {
+    private $tarif;
 
     /**
      * @Route("/commande/{id}", name="app_billets")
      */
-    public function billetsAction(Commandes $commande)
+    public function billetsAction(Commande $commande, Request $request, $id)
     {
-        $quantiteBillets = $commande->getNbBillets();
-        for($i = 0; $i < $quantiteBillets; $i++)
-        {
-            $billet = new Billets();
-            $billet->setCommande($commande);
-            $billet->setDateNaissance(new \DateTime());
-            $billet->setPays('France');
-            $billet->setTarif(1);
-            $billet->setNom('Test');
-            $billet->setPrenom('BLA');
-            $tarif = new Tarifs();
-            $tarif->setTypeTarif('Tarif_reduit');
-            $billet->setTarif($tarif);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($billet);
-            $em->persist($tarif);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        if ($this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfCommandeHasBillets($commande)) {
+            return $this->render(':erreurs:commande_possede_billets.html.twig');
         }
-        $form = $this->createForm(ShowBilletsFormType::class, $commande);
-        return $this->render('billets.html.twig',[
-            'commande' => $form->createView()
+        for ($i = 0; $i < $commande->getNbBillets(); $i++) {
+            $billet = new Billet();
+            $commande->addBillet($billet);
+        }
+        $form = $this->createForm(ShowBilletsType::class, $commande);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($commande->getBillets() as $billet) {
+                if ($billet->getIsTarifReduit()) {
+                    $this->tarif = $this->getDoctrine()->getRepository('AppBundle:Tarif')->findOneBy([
+                        'nom' => 'reduit'
+                    ]);
+                } else {
+                    $idTarif = $this->get('tarif_resolver')->getTarifForBillet($billet->getDateNaissance());
+                    $this->tarif = $this->getDoctrine()->getRepository('AppBundle:Tarif')->find($idTarif);
+                }
+                $billet->setTarif($this->tarif);
+            }
+                $em->persist($commande);
+                $em->flush();
+                return $this->redirectToRoute('app_recapitulatif_commande', ['id' => $commande->getId()]);
+        }
+        return $this->render('billets.html.twig', [
+            'commande' => $form->createView(),
+            'id' => $id,
         ]);
     }
 
     /**
      * @Route("/delete/{id}", name="app_delete_billets")
      */
-    public function deleteAction(Commandes $commande)
+    public function deleteAction(Commande $commande)
     {
         $em = $this->getDoctrine()->getManager();
-        foreach($commande->getBillets() as $billet)
-        {
-            $em->remove($billet);
-            $em->flush();
-        }
         $em->remove($commande);
         $em->flush();
         return $this->redirectToRoute('app_homepage');

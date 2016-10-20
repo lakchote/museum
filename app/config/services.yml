@@ -7,5 +7,11 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    form_validator:
-        class: AppBundle\Service\FormValidator
+    not_max_capacity_validator:
+        class: AppBundle\Validator\Constraints\NotMaxCapacityValidator
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name : validator.constraint_validator }
+    tarif_resolver:
+        class: AppBundle\Service\TarifResolver
+        arguments: ['@doctrine.orm.entity_manager']

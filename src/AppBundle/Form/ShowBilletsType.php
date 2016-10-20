@@ -2,31 +2,27 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Billets;
-use AppBundle\Entity\Commandes;
+use AppBundle\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ShowBilletsFormType extends AbstractType
+class ShowBilletsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('billets', CollectionType::class,[
-            'entry_type' => BilletsFormType::class,
+            'entry_type' => BilletType::class,
             'allow_add' => true,
             'label' => '',
-        ])
-            ->add('id', HiddenType::class);
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Commandes::class
+            'data_class' => Commande::class
         ]);
     }
 

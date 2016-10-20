@@ -11,14 +11,9 @@
                     </div>
                 {% endfor %}
                 {{ form_start(commande) }}
-                {{ form_errors(commande) }}
                 {{ form_row(commande.typeBillet, {'label' : 'Choix du billet'}) }}
                 {{ form_row(commande.dateVisite, {'label' : 'Date de votre visite'}) }}
-
-                {{ form_row(commande.emailVisiteur, {'label' : 'Votre email'}) }}
-
-                {{ form_row(commande.secondEmail, {'label' : 'Retapez votre email'}) }}
-
+                {{ form_row(commande.emailVisiteur) }}
                 {{ form_row(commande.nbBillets, {'label' : 'Quantité de billets souhaitée'}) }}
 
                 <div class="text-center">

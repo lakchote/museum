@@ -1,10 +1,4 @@
 $(function() {
-    //On cache les étapes suivantes au début
-    $('.etape2').hide();
-    $('.etape3').hide();
-    $('.etape4').hide();
-    $('.etape5').hide();
-
     //Load Facebook + Twitter SDK
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

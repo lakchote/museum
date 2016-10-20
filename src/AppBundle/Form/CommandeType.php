@@ -2,15 +2,17 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommandeFormType extends AbstractType
+class CommandeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,14 +26,16 @@ class CommandeFormType extends AbstractType
             ->add('dateVisite', DateType::class, [
                 'attr' => ['class' => 'dateVisite'],
                 'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
                 'html5' => false,
             ])
-            ->add('emailVisiteur', EmailType::class, [
-                'attr' => ['placeholder' => 'votre_email@gmail.com']
+            ->add('emailVisiteur', RepeatedType::class,[
+                'type' => EmailType::class,
+                'first_options' => ['label' => 'Votre email'],
+                'second_options' => ['label' => 'Retapez votre mail'],
             ])
-            ->add('secondEmail', EmailType::class)
             ->add('nbBillets', IntegerType::class,[
-                'attr' => ['min' => '1', 'max' => '100']
+                'attr' => ['min' => '1', 'max' => '100'],
             ])
         ;
     }
@@ -39,7 +43,7 @@ class CommandeFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CommandeModel::class
+            'data_class' => Commande::class
         ]);
     }
 
