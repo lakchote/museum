@@ -26,7 +26,7 @@ class Billet
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\Length(min="3", minMessage="Le prénom ne peut faire moins de 3 caractères")
+     * @Assert\Length(min="3", minMessage="Le nom ne peut faire moins de 3 caractères.")
      * @Assert\NotBlank(message="Vous devez spécifier le nom.")
      */
     private $nom;
@@ -45,7 +45,7 @@ class Billet
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\Length(min="3",minMessage="Le prénom ne peut faire moins de 3 caractères")
+     * @Assert\Length(min="3",minMessage="Le prénom ne peut faire moins de 3 caractères.")
      * @Assert\NotBlank(message="Vous devez spécifier le prénom.")
      */
     private $prenom;
