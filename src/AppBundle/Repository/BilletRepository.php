@@ -23,4 +23,5 @@ class BilletRepository extends EntityRepository
             ->getQuery()
             ->getScalarResult();
     }
+
 }

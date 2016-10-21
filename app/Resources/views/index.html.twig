@@ -3,24 +3,19 @@
 {% block content %}
     <section class="row">
         <div class="col-md-12">
-            <div class="row">
+            <div class="row jumbotron">
                 <h1>Commander son billet en ligne</h1>
-                {% for erreur in app.session.flashBag.get('error') %}
-                    <div class="alert alert-danger">
-                        {{ erreur }}
-                    </div>
-                {% endfor %}
-                {{ form_start(commande) }}
-                {{ form_row(commande.typeBillet, {'label' : 'Choix du billet'}) }}
-                {{ form_row(commande.dateVisite, {'label' : 'Date de votre visite'}) }}
-                {{ form_row(commande.emailVisiteur) }}
-                {{ form_row(commande.nbBillets, {'label' : 'Quantité de billets souhaitée'}) }}
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary" formnovalidate>Valider</button>
-                </div>
-                {{ form_end(commande) }}
             </div>
+            {{ form_start(commande) }}
+            {{ form_row(commande.typeBillet, {'label' : 'Choix du billet'}) }}
+            {{ form_row(commande.dateVisite, {'label' : 'Date de votre visite'}) }}
+            {{ form_row(commande.emailVisiteur) }}
+            {{ form_row(commande.nbBillets, {'label' : 'Quantité de billets souhaitée'}) }}
+
+            <div class="text-center bottom-links">
+                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider</button>
+            </div>
+            {{ form_end(commande) }}
         </div>
     </section>
 {% endblock %}

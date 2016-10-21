@@ -20,6 +20,7 @@ class TarifRepository extends EntityRepository
             ->andWhere('tarif.ageMin <= :age')
             ->andWhere('tarif.ageMax >= :age')
             ->setParameter('age', $age)
+            ->setMaxResults(1)
             ->getQuery()
             ->getSingleScalarResult();
     }

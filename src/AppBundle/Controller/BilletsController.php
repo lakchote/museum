@@ -20,12 +20,19 @@ class BilletsController extends Controller
     public function billetsAction(Commande $commande, Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        if ($this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfCommandeHasBillets($commande)) {
-            return $this->render(':erreurs:commande_possede_billets.html.twig');
+
+        //Si la commande est finalisée, on ne peut plus y accéder
+        if($this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfIsFinished($commande))
+        {
+            return $this->render(':erreurs:commande_terminee.html.twig');
         }
-        for ($i = 0; $i < $commande->getNbBillets(); $i++) {
-            $billet = new Billet();
-            $commande->addBillet($billet);
+
+        //Si la commande a déjà été persistée on ne crée pas de nouveaux billets
+        if (!$this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfCommandeHasBillets($commande)) {
+            for ($i = 0; $i < $commande->getNbBillets(); $i++) {
+                $billet = new Billet();
+                $commande->addBillet($billet);
+            }
         }
         $form = $this->createForm(ShowBilletsType::class, $commande);
         $form->handleRequest($request);
@@ -41,9 +48,9 @@ class BilletsController extends Controller
                 }
                 $billet->setTarif($this->tarif);
             }
-                $em->persist($commande);
-                $em->flush();
-                return $this->redirectToRoute('app_recapitulatif_commande', ['id' => $commande->getId()]);
+            $em->persist($commande);
+            $em->flush();
+            return $this->redirectToRoute('app_recapitulatif_commande', ['id' => $commande->getId()]);
         }
         return $this->render('billets.html.twig', [
             'commande' => $form->createView(),

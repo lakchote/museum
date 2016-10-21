@@ -75,8 +75,12 @@ a:hover {
 }
 
 form,form > * {
-    padding-top: 15px;
     background-color: #F5F5F5;
+}
+
+.bottom-links {
+    background-color: #fff;
+    padding-top: 10px;
 }
 
 fieldset legend {

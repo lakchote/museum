@@ -23,4 +23,15 @@ class CommandeRepository extends EntityRepository
             ->getQuery()
             ->execute();
     }
+
+
+    public function checkIfIsFinished(Commande $commande)
+    {
+        return $this->createQueryBuilder('commande')
+            ->select('commande.isFinished')
+            ->andWhere('commande.id = :commande')
+            ->setParameter('commande', $commande)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

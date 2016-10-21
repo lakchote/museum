@@ -4,14 +4,21 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     not_max_capacity_validator:
         class: AppBundle\Validator\Constraints\NotMaxCapacityValidator
         arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name : validator.constraint_validator }
+
     tarif_resolver:
         class: AppBundle\Service\TarifResolver
         arguments: ['@doctrine.orm.entity_manager']
+
+    total_price_for_commande:
+        class: AppBundle\Service\TotalPrice
+
+    # Extension Twig pour convertir les codes régions des pays en noms
+    app_twig_extension:
+        class: Twig\AppExtension
+        tags:
+            - { name : twig.extension }

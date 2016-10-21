@@ -27,7 +27,7 @@ class Commande
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Billet", mappedBy="commande", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Billet", mappedBy="commande", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private $billets;
@@ -186,11 +186,6 @@ class Commande
     public function setIsFinished($isFinished)
     {
         $this->isFinished = $isFinished;
-    }
-
-    public function __toString()
-    {
-        return (string)$this->getId();
     }
 
     /**
