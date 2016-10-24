@@ -84,6 +84,16 @@ class Commande
      */
     private $emailVisiteur;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $prixTotal;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isEmailSent = false;
+
     public function __construct()
     {
         $this->billets = new ArrayCollection();
@@ -106,7 +116,7 @@ class Commande
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTypeBillet()
     {
@@ -114,7 +124,7 @@ class Commande
     }
 
     /**
-     * @param mixed $typeBillet
+     * @param string $typeBillet
      */
     public function setTypeBillet($typeBillet)
     {
@@ -138,7 +148,7 @@ class Commande
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmailVisiteur()
     {
@@ -146,7 +156,7 @@ class Commande
     }
 
     /**
-     * @param mixed $emailVisiteur
+     * @param string $emailVisiteur
      */
     public function setEmailVisiteur($emailVisiteur)
     {
@@ -169,11 +179,10 @@ class Commande
     {
         $this->billets->add($billet);
         $billet->setCommande($this);
-        return $this;
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getIsFinished()
     {
@@ -181,11 +190,43 @@ class Commande
     }
 
     /**
-     * @param mixed $isFinished
+     * @param boolean $isFinished
      */
     public function setIsFinished($isFinished)
     {
         $this->isFinished = $isFinished;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPrixTotal()
+    {
+        return $this->prixTotal;
+    }
+
+    /**
+     * @param integer $prixTotal
+     */
+    public function setPrixTotal($prixTotal)
+    {
+        $this->prixTotal = $prixTotal;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsEmailSent()
+    {
+        return $this->isEmailSent;
+    }
+
+    /**
+     * @param boolean $isEmailSent
+     */
+    public function setIsEmailSent($isEmailSent)
+    {
+        $this->isEmailSent = $isEmailSent;
     }
 
     /**

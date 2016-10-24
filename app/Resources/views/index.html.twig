@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('vendor/jQuery/jquery-ui.min.css') }}">
+{% endblock %}
+
 {% block content %}
     <section class="row">
         <div class="col-md-12">
@@ -18,4 +23,9 @@
             {{ form_end(commande) }}
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/jQuery/jquery-ui.min.js') }}"></script>
 {% endblock %}

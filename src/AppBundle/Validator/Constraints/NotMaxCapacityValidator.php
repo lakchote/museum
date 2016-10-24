@@ -27,7 +27,7 @@ class NotMaxCapacityValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         $nbBilletsVendus = $this->em->getRepository('AppBundle:Billet')->checkMaxCapacity($value);
-        if(count($nbBilletsVendus) == $this->capaciteMax)
+        if(count($nbBilletsVendus) >= $this->capaciteMax)
         {
             $date = $value->format('Y-m-d');
             $this->context->buildViolation($constraint->message)

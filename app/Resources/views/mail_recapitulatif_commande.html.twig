@@ -1,0 +1,31 @@
+<div class="wrapper-mail" style="background-color: #444444; color:#fff">
+    <img src="http://www.louvre.fr/sites/all/themes/louvre/img/data/logo-louvre.jpg" alt="Logo du musée du Louvre"/>
+    <div>
+        <p>Cher <strong>{{ commande.billets|first.prenom }} {{ commande.billets|first.nom }}</strong>, vous trouverez ci-dessous le récapitulatif de votre commande,
+            <br/>Merci de votre confiance.</p>
+    </div>
+    <div class="infos-commande" style="background-color: #887788;">
+        <h2>Informations liées à la commande</h2>
+        <p><strong>Date de réservation</strong> : {{ commande.dateVisite|date('d-m-Y') }}</p>
+        <p><strong>Type de billets</strong> : {{ commande.typeBillet == 'demi_journee' ? 'Demi-journée' : 'Journée' }}</p>
+        <p><strong>Nombre de billets</strong> : {{ commande.billets.count }}</p>
+        <p><strong>Prix total</strong> : {{ commande.prixTotal }} €</p>
+        <p class="info"><em>Le prix de chaque billet est calculé automatiquement en fonction de la date de
+            naissance.</em></p>
+    </div>
+    <div class="billets-commande" style="background-color: #666666;">
+        {% for billet in commande.billets %}
+            <h2 style="background-color: #080705;"><span style="text-decoration: underline;">Billet n° {{ loop.index }}</span></h2>
+            <p><strong>Nom :</strong> {{ billet.nom }}</p>
+            <p><strong>Prénom</strong> : {{ billet.prenom }}</p>
+            <p><strong>Date de naissance : </strong>{{ billet.dateNaissance|date('d-m-Y') }}</p>
+            <p><strong>Pays</strong> : {{ billet.pays|countryName }}</p>
+            <p><strong>Tarif</strong> : {{ billet.tarif.nom }}</p>
+            {% if commande.typeBillet == 'demi_journee' %}
+                <p><strong>Prix :</strong> {{ billet.tarif.prix/2 }} €</p>
+            {% else %}
+                <p><strong>Prix :</strong> {{ billet.tarif.prix }} €</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

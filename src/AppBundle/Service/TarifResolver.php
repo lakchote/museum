@@ -8,7 +8,6 @@
 
 namespace AppBundle\Service;
 
-
 use AppBundle\Entity\Tarif;
 use Doctrine\ORM\EntityManager;
 
@@ -26,6 +25,9 @@ class TarifResolver
         $today = new \DateTime();
         $yearAsOfToday = $today->format('Y');
         $yearOfBirth = $birthDate->format('Y');
+        if($yearOfBirth > $yearAsOfToday) {
+            return false;
+        }
         $age = $yearAsOfToday - $yearOfBirth;
 
         return $this->em->getRepository(Tarif::class)->returnTarifForBillet($age);

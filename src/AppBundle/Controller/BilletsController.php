@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Tarif;
 use AppBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BilletsController extends Controller
 {
@@ -22,8 +23,7 @@ class BilletsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //Si la commande est finalisée, on ne peut plus y accéder
-        if($this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfIsFinished($commande))
-        {
+        if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
             return $this->render(':erreurs:commande_terminee.html.twig');
         }
 
@@ -43,6 +43,11 @@ class BilletsController extends Controller
                         'nom' => 'reduit'
                     ]);
                 } else {
+                    //Si la date de naissance de l'utilisateur est supérieure à l'année en cours, on lève une exception
+                    if(!$this->get('tarif_resolver')->getTarifForBillet($billet->getDateNaissance()))
+                    {
+                        throw new NotFoundHttpException('La date de naissance ne peut être supérieure à l\'année en cours.');
+                    }
                     $idTarif = $this->get('tarif_resolver')->getTarifForBillet($billet->getDateNaissance());
                     $this->tarif = $this->getDoctrine()->getRepository('AppBundle:Tarif')->find($idTarif);
                 }
@@ -55,17 +60,8 @@ class BilletsController extends Controller
         return $this->render('billets.html.twig', [
             'commande' => $form->createView(),
             'id' => $id,
+            'emailVisiteur' => $commande->getEmailVisiteur(),
+            'dateVisite' => $commande->getDateVisite()
         ]);
-    }
-
-    /**
-     * @Route("/delete/{id}", name="app_delete_billets")
-     */
-    public function deleteAction(Commande $commande)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($commande);
-        $em->flush();
-        return $this->redirectToRoute('app_homepage');
     }
 }

@@ -25,6 +25,9 @@ class TotalPrice
         {
             $this->totalPrice += $billet->getTarif()->getPrix();
         }
+        if($commande->getTypeBillet() == 'demi_journee') {
+            $this->totalPrice = $this->totalPrice/2;
+        }
         return (int)$this->totalPrice;
     }
 }

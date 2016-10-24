@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Commande finalisée
+{% endblock %}
+
+
+{% block content %}
+    <section class="row">
+        <div class="col-md-12">
+            <div class="row jumbotron">
+                <h1><i class="glyphicon glyphicon-ok" aria-hidden="true"></i> Votre commande a été enregistrée.</h1>
+            </div>
+        </div>
+            <div class="well well-lg">
+                <p>Votre commande a bien été prise en compte. Nous vous remercions de votre confiance.</p>
+                <p>Un email de confirmation vous a été envoyé à l'adresse que vous avez indiqué : <strong>{{ commande.emailVisiteur }}</strong></p>
+                <p>Vous y trouverez le récapitulatif de votre commande, incluant le contenu détaillé de chaque billet.</p>
+            </div>
+            <p class="text-center"><em>Nous vous souhaitons une agréable visite au musée du Louvre.</em></p>
+    </section>
+
+{% endblock %}

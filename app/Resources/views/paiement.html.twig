@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Paiement
+{% endblock %}
+
+{% block content %}
+<section class="row">
+    <div class="col-md-12">
+        <div class="row jumbotron">
+            <h1>Finalisation de la commande</h1>
+        </div>
+        <form action="" method="POST" id="payment-form">
+            <div class="col-xs-10 col-sm-6 col-sm-offset-2">
+                <div class="alert alert-danger payment-errors hidden"><i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i>&nbsp;</div>
+            </div>
+
+            <div class="col-xs-10 col-sm-6 col-sm-offset-2">
+                <div class="alert alert-danger {{ error ? '' : 'hidden' }}"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i>{{ error }}</div>
+            </div>
+
+            <div class="col-xs-10 col-sm-6 col-sm-offset-2 form-group">
+                <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                 </span>
+                    <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name" required placeholder="Nom du titulaire"/>
+                </div>
+            </div>
+
+            <div class="col-xs-10 col-sm-6 col-sm-offset-2 form-group">
+                <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="glyphicon glyphicon-credit-card" aria-hidden="true"></i>
+                 </span>
+                    <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number" id="card-number" required placeholder="Numéro de carte bleue"/>
+                </div>
+            </div>
+
+            <div class="col-xs-10 col-sm-3 col-sm-offset-2 form-group">
+                <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
+                 </span>
+                    <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp" id="card-expiration" required="required" placeholder="mm/yy"/>
+                </div>
+            </div>
+
+            <div class="col-xs-10 col-sm-3 form-group">
+                <div class="input-group">
+                <span class="input-group-addon">
+                     <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+                 </span>
+                    <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc" id="card-cvc" required="required" placeholder="CVC (Ex: 456)"/>
+                </div>
+            </div>
+
+            <div class="col-xs-10 col-sm-6 col-sm-offset-2 text-center bottom-links">
+                <button type="submit" class="js-submit-button btn btn-success">
+                    <i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i>
+                    Obtenir ses billets
+                </button>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/jquery.payment.min.js') }}"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        Stripe.setPublishableKey('{{ stripe_public_key }}');
+        $(function() {
+            var $form = $('#payment-form');
+            $form.find('.js-cc-number').payment('formatCardNumber');
+            $form.find('.js-cc-exp').payment('formatCardExpiry');
+            $form.find('.js-cc-cvc').payment('formatCardCVC');
+            $form.submit(function(event) {
+                event.preventDefault();
+                $form.find('.js-submit-button').prop('disabled', true);
+                Stripe.card.createToken($form, stripeResponseHandler);
+            });
+            function stripeResponseHandler(status, response) {
+                var $form = $('#payment-form');
+                if (response.error) {
+                    $form.find('.payment-errors').append(response.error.message).removeClass('hidden');
+                    $form.find('.js-submit-button').prop('disabled', false);
+                } else { // Token was created!
+                    $form.find('.payment-errors').addClass('hidden');
+                    var token = response.id;
+                    $form.append($('<input type="hidden" name="stripeToken">').val(token));
+                    $form.get(0).submit();
+                }
+            }
+        });
+    </script>
+{% endblock %}

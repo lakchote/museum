@@ -25,11 +25,7 @@
                 {{ form_row(billets.isTarifReduit) }}
             {% endfor %}
             <div class="text-center bottom-links">
-                    {# Supprime la commande lors du clic #}
-                    <a href="/delete/{{ id }}" class="btn btn-default">
-                       <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Accueil
-                    </a>
-                    <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider</button>
+                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider</button>
             </div>
             {{ form_end(commande) }}
         </div>

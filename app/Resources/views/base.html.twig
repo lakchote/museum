@@ -9,14 +9,13 @@
     <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('louvre.ico') }}"/>
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/mobile.css') }}">
         <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.ttf') }}">
         <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
         <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.woff2') }}">
-        <link rel="stylesheet" href="{{ asset('vendor/jQuery/jquery-ui.min.css') }}">
     {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('louvre.ico') }}"/>
     {% block IECompatibility %}
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -77,7 +76,7 @@
                     <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
                     <!-- Bouton aidant à la navigation (uniquement sur mobile) -->
                     <button type="button" class="btn btn-xs visible-xs" id="back-to-top">
-                        <span class="fa fa-arrow-up" aria-hidden="true"></span><a href="#image-logo"> Haut de la
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span><a href="#image-logo"> Haut de la
                             page</a>
                     </button>
                 </div>
@@ -90,7 +89,6 @@
 </div>
 {% block javascripts %}
     <script src="{{ asset('vendor/jQuery/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('vendor/jQuery/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src=" {{ asset('js/form.js') }}"></script>
 {% endblock %}

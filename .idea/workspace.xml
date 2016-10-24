@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bbf7dead-45a7-4222-8255-2c348d88d2b9" name="Default" comment="Modification du README">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/DoctrineMigrations/Version20161019175509.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/DoctrineMigrations/Version20161019175828.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Form/BilletType.php" />
+    <list default="true" id="bbf7dead-45a7-4222-8255-2c348d88d2b9" name="Default" comment="- Implémentation effective de Stripe via la vue &quot;paiement.html.twig&quot; et la route &quot;app_paiement&quot; (Contrôleur : CommandeController) .&#10;Une fois le paiement validé, la route &quot;app_paiement_success&quot; est appelée et elle  : &#10;* affiche un message de confirmation à l'utilisateur via la vue &quot;commande_finalisee.html.twig&quot;&#10;* envoie un mail  à l'utilisateur contenant le récapitulatif de la commande, via le service &quot;SendMail&quot; et la vue &quot;mail_recapitulatif_commande.html.twig&quot; créés pour l'occasion&#10;&#10;- Ajout du service &quot;CommandeChecker&quot; appelée dans chaque contrôleur (excepté IndexController) &#10;Il est destiné à vérifier que la commande n'est pas déjà finalisée. &#10;Si elle l'est déjà  : &#10;* il affiche un message d'erreur via la vue &quot;erreurs/commande_terminee.html.twig&quot;&#10; * il empêche l'utilisateur de procéder à un nouveau paiement, de modifier les billets...&#10; &#10; - Gestion du type de billet Demi-journée dans le service TotalPrice et les vues Twigs, le prix calculé et le prix affiché pour chaque billet sera divisé par 2 &#10; &#10;- Si la date de naissance d'un billet est supérieure à l'année en cours, on lève désormais une exception (Contrôleur : BilletsController)&#10;&#10;- Suppression de jQuery UI (JS+CSS) dans la vue de base &quot;base.html.twig&quot; afin d'améliorer les performances&#10;jQuery UI présent uniquement dans la vue &quot;index.html.twig&quot; pour le rendu visuel du calendrier lors du choix de la date par l'utilisateur&#10;&#10;- Ajout des attributs prixTotal et isEmailSent (+ getters/setters) dans l'entité Commande&#10;&#10;- Suppression de la route &quot;app_delete_billets&quot; du contrôleur BilletsController, pour des raisons de sécurité&#10; &#10;- CSS&#10;Modifications mineures dans &quot;main.css&quot; destinées à améliorer le rendu visuel des boutons (propriété border-radius ajoutée) et labels (classe .label-as-badge)&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/DoctrineMigrations/Version20161023160633.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/DoctrineMigrations/Version20161024095141.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/commande_finalisee.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/mail_recapitulatif_commande.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/paiement.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Service/CommandeChecker.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Service/SendMail.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/jquery.payment.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/billets.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/billets.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/erreurs/commande_terminee.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/erreurs/commande_terminee.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/recapitulatif_commande.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/recapitulatif_commande.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config_dev.yml" afterPath="$PROJECT_DIR$/app/config/config_dev.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Commande.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Commande.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/BilletType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/BilletType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/TarifResolver.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/TarifResolver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Service/TotalPrice.php" afterPath="$PROJECT_DIR$/src/AppBundle/Service/TotalPrice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacityValidator.php" afterPath="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacityValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/main.css" afterPath="$PROJECT_DIR$/web/css/main.css" />
     </list>
     <ignored path="htdocs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,12 +51,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Billet.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Billet.php">
+      <file leaf-file-name="BilletsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+            <state relative-caret-position="456">
+              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="billets.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/billets.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Commande.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Commande.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4087">
+              <caret line="232" column="20" selection-start-line="232" selection-start-column="20" selection-end-line="232" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="77" column="71" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="71" />
+              <folding>
+                <element signature="e#40#70#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,6 +99,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -52,23 +109,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/CommandeModel.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/BilletsModel.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/BilletsModel.php" />
-        <option value="$PROJECT_DIR$/web/js/billets.js" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/ShowBilletsFormType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Billets.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/BilletsFormType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/BilletsCreator.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/BilletsValidator.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Commandes.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Tarifs.php" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/Tarifs.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/Tarif.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/CommandeFormType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Service/FormValidator.php" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotHoliday.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotPastDay.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotTuesday.php" />
@@ -78,31 +121,45 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotSundayValidator.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotTuesdayValidator.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacity.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacityValidator.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/CommandeType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/IndexController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ShowBilletsType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/BilletType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Tarif.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/TarifResolver.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/erreurs/commande_possede_billets.html.twig" />
         <option value="$PROJECT_DIR$/web/js/main.js" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Commande.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Service/TotalPrice.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php" />
-        <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Intl/Locale/Locale.php" />
         <option value="$PROJECT_DIR$/src/Twig/AppExtension.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/billets.html.twig" />
-        <option value="$PROJECT_DIR$/web/css/main.css" />
-        <option value="$PROJECT_DIR$/app/Resources/views/recapitulatif_commande.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/BilletRepository.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/erreurs/commande_terminee.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/CommandeRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/TarifRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Billet.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/CommandeType.php" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
+        <option value="$PROJECT_DIR$/app/Resources/views/index.html.twig" />
+        <option value="$USER_HOME$/Desktop/start/app/Resources/views/order/_cardForm.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/CommandeRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/BilletType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/TarifResolver.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/TotalPrice.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/test.html.twig.html" />
+        <option value="$PROJECT_DIR$/app/config/config_dev.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/views/test.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/SendMail.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/mail_recapitulatif_commande.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/main.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/commande_finalisee.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/recapitulatif_commande.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Commande.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/paiement.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/erreurs/commande_terminee.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/services.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/BilletRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacityValidator.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Service/CommandeChecker.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/billets.html.twig" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -148,8 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -178,75 +233,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Twig" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -287,28 +274,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Service" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="htdocs" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -418,8 +383,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -428,6 +413,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/layout/index.html" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -508,7 +494,14 @@
       <workItem from="1476995026073" duration="19000" />
       <workItem from="1476995700207" duration="18000" />
       <workItem from="1477033512253" duration="13871000" />
-      <workItem from="1477048911330" duration="16000" />
+      <workItem from="1477048911330" duration="237000" />
+      <workItem from="1477053543579" duration="844000" />
+      <workItem from="1477054638557" duration="663000" />
+      <workItem from="1477206757845" duration="27888000" />
+      <workItem from="1477256391804" duration="1083000" />
+      <workItem from="1477258100279" duration="2000" />
+      <workItem from="1477258746842" duration="3000" />
+      <workItem from="1477292850203" duration="9635000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout des templates : &#10;- base.html.twig (template de base du projet)&#10;- index.html.twig (template du formulaire de la page d'accueil)&#10;&#10;Ajout du contrôleur pour le formulaire de la page d'accueil.&#10;Ajout du formulaire  de la page d'accueil via la classe &quot;CommandeFormType&quot; qui crée un objet &quot;CommandeModel&quot;.&#10;&#10;Ajout du service  &quot;form_validator&quot; destiné à vérifier les contraintes suivantes :&#10; - Vérifier que les deux emails sont identiques&#10; - Vérifier que la date choisie n'est pas déjà passée, que ce n'est pas un Mardi ou Dimanche, ni un jour férié&#10; &#10; Utilisation de jQuery UI pour l'affichage sous forme de calendrier du choix de la date de visite, ce calendrier respecte les contraintes précédemment énoncées liées à la date (double vérification coté client et coté serveur)&#10;&#10;&#10;">
       <created>1476697741120</created>
@@ -538,11 +531,25 @@
       <option name="project" value="LOCAL" />
       <updated>1477046896844</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modification du README&#10;Ajout à l'index Git de certains fichiers qui avaient été oubliés (notamment AppBundle\Form\BilletType.php)">
+      <created>1477049000654</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1477049000654</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- Implémentation effective de Stripe via la vue &quot;paiement.html.twig&quot; et la route &quot;app_paiement&quot; (Contrôleur : CommandeController) .&#10;Une fois le paiement validé, la route &quot;app_paiement_success&quot; est appelée et elle  : &#10;* affiche un message de confirmation à l'utilisateur via la vue &quot;commande_finalisee.html.twig&quot;&#10;* envoie un mail  à l'utilisateur contenant le récapitulatif de la commande, via le service &quot;SendMail&quot; et la vue &quot;mail_recapitulatif_commande.html.twig&quot; créés pour l'occasion&#10;&#10;- Ajout du service &quot;CommandeChecker&quot; appelée dans chaque contrôleur (excepté IndexController) &#10;Il est destiné à vérifier que la commande n'est pas déjà finalisée. &#10;Si elle l'est déjà  : &#10;* il affiche un message d'erreur via la vue &quot;erreurs/commande_terminee.html.twig&quot;&#10; * il empêche l'utilisateur de procéder à un nouveau paiement, de modifier les billets...&#10; &#10; - Gestion du type de billet Demi-journée dans le service TotalPrice et les vues Twigs, le prix calculé et le prix affiché pour chaque billet sera divisé par 2 &#10; &#10;- Si la date de naissance d'un billet est supérieure à l'année en cours, on lève désormais une exception (Contrôleur : BilletsController)&#10;&#10;- Suppression de jQuery UI (JS+CSS) dans la vue de base &quot;base.html.twig&quot; afin d'améliorer les performances&#10;jQuery UI présent uniquement dans la vue &quot;index.html.twig&quot; pour le rendu visuel du calendrier lors du choix de la date par l'utilisateur&#10;&#10;- Ajout des attributs prixTotal et isEmailSent (+ getters/setters) dans l'entité Commande&#10;&#10;- Suppression de la route &quot;app_delete_billets&quot; du contrôleur BilletsController, pour des raisons de sécurité&#10; &#10;- CSS&#10;Modifications mineures dans &quot;main.css&quot; destinées à améliorer le rendu visuel des boutons (propriété border-radius ajoutée) et labels (classe .label-as-badge)&#10;">
+      <created>1477302326946</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1477302326946</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148185000" />
+    <option name="totallyTimeSpent" value="188524000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -557,7 +564,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29584223" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31823027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -587,7 +594,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27985075" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3054371" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -636,7 +643,9 @@
     <MESSAGE value="- Ajout du service &quot;TotalPrice&quot; destiné à calculer le prix total d'une commande en fonction de X billets.&#10;&#10;- Récapitulatif de commandes désormais fonctionnel.&#10;Implémentation effective de l'action&quot;recapCommandeAction&quot; et de sa vue correspondante (Contrôleur :  CommandeController)&#10;&#10;- Ajout extension Twig qui convertit le code région d'un pays en nom (Ex : FR =&gt; France), destinée à produire un affichage correct pour l'utilisateur lors du récapitulatif de commande.&#10;(Location : Twig\AppExtension.php) &#10;&#10;- Remaniement des vues &quot;index&quot; et &quot;billets&quot; : ajout d'icônes pour améliorer l'expérience utilisateur, changement de la couleur des boutons.&#10;- Ajout d'une notice explicative pour le tarif réduit dans la vue &quot;billets&quot;.&#10;&#10;- Refactoring de la vue &quot;erreur/commande_possede_billets&quot; en &quot;erreur/commande_terminee&quot;, destinée à produire dorénavant un message à l'utilisateur si la commande a été finalisée et non plus si la commande possède déjà des billets.&#10;- Ajout de la méthode &quot;checkIfIsFinished&quot; dans le Repository Commande. Le contrôleur &quot;BilletsController&quot; utilise cette méthode lorsqu'on essaye d'accéder à la route &quot;app_billets&quot; et appelle la vue &quot;erreur/commande_possede_billets&quot; si la commande a déjà été finalisée (l'utilisateur ne peut plus accéder aux données de la commande).&#10;&#10;- CSS : &#10;Ajout d'une classe .bottom-links dans &quot;main.css&quot; destinée à la mise en forme des liens et des boutons en bas de page." />
     <MESSAGE value="- Ajout du service &quot;TotalPrice&quot; destiné à calculer le prix total d'une commande en fonction de X billets.&#10;&#10;- Récapitulatif de commandes désormais fonctionnel.&#10;Implémentation effective de l'action&quot;recapCommandeAction&quot; et de sa vue correspondante (Contrôleur :  CommandeController)&#10;&#10;- Ajout extension Twig qui convertit le code région d'un pays en nom (Ex : FR =&gt; France), destinée à produire un affichage correct pour l'utilisateur lors du récapitulatif de commande.&#10;(Location : Twig\AppExtension.php) &#10;&#10;- Remaniement des vues &quot;index&quot; et &quot;billets&quot; : ajout d'icônes pour améliorer l'expérience utilisateur, changement de la couleur des boutons.&#10;- Ajout d'une notice explicative pour le tarif réduit dans la vue &quot;billets&quot;.&#10;&#10;- Refactoring de la vue &quot;erreur/commande_possede_billets&quot; en &quot;erreur/commande_terminee&quot;, destinée à produire dorénavant un message à l'utilisateur si la commande a été finalisée et non plus si la commande possède déjà des billets.&#10;- Ajout de la méthode &quot;checkIfIsFinished&quot; dans le Repository Commande. Le contrôleur &quot;BilletsController&quot; utilise cette méthode lorsqu'on essaye d'accéder à la route &quot;app_billets&quot; et appelle la vue &quot;erreur/commande_possede_billets&quot; si la commande a déjà été finalisée (l'utilisateur ne peut plus accéder aux données de la commande).&#10;&#10;-Modification de la requête Doctrine de la methode &quot;returnTarifForBillet&quot; du repository Tarif &#10;Ajout dans la requête  de setMaxResults-&gt;(1) afin de forcer le retour d'une seule valeur pour que getSingleScalarResult() fonctionne convenablement en toutes circonstances (une requête peut retourner plusieurs valeurs)&#10;&#10;- CSS : &#10;Ajout d'une classe .bottom-links dans &quot;main.css&quot; destinée à la mise en forme des liens et des boutons en bas de page." />
     <MESSAGE value="Correction des messages des contraintes dans l'entité Billet &#10;(le message de la contrainte Length de l'attribut prenom était le même que l'attribut nom)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction des messages des contraintes dans l'entité Billet &#10;(le message de la contrainte Length de l'attribut prenom était le même que l'attribut nom)" />
+    <MESSAGE value="Modification du README&#10;Ajout à l'index Git de certains fichiers qui avaient été oubliés (notamment AppBundle\Form\BilletType.php)" />
+    <MESSAGE value="- Implémentation effective de Stripe via la vue &quot;paiement.html.twig&quot; et la route &quot;app_paiement&quot; (Contrôleur : CommandeController) .&#10;Une fois le paiement validé, la route &quot;app_paiement_success&quot; est appelée et elle  : &#10;* affiche un message de confirmation à l'utilisateur via la vue &quot;commande_finalisee.html.twig&quot;&#10;* envoie un mail  à l'utilisateur contenant le récapitulatif de la commande, via le service &quot;SendMail&quot; et la vue &quot;mail_recapitulatif_commande.html.twig&quot; créés pour l'occasion&#10;&#10;- Ajout du service &quot;CommandeChecker&quot; appelée dans chaque contrôleur (excepté IndexController) &#10;Il est destiné à vérifier que la commande n'est pas déjà finalisée. &#10;Si elle l'est déjà  : &#10;* il affiche un message d'erreur via la vue &quot;erreurs/commande_terminee.html.twig&quot;&#10; * il empêche l'utilisateur de procéder à un nouveau paiement, de modifier les billets...&#10; &#10; - Gestion du type de billet Demi-journée dans le service TotalPrice et les vues Twigs, le prix calculé et le prix affiché pour chaque billet sera divisé par 2 &#10; &#10;- Si la date de naissance d'un billet est supérieure à l'année en cours, on lève désormais une exception (Contrôleur : BilletsController)&#10;&#10;- Suppression de jQuery UI (JS+CSS) dans la vue de base &quot;base.html.twig&quot; afin d'améliorer les performances&#10;jQuery UI présent uniquement dans la vue &quot;index.html.twig&quot; pour le rendu visuel du calendrier lors du choix de la date par l'utilisateur&#10;&#10;- Ajout des attributs prixTotal et isEmailSent (+ getters/setters) dans l'entité Commande&#10;&#10;- Suppression de la route &quot;app_delete_billets&quot; du contrôleur BilletsController, pour des raisons de sécurité&#10; &#10;- CSS&#10;Modifications mineures dans &quot;main.css&quot; destinées à améliorer le rendu visuel des boutons (propriété border-radius ajoutée) et labels (classe .label-as-badge)&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Implémentation effective de Stripe via la vue &quot;paiement.html.twig&quot; et la route &quot;app_paiement&quot; (Contrôleur : CommandeController) .&#10;Une fois le paiement validé, la route &quot;app_paiement_success&quot; est appelée et elle  : &#10;* affiche un message de confirmation à l'utilisateur via la vue &quot;commande_finalisee.html.twig&quot;&#10;* envoie un mail  à l'utilisateur contenant le récapitulatif de la commande, via le service &quot;SendMail&quot; et la vue &quot;mail_recapitulatif_commande.html.twig&quot; créés pour l'occasion&#10;&#10;- Ajout du service &quot;CommandeChecker&quot; appelée dans chaque contrôleur (excepté IndexController) &#10;Il est destiné à vérifier que la commande n'est pas déjà finalisée. &#10;Si elle l'est déjà  : &#10;* il affiche un message d'erreur via la vue &quot;erreurs/commande_terminee.html.twig&quot;&#10; * il empêche l'utilisateur de procéder à un nouveau paiement, de modifier les billets...&#10; &#10; - Gestion du type de billet Demi-journée dans le service TotalPrice et les vues Twigs, le prix calculé et le prix affiché pour chaque billet sera divisé par 2 &#10; &#10;- Si la date de naissance d'un billet est supérieure à l'année en cours, on lève désormais une exception (Contrôleur : BilletsController)&#10;&#10;- Suppression de jQuery UI (JS+CSS) dans la vue de base &quot;base.html.twig&quot; afin d'améliorer les performances&#10;jQuery UI présent uniquement dans la vue &quot;index.html.twig&quot; pour le rendu visuel du calendrier lors du choix de la date par l'utilisateur&#10;&#10;- Ajout des attributs prixTotal et isEmailSent (+ getters/setters) dans l'entité Commande&#10;&#10;- Suppression de la route &quot;app_delete_billets&quot; du contrôleur BilletsController, pour des raisons de sécurité&#10; &#10;- CSS&#10;Modifications mineures dans &quot;main.css&quot; destinées à améliorer le rendu visuel des boutons (propriété border-radius ajoutée) et labels (classe .label-as-badge)&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -662,194 +671,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="26" column="85" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20161019173447.php" />
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20161019173551.php" />
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20161019175509.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/FormValidator.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/NotBlank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotHoliday.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Validator/Context/ExecutionContextInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="87" column="7" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotTuesday.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotSunday.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/php/services1-1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="337" column="15" selection-start-line="337" selection-start-column="15" selection-end-line="337" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/billets.js" />
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotHolidayValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotPastDayValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="19" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotPastDay.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="18" column="76" selection-start-line="18" selection-start-column="76" selection-end-line="18" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotTuesdayValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotSundayValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/BilletsValidator.php" />
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacityValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/CommandeType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ShowBilletsType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/BilletType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding>
-            <element signature="e#34#62#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/Tarif.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
-          <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="94" column="45" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Tarif.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-          <folding>
-            <marker date="1477034696727" expanded="true" signature="755:769" ph="twig.exten..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,7 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,14 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2386">
           <caret line="172" column="27" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -890,140 +707,354 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/billets.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/css/mobile.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        <state relative-caret-position="-936">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-463">
+          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ShowBilletsType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/main.css">
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml.dist">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="528">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/start/app/Resources/views/order/_cardForm.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20161023160633.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/BilletType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Commande.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotPastDay.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="408">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/erreurs/commande_terminee.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Billet.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="447">
+          <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/BilletRepository.php">
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/common/lib/Doctrine/Common/Persistence/ObjectManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="312">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CommandeRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="120">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
+        <state relative-caret-position="624">
+          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/CommandeType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle/SwiftmailerBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/test.html.twig.html" />
+    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
           <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="698">
+          <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Twig/AppExtension.php">
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
-          <folding>
-            <element signature="e#114#146#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="216">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php">
+    <entry file="file://$PROJECT_DIR$/web/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <element signature="e#547#581#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/TarifResolver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="30" column="61" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
-          <folding>
-            <element signature="e#710#730#1#PHP" expanded="true" />
-            <element signature="e#806#844#1#PHP" expanded="true" />
-            <element signature="e#988#1008#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TarifRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/TotalPrice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        <state relative-caret-position="530">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/recapitulatif_commande.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+        <state relative-caret-position="386">
+          <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Billet.php">
+    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20161024095141.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1477295501397" expanded="true" signature="584:642" ph="ALTER TABLE commande... " />
+            <marker date="1477295501397" expanded="true" signature="995:1034" ph="ALTER TABLE commande... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/data-fixtures/lib/Doctrine/Common/DataFixtures/FixtureInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/Tarif.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/TotalPrice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/erreurs/commande_terminee.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/paiement.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="96" column="42" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Twig/AppExtension.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CommandeRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="32" column="49" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TarifRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/SendMail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Validator/Constraints/NotMaxCapacityValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/BilletRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Controller/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-590">
+          <caret line="339" column="0" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/CommandeChecker.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding>
+            <element signature="e#409#429#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/mail_recapitulatif_commande.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="87" selection-start-line="20" selection-start-column="87" selection-end-line="20" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Commande.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4087">
+          <caret line="232" column="20" selection-start-line="232" selection-start-column="20" selection-end-line="232" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/TarifResolver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+          <folding>
+            <element signature="e#126#153#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BilletsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="11" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/commande_finalisee.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="131" selection-start-line="16" selection-start-column="131" selection-end-line="16" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CommandeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="77" column="71" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="71" />
+          <folding>
+            <element signature="e#40#70#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/billets.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
           <folding />
         </state>
       </provider>

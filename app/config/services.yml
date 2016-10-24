@@ -6,13 +6,13 @@ parameters:
 services:
     not_max_capacity_validator:
         class: AppBundle\Validator\Constraints\NotMaxCapacityValidator
-        arguments: ['@doctrine.orm.entity_manager']
+        autowire: true
         tags:
             - { name : validator.constraint_validator }
 
     tarif_resolver:
         class: AppBundle\Service\TarifResolver
-        arguments: ['@doctrine.orm.entity_manager']
+        autowire: true
 
     total_price_for_commande:
         class: AppBundle\Service\TotalPrice
@@ -22,3 +22,11 @@ services:
         class: Twig\AppExtension
         tags:
             - { name : twig.extension }
+
+    send_mail:
+        class: AppBundle\Service\SendMail
+        autowire: true
+
+    commande_checker:
+        class: AppBundle\Service\CommandeChecker
+        autowire: true
