@@ -1,0 +1,15 @@
+homepage:
+  footer:
+    arrow_back_to_top: Haut de la page
+    copyright: © Musée du Louvre - Tous droits réservés
+    links:
+      cgv: Conditions générales de vente
+      contact: Contactez-nous
+      phone_title: Téléphone :
+      phone: 01 40 20 53 17
+    payment_info: Paiement sécurisé
+  menu:
+    home: Billetterie
+    hours: Horaires
+    prices: Tarifs
+  title: Musée du Louvre | Billetterie officielle

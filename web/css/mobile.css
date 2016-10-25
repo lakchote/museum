@@ -38,15 +38,9 @@
 
   .image-header 
   {
-    height:100px !important;
+    height:100px;
   }
 
-  #copyright
-  {
-    display:block;
-    float:none !important;
-  }
-  
   .row-offcanvas-left 
   {
     left: 0;

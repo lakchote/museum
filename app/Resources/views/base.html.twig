@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Coloration de la barre de navigation sur mobile -->
     <meta name="theme-color" content="#2b3e50"/>
-    <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
+    <title>{% block title %}{{ 'homepage.title'|trans({}, 'base') }}{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('louvre.ico') }}"/>
@@ -37,9 +37,9 @@
                 </div>
                 <nav class="navbar navbar-default col-md-12 col-sm-12 sidebar-offcanvas">
                     <ul id="listMenu" class="nav navbar-nav">
-                        <li class="active"><a href="#">Billetterie</a></li>
-                        <li><a href="#horairesInfos">Horaires</a></li>
-                        <li><a href="#tarifsInfos">Tarifs</a></li>
+                        <li class="active"><a href="#">{{ 'homepage.menu.home'|trans({}, 'base') }}</a></li>
+                        <li><a href="#horairesInfos">{{ 'homepage.menu.hours'|trans({}, 'base') }}</a></li>
+                        <li><a href="#tarifsInfos">{{ 'homepage.menu.prices'|trans({}, 'base') }}</a></li>
                     </ul>
                 </nav>
             </section>
@@ -54,7 +54,7 @@
         <footer class="row">
             <div class="col-md-12 col-xs-12  payments">
                 <div class="row">
-                    <p style="color:#000;"><strong>Paiement sécurisé</strong>
+                    <p style="color:#000;"><strong>{{ 'homepage.footer.payment_info'|trans({}, 'base') }}</strong>
                         <img src="{{ asset('img/mastercard.gif') }}" alt="Mastercard" class="payment-method"/>
                         <img src="{{ asset('img/visa.gif') }}" alt="Visa" class="payment-method"/>
                     </p>
@@ -63,25 +63,30 @@
             <div class="row">
                 <div class="col-md-4">
                     <p class="small">
-                        <a href="#">Contactez-Nous</a> -
-                        <a href="#"> CGV</a> -
-                        <span style="color:#fff;">Tél: +33 (0)1 40 20 53 17</span>
+                        <a href="#">{{ 'homepage.footer.links.contact'|trans({}, 'base') }}</a> -
+                        <a href="#"> {{ 'homepage.footer.links.cgv'|trans({}, 'base') }}</a>
                     </p>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
-                         data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank"
-                                                      href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse">Partager</a>
+                         data-mobile-iframe="true">
+                        <a class="fb-xfbml-parse-ignore" target="_blank"
+                           href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
                     </div>
                     <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
                     <!-- Bouton aidant à la navigation (uniquement sur mobile) -->
                     <button type="button" class="btn btn-xs visible-xs" id="back-to-top">
-                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span><a href="#image-logo"> Haut de la
-                            page</a>
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span><a href="#image-logo"> {{ 'homepage.footer.arrow_back_to_top'|trans({}, 'base') }}</a>
                     </button>
                 </div>
                 <div class="col-md-4">
-                    <span class="small pull-right" id="copyright">© Musée du Louvre - Tous droits de reproduction réservés</span>
+                    <span class="small pull-right hidden-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base') }}&nbsp;</span>
+                </div>
+                <div class="col-md-12 text-center">
+                    <p class="small">
+                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
+                    </p>
+                    <span class="small visible-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base') }}&nbsp;</span>
                 </div>
             </div>
         </footer>

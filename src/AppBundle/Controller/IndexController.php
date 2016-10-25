@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class IndexController extends Controller
 {
     /**
-     * @Route("/", name="app_homepage")
+     * @Route("/{_locale}", name="app_homepage", defaults={"_locale" = "fr"}, requirements={"_locale" = "fr|en"})
      */
     public function indexAction(Request $request)
     {
