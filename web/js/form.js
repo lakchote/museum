@@ -5,8 +5,8 @@ $(function() {
         prevText: "Précédent",
         nextText: "Suivant",
         currentText: "Aujourd'hui",
-        monthNames: ["janvier", "février", "mars", "avril", "mai", "juin",
-            "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+        monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+            "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
         ],
         monthNamesShort: ["janv.", "févr.", "mars", "avr.", "mai", "juin",
             "juil.", "août", "sept.", "oct.", "nov.", "déc."
@@ -21,8 +21,9 @@ $(function() {
         showMonthAfterYear: false,
         yearSuffix: ""
     };
-    $.datepicker.setDefaults($.datepicker.regional.fr);
-
+    if (navigator.language == 'fr') {
+        $.datepicker.setDefaults($.datepicker.regional.fr);
+    }
     var joursFeries = ['25-12','1-11', '01-05'];
 
     //	Calendrier avec les contraintes suivantes : 

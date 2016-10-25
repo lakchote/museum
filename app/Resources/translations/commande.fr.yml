@@ -1,0 +1,23 @@
+header_title:
+    value: Commander ses billets en ligne
+
+type_billet:
+    label: Choix du billet
+    choices:
+        full_day_label: Billet journée
+        half_day_label: Billet demi-journée
+    placeholder: Type de billet
+
+date_visite:
+    label: Date de visite
+
+email_visiteur:
+    label_first_options: Votre email
+    label_second_options: Répétez votre email
+
+nb_billets:
+    label: Nombre de tickets
+
+submit_button:
+    value: Envoyer
+

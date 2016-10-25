@@ -1,0 +1,23 @@
+header_title:
+    value: Order your tickets online
+
+type_billet:
+    label: Choose your ticket
+    choices:
+        full_day_label: Full day ticket
+        half_day_label: Half-day ticket
+    placeholder: Ticket type
+
+date_visite:
+    label: Visit date
+
+email_visiteur:
+    label_first_options: Your email
+    label_second_options: Repeat your email
+
+nb_billets:
+    label: Number of tickets
+
+submit_button:
+    value: Submit
+

@@ -15,6 +15,9 @@ commande:
         range:
             min_message: "Vous devez commander au moins un billet."
             max_message: "Vous ne pouvez commander plus de 100 billets dans la même commande."
+
     email_visiteur:
         email: "L'email {{ value }} n'est pas une adresse email valide."
         not_blank: "Vous devez spécifier votre adresse mail."
+
+    invalid_message: "Les deux adresses mails doivent être identiques."

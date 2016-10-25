@@ -18,10 +18,10 @@ class CommandeType extends AbstractType
     {
         $builder->add('typeBillet', ChoiceType::class, [
             'choices' => [
-                'Billet Journée' => 'journee',
-                'Billet Demi-journée' => 'demi_journee',
+                'type_billet.choices.full_day_label' => 'journee',
+                'type_billet.choices.half_day_label' => 'demi_journee',
                 ],
-            'placeholder' => 'Type de billet',
+            'placeholder' => 'type_billet.placeholder',
         ])
             ->add('dateVisite', DateType::class, [
                 'attr' => ['class' => 'dateVisite'],
@@ -31,8 +31,9 @@ class CommandeType extends AbstractType
             ])
             ->add('emailVisiteur', RepeatedType::class,[
                 'type' => EmailType::class,
-                'first_options' => ['label' => 'Votre email'],
-                'second_options' => ['label' => 'Retapez votre mail'],
+                'first_options' => ['label' => 'email_visiteur.label_first_options'],
+                'second_options' => ['label' => 'email_visiteur.label_second_options'],
+                'invalid_message' => 'commande.invalid_message',
             ])
             ->add('nbBillets', IntegerType::class,[
                 'attr' => ['min' => '1', 'max' => '100'],
@@ -43,7 +44,8 @@ class CommandeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Commande::class
+            'data_class' => Commande::class,
+            'translation_domain' => 'commande'
         ]);
     }
 

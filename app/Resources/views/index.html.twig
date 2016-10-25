@@ -9,16 +9,18 @@
     <section class="row">
         <div class="col-md-12">
             <div class="row jumbotron">
-                <h1>Commander son billet en ligne</h1>
+                <h1>{{ 'header_title.value'|trans({}, 'commande') }}</h1>
             </div>
             {{ form_start(commande) }}
-            {{ form_row(commande.typeBillet, {'label' : 'Choix du billet'}) }}
-            {{ form_row(commande.dateVisite, {'label' : 'Date de votre visite'}) }}
+            {{ form_row(commande.typeBillet, {'label' : 'type_billet.label'|trans({}, 'commande')}) }}
+            {{ form_row(commande.dateVisite, {'label' : 'date_visite.label'|trans({}, 'commande')}) }}
             {{ form_row(commande.emailVisiteur) }}
-            {{ form_row(commande.nbBillets, {'label' : 'Quantité de billets souhaitée'}) }}
+            {{ form_row(commande.nbBillets, {'label' : 'nb_billets.label'|trans({}, 'commande')}) }}
 
             <div class="text-center bottom-links">
-                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider</button>
+                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok"
+                                                                                   aria-hidden="true"></span> {{ 'submit_button.value'|trans({}, 'commande') }}
+                </button>
             </div>
             {{ form_end(commande) }}
         </div>
