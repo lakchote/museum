@@ -1,0 +1,20 @@
+commande:
+    date_visite:
+        not_blank: "You must specify the date of attendance at the museum."
+        not_past_day: "You can't book for a day that is already past."
+        not_holiday: "You can't book tickets for public holidays."
+        not_sunday: "You can't book tickets for Sunday."
+        not_tuesday: "You can't book tickets for Tuesday, the museum is closed."
+        not_max_capacity: "The museum maximum capacity for the %jour% has been reached (%billets% tickets sold)."
+
+    type_billet:
+        not_blank: "You must choose the type of the ticket (either \"Full day\" or \"Half Day\")."
+
+    nb_billets:
+        not_blank: "You must choose the number of tickets you want to order."
+        range:
+            min_message: "You must order one ticket at least."
+            max_message: "You can't order more than 100 tickets at once."
+    email_visiteur:
+        email: "The email {{ value }} is not a valid email address."
+        not_blank: "You must specify your email address."

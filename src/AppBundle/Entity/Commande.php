@@ -40,20 +40,30 @@ class Commande
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank(
-     *     message="Vous devez spécifier la date de votre visite au musée."
+     *     message="commande.date_visite.not_blank"
      * )
-     * @FormConstraint\NotPastDay()
-     * @FormConstraint\NotHoliday()
-     * @FormConstraint\NotSunday()
-     * @FormConstraint\NotTuesday()
-     * @FormConstraint\NotMaxCapacity()
+     * @FormConstraint\NotPastDay(
+     *     message="commande.date_visite.not_past_day"
+     * )
+     * @FormConstraint\NotHoliday(
+     *     message="commande.date_visite.not_holiday"
+     * )
+     * @FormConstraint\NotSunday(
+     *     message="commande.date_visite.not_sunday"
+     * )
+     * @FormConstraint\NotTuesday(
+     *     message="commande.date_visite.not_tuesday"
+     * )
+     * @FormConstraint\NotMaxCapacity(
+     *     message="commande.date_visite.not_max_capacity"
+     * )
      */
     private $dateVisite;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(
-     *     message="Vous devez choisir un type de billet (Billet Journée OU Billet Demi-journée)"
+     *     message="commande.type_billet.not_blank"
      * )
      */
     private $typeBillet;
@@ -61,13 +71,13 @@ class Commande
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(
-     *     message="Vous devez saisir la quantité de billets souhaitée."
+     *     message="commande.nb_billets.not_blank"
      * )
      * @Assert\Range(
      *     min=1,
      *     max=100,
-     *     minMessage="Vous devez commander au moins un billet.",
-     *     maxMessage="La quantité de billets demandée ne peut excéder 100."
+     *     minMessage="commande.nb_billets.range.min_message",
+     *     maxMessage="commande.nb_billets.range.max_message"
      * )
      */
     private $nbBillets;
@@ -75,11 +85,11 @@ class Commande
     /**
      * @ORM\Column(type="string")
      * @Assert\Email(
-     *     message="L'email {{ value }} n'est pas une adresse email valide.",
+     *     message="commande.email_visiteur.email",
      *     checkMX=true
      * )
      * @Assert\NotBlank(
-     *     message="Vous devez renseigner votre adresse mail."
+     *     message="commande.email_visiteur.not_blank"
      * )
      */
     private $emailVisiteur;

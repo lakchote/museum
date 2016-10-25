@@ -1,0 +1,20 @@
+commande:
+    date_visite:
+        not_blank: "Vous devez choisir la date de visite du musée."
+        not_past_day: "Vous ne pouvez réserver pour un jour déjà passé."
+        not_holiday: "Vous ne pouvez réserver de billets pour les jours fériés."
+        not_sunday: "Vous ne pouvez réserver de billets le Dimanche."
+        not_tuesday: "Vous ne pouvez réserver de billets le Mardi, le musée est fermé."
+        not_max_capacity: "La capacité maximale du musée pour le %jour% a été atteinte(%billets% billets vendus)."
+
+    type_billet:
+        not_blank: "Vous devez choisir le type de billet (\"Journée\" ou \"Demi-journée\")."
+
+    nb_billets:
+        not_blank: "Vous devez spécifier la quantité de billets que vous souhaitez."
+        range:
+            min_message: "Vous devez commander au moins un billet."
+            max_message: "Vous ne pouvez commander plus de 100 billets dans la même commande."
+    email_visiteur:
+        email: "L'email {{ value }} n'est pas une adresse email valide."
+        not_blank: "Vous devez spécifier votre adresse mail."
