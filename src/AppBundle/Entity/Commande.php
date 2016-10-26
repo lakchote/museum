@@ -42,21 +42,11 @@ class Commande
      * @Assert\NotBlank(
      *     message="commande.date_visite.not_blank"
      * )
-     * @FormConstraint\NotPastDay(
-     *     message="commande.date_visite.not_past_day"
-     * )
-     * @FormConstraint\NotHoliday(
-     *     message="commande.date_visite.not_holiday"
-     * )
-     * @FormConstraint\NotSunday(
-     *     message="commande.date_visite.not_sunday"
-     * )
-     * @FormConstraint\NotTuesday(
-     *     message="commande.date_visite.not_tuesday"
-     * )
-     * @FormConstraint\NotMaxCapacity(
-     *     message="commande.date_visite.not_max_capacity"
-     * )
+     * @FormConstraint\NotPastDay()
+     * @FormConstraint\NotHoliday()
+     * @FormConstraint\NotSunday()
+     * @FormConstraint\NotTuesday()
+     * @FormConstraint\NotMaxCapacity()
      */
     private $dateVisite;
 

@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class NotMaxCapacity extends Constraint
 {
-    public $message = 'La capacité du musée pour le "%jour%" a été dépassée (%billets% billets vendus).';
+    public $message = 'commande.date_visite.not_max_capacity';
 
     public function validatedBy()
     {

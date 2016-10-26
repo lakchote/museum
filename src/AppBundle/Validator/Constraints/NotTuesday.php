@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class NotTuesday extends Constraint
 {
-    public $message = 'Le musée est fermé le Mardi.';
+    public $message = 'commande.date_visite.not_tuesday';
 
     public function validatedBy()
     {

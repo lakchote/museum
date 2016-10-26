@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class NotPastDay extends Constraint
 {
-    public $message = 'Vous ne pouvez réserver un billet pour un jour passé.';
+    public $message = 'commande.date_visite.not_past_day';
 
     public function validatedBy()
     {

@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class NotHoliday extends Constraint
 {
-    public $message = "Vous ne pouvez réserver de billet lorsque c'est un jour férié.";
+    public $message = "commande.date_visite.not_holiday";
 
     public function validatedBy()
     {
