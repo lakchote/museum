@@ -10,22 +10,13 @@ Paiement
         <div class="row jumbotron">
             <h1>Finalisation de la commande</h1>
         </div>
-        <form action="" method="POST" id="payment-form">
+        <form action="" method="POST" id="payment-form" style="position:relative; left:8%;">
             <div class="col-xs-10 col-sm-6 col-sm-offset-2">
                 <div class="alert alert-danger payment-errors hidden"><i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i>&nbsp;</div>
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2">
                 <div class="alert alert-danger {{ error ? '' : 'hidden' }}"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i>{{ error }}</div>
-            </div>
-
-            <div class="col-xs-10 col-sm-6 col-sm-offset-2 form-group">
-                <div class="input-group">
-                <span class="input-group-addon">
-                     <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-                 </span>
-                    <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name" required placeholder="Nom du titulaire"/>
-                </div>
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2 form-group">
@@ -86,7 +77,6 @@ Paiement
                 Stripe.card.createToken($form, stripeResponseHandler);
             });
             function stripeResponseHandler(status, response) {
-                var $form = $('#payment-form');
                 if (response.error) {
                     $form.find('.payment-errors').append(response.error.message).removeClass('hidden');
                     $form.find('.js-submit-button').prop('disabled', false);
