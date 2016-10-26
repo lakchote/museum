@@ -35,23 +35,7 @@ class BilletsController extends Controller
         $form = $this->createForm(ShowBilletsType::class, $commande);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach ($commande->getBillets() as $billet) {
-                /* TODO : Service tarif */
-                if ($billet->getIsTarifReduit()) {
-                    $this->tarif = $this->getDoctrine()->getRepository('AppBundle:Tarif')->findOneBy([
-                        'nom' => 'reduit'
-                    ]);
-                } else {
-                    //Si la date de naissance de l'utilisateur est supérieure à l'année en cours, on lève une exception
-                    if(!$this->get('tarif_resolver')->getTarifForBillet($billet->getDateNaissance()))
-                    {
-                        throw new NotFoundHttpException('La date de naissance ne peut être supérieure à l\'année en cours.');
-                    }
-                    $idTarif = $this->get('tarif_resolver')->getTarifForBillet($billet->getDateNaissance());
-                    $this->tarif = $this->getDoctrine()->getRepository('AppBundle:Tarif')->find($idTarif);
-                }
-                $billet->setTarif($this->tarif);
-            }
+           $this->get('tarif_resolver')->getTarifForEachBillet($commande);
             $em->persist($commande);
             $em->flush();
             return $this->redirectToRoute('app_recapitulatif_commande', ['id' => $commande->getId()]);
