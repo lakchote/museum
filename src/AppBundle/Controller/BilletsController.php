@@ -29,15 +29,14 @@ class BilletsController extends Controller
 
         //Si la commande a déjà été persistée on ne crée pas de nouveaux billets
         if (!$this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfCommandeHasBillets($commande)) {
-            for ($i = 0; $i < $commande->getNbBillets(); $i++) {
-                $billet = new Billet();
-                $commande->addBillet($billet);
-            }
+            $commande = $this->get('commande_manager')->createBilletsForCommande($commande);
         }
+
         $form = $this->createForm(ShowBilletsType::class, $commande);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             foreach ($commande->getBillets() as $billet) {
+                /* TODO : Service tarif */
                 if ($billet->getIsTarifReduit()) {
                     $this->tarif = $this->getDoctrine()->getRepository('AppBundle:Tarif')->findOneBy([
                         'nom' => 'reduit'

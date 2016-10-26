@@ -30,3 +30,6 @@ services:
     commande_checker:
         class: AppBundle\Service\CommandeChecker
         autowire: true
+
+    commande_manager:
+        class: AppBundle\Manager\CommandeManager
