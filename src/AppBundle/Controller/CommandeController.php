@@ -37,19 +37,7 @@ class CommandeController extends Controller
         $error = false;
         if($request->isMethod('POST')) {
             $token = $request->get('stripeToken');
-            \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
-            try {
-                \Stripe\Charge::create([
-                    'amount' => $commande->getPrixTotal() * 100,
-                    'currency' => 'eur',
-                    'source' => $token,
-                    'description' => 'Commande de billets pour le musée du Louvre'
-                ]);
-            }
-            catch(\Stripe\Error\Card $e) {
-                $error = ' Il y a eu un problème lors du paiement : ' . $e->getMessage();
-            }
-
+            $error = $this->get('stripe_api')->defineKey($this->getParameter('stripe_secret_key'))->createChargeForCustomer($commande, $token);
             if(!$error) {
                 $em = $this->getDoctrine()->getManager();
                 $commande->setIsFinished(true);
@@ -71,9 +59,9 @@ class CommandeController extends Controller
      */
     public function successAction(Commande $commande)
     {
-        if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
+       /* if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
             return $this->render(':erreurs:commande_terminee.html.twig');
-        }
+        }*/
         $em = $this->getDoctrine()->getManager();
         $this->get('send_mail')->sendMailToUserWithCommande($commande);
         $commande->setIsEmailSent(true);

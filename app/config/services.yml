@@ -33,3 +33,6 @@ services:
 
     commande_manager:
         class: AppBundle\Manager\CommandeManager
+
+    stripe_api:
+        class: AppBundle\Service\StripeAPI
