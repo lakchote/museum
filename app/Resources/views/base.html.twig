@@ -61,29 +61,34 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-4 col-sm-6">
                     <p class="small">
                         <a href="#">{{ 'homepage.footer.links.contact'|trans({}, 'base') }}</a> -
                         <a href="#"> {{ 'homepage.footer.links.cgv'|trans({}, 'base') }}</a>
                     </p>
                 </div>
-                <div class="col-md-4 col-sm-4 text-center">
+                <div class="col-md-4 text-center hidden-xs hidden-sm">
                     <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
                          data-mobile-iframe="true">
                         <a class="fb-xfbml-parse-ignore" target="_blank"
                            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
                     </div>
                     <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
-                    <!-- Bouton aidant à la navigation (uniquement sur mobile) -->
-                    <button type="button" class="btn btn-xs visible-xs" id="back-to-top">
-                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span><a href="#image-logo"> {{ 'homepage.footer.arrow_back_to_top'|trans({}, 'base') }}</a>
-                    </button>
+                </div>
+                <div class="visible-xs visible-sm col-sm-2 text-center" style="margin-top:5px; position:relative; left:-8%;">
+                    <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
+                         data-mobile-iframe="true">
+                        <a class="fb-xfbml-parse-ignore" target="_blank"
+                           href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
+                    </div>
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+
                 </div>
                 <div class="col-md-4">
                     <span class="small pull-right hidden-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base') }}</span>
                 </div>
                 <div class="col-md-12 text-center">
-                    <p class="small visible-xs">
+                    <p class="small visible-xs" style="position:relative; left:-2%;">
                         <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
                     </p>
                     <p class="small pull-right visible-sm">

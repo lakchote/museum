@@ -61,15 +61,6 @@ a:hover {
     border-radius: 3px;
 }
 
-#back-to-top {
-    height: 20px;
-    position: relative;
-    left: 35%;
-    top: -6px;
-    background-color: #222;
-    margin-top: 5px;
-}
-
 .fb-share-button {
     top: -5px;
 }
