@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,11 +13,9 @@ class CommandeController extends Controller
 
     /**
      * @Route("/commande/recapitulatif/{id}", name="app_recapitulatif_commande")
+     * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
     public function recapCommandeAction(Commande $commande) {
-        if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
-            return $this->render(':erreurs:commande_terminee.html.twig');
-        }
         $em = $this->getDoctrine()->getManager();
         $commande->setPrixTotal($this->get('total_price_for_commande')->calculateTotalPrice($commande));
         $em->persist($commande);
@@ -28,12 +27,10 @@ class CommandeController extends Controller
 
     /**
      * @Route("/paiement/{id}", name="app_paiement")
+     * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
     public function paymentAction(Commande $commande, Request $request)
     {
-        if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
-            return $this->render(':erreurs:commande_terminee.html.twig');
-        }
         $error = false;
         if($request->isMethod('POST')) {
             $token = $request->get('stripeToken');
@@ -56,12 +53,10 @@ class CommandeController extends Controller
 
     /**
      * @Route("/success/{id}", name="app_paiement_success")
+     * @ParamConverter("commande", options={"repository_method" = "isEmailNotSent"})
      */
     public function successAction(Commande $commande)
     {
-       /* if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
-            return $this->render(':erreurs:commande_terminee.html.twig');
-        }*/
         $em = $this->getDoctrine()->getManager();
         $this->get('send_mail')->sendMailToUserWithCommande($commande);
         $commande->setIsEmailSent(true);

@@ -25,13 +25,23 @@ class CommandeRepository extends EntityRepository
     }
 
 
-    public function checkIfIsFinished(Commande $commande)
+    public function isNotFinished($id)
     {
-        return $this->createQueryBuilder('commande')
-            ->select('commande.isFinished')
-            ->andWhere('commande.id = :commande')
-            ->setParameter('commande', $commande)
+        return $this->createQueryBuilder('c')
+            ->where('c.id = :id')
+            ->andWhere('c.isFinished = 0')
+            ->setParameter('id', $id)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getOneOrNullResult();
+    }
+
+    public function isEmailNotSent($id)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.id = :id')
+            ->andWhere('c.isEmailSent = 0')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

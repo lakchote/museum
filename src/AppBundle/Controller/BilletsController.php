@@ -2,36 +2,27 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Billet;
 use AppBundle\Form\ShowBilletsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Tarif;
 use AppBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BilletsController extends Controller
 {
-    private $tarif;
 
     /**
      * @Route("/commande/{id}", name="app_billets")
+     * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
     public function billetsAction(Commande $commande, Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
-        //Si la commande est finalisée, on ne peut plus y accéder
-        if(!$this->get('commande_checker')->checkIfRequestIsValid($commande)) {
-            return $this->render(':erreurs:commande_terminee.html.twig');
-        }
-
         //Si la commande a déjà été persistée on ne crée pas de nouveaux billets
         if (!$this->getDoctrine()->getRepository('AppBundle:Commande')->checkIfCommandeHasBillets($commande)) {
             $commande = $this->get('commande_manager')->createBilletsForCommande($commande);
         }
-
         $form = $this->createForm(ShowBilletsType::class, $commande);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
