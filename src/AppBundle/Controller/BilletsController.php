@@ -42,9 +42,6 @@ class BilletsController extends Controller
         }
         return $this->render('billets.html.twig', [
             'commande' => $form->createView(),
-            'id' => $id,
-            'emailVisiteur' => $commande->getEmailVisiteur(),
-            'dateVisite' => $commande->getDateVisite()
         ]);
     }
 }
