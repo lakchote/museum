@@ -45,13 +45,9 @@ class TarifResolver
                     'nom' => 'reduit'
                 ]);
             } else {
-                //Si la date de naissance de l'utilisateur est supérieure à l'année en cours, on lève une exception
-                if(!$this->getTarifForBillet($billet->getDateNaissance()))
-                {
+                if(!$this->tarif = $this->getTarifForBillet($billet->getDateNaissance())) {
                     throw new NotFoundHttpException('La date de naissance ne peut être supérieure à l\'année en cours.');
                 }
-                $idTarif = $this->getTarifForBillet($billet->getDateNaissance());
-                $this->tarif = $this->em->getRepository('AppBundle:Tarif')->find($idTarif);
             }
             $billet->setTarif($this->tarif);
         }

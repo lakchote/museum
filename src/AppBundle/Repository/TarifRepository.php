@@ -16,12 +16,11 @@ class TarifRepository extends EntityRepository
     public function returnTarifForBillet($age)
     {
         return $this->createQueryBuilder('tarif')
-            ->select('tarif.id')
-            ->andWhere('tarif.ageMin <= :age')
+            ->where('tarif.ageMin <= :age')
             ->andWhere('tarif.ageMax >= :age')
             ->setParameter('age', $age)
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getOneOrNullResult();
     }
 }
