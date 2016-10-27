@@ -30,9 +30,7 @@ class StripeAPI
             ]);
         } catch (\Stripe\Error\Card $e) {
             $error = ' Il y a eu un problème lors du paiement : ' . $e->getMessage();
-            return $error;
         }
-
         return $error;
     }
 }
