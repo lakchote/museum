@@ -1,47 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Récapitulatif de votre commande
+    {{ 'header.title'|trans({}, 'recapitulatif') }}
 {% endblock %}
 
 {% block content %}
     <section class="row">
         <div class="col-md-12">
             <div class="row jumbotron">
-                <h1>Récapitulatif de la commande</h1>
+                <h1>{{ 'content.title'|trans({}, 'recapitulatif') }}</h1>
             </div>
             <div class="well">
-                <h2>Informations liées à la commande</h2>
-                <p>Date de réservation : {{ commande.dateVisite|date('d-m-Y') }} </p>
-                <p>Type de billets : {{ commande.typeBillet == 'demi_journee' ? 'Demi-journée' : 'Journée' }}</p>
-                <p>Nombre de billets : {{ commande.billets.count }}</p>
-                <p>Votre email : {{ commande.emailVisiteur }}</p>
-                <p><em>Le prix de chaque billet est calculé automatiquement en fonction de la date de
-                        naissance.</em></p>
+                <h2>{{ 'content.infos_commande.label'|trans({}, 'recapitulatif') }}</h2>
+                <p>{{ 'content.infos_commande.date_reservation'|trans({}, 'recapitulatif') }}
+                    : {{ commande.dateVisite|date('d-m-Y') }} </p>
+                <p>{{ 'content.infos_commande.type_billets'|trans({}, 'recapitulatif') }} :
+                    {% if _locale == 'en' %}
+                        {{ (commande.typeBillet == 'demi_journee') ? 'Half-day' : 'Full day' }}
+                    {% else %}
+                        {{ (commande.typeBillet == 'demi_journee') ? 'Demi-journée' : 'Journée' }}
+                    {% endif %}</p>
+                <p>{{ 'content.infos_commande.nb_billets'|trans({}, 'recapitulatif') }}
+                    : {{ commande.billets.count }}</p>
+                <p>{{ 'content.infos_commande.email_visiteur'|trans({}, 'recapitulatif') }}
+                    : {{ commande.emailVisiteur }}</p>
+                <p><em>{{ 'content.infos_commande.prix'|trans({}, 'recapitulatif') }}</em></p>
             </div>
             {% for billet in commande.billets %}
-                <p class="label label-default">Billet n° {{ loop.index }}</p>
+                <p class="label label-default">{{ 'content.infos_billets.loop_info'|trans({}, 'recapitulatif') }} {{ loop.index }}</p>
                 <div class="well">
-                    <p><strong>Nom :</strong> {{ billet.nom }}</p>
-                    <p><strong>Prénom</strong> : {{ billet.prenom }}</p>
-                    <p><strong>Date de naissance : </strong>{{ billet.dateNaissance|date('d-m-Y') }}</p>
-                    <p><strong>Pays</strong> : {{ billet.pays|countryName }}</p>
-                    <p><strong>Tarif</strong> : {{ billet.tarif.nom }}</p>
-                    {% if commande.typeBillet == 'demi_journee' %}
-                        <p class="label label-info label-as-badge">Prix : {{ billet.tarif.prix/2 }} €</p>
-                    {% else %}
-                        <p class="label label-info label-as-badge">Prix : {{ billet.tarif.prix }} €</p>
-                    {% endif %}
+                    <p><strong>{{ 'content.infos_billets.nom'|trans({}, 'recapitulatif') }} :</strong> {{ billet.nom }}
+                    </p>
+                    <p><strong>{{ 'content.infos_billets.prenom'|trans({}, 'recapitulatif') }}
+                            : </strong> {{ billet.prenom }}</p>
+                    <p><strong>{{ 'content.infos_billets.date_naissance'|trans({}, 'recapitulatif') }}
+                            : </strong>{{ billet.dateNaissance|date('d-m-Y') }}</p>
+                    <p><strong>{{ 'content.infos_billets.pays'|trans({}, 'recapitulatif') }}
+                            : </strong> {{ _locale == 'en' ? billet.pays|countryName('en') : billet.pays|countryName('fr') }}
+                    </p>
+                    <p><strong>{{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
+                            : </strong>
+                        {% if _locale == 'fr' %}
+                            {{ billet.tarif.nom }}
+                        {% else %}
+                            {% if billet.tarif.nom == 'enfant' %}
+                                child
+                            {% elseif billet.tarif.nom == 'reduit' %}
+                                reduced
+                            {% elseif billet.tarif.nom == 'gratuit' %}
+                                free
+                            {% else %}
+                                {{ billet.tarif.nom }}
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                    <p class="label label-info label-as-badge">{{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
+                        : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }} €</p>
                 </div>
             {% endfor %}
         </div>
         <div class="col-md-12 text-center bottom-links">
-            <span>Prix total :</span> <strong>{{ commande.prixTotal }} € </strong><br/><br/>
+            <span>{{ 'content.prix_total'|trans({}, 'recapitulatif') }} :</span> <strong>{{ commande.prixTotal }}
+                € </strong><br/><br/>
             <a href="{{ path('app_billets', {'id' : commande.id}) }}" class="btn btn-default"><span
-                        class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier billets</a>
-            <a href="{{ path('app_paiement', {'_locale' : _locale, 'id' : commande.id }) }}" class="btn btn-success"><span
+                        class="glyphicon glyphicon-pencil"
+                        aria-hidden="true"></span> {{ 'content.modifier_billets'|trans({}, 'recapitulatif') }}</a>
+            <a href="{{ path('app_paiement', {'_locale' : _locale, 'id' : commande.id }) }}"
+               class="btn btn-success"><span
                         class="glyphicon glyphicon-shopping-cart"
-                        aria-hidden="true"></span> Commander</a>
+                        aria-hidden="true"></span> {{ 'content.commander'|trans({}, 'recapitulatif') }}</a>
         </div>
     </section>
 {% endblock %}

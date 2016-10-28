@@ -1,0 +1,22 @@
+header:
+    title: Louvre Museum | Order summary
+content:
+    title: Order summary
+    infos_commande:
+        label: Order information
+        date_reservation: Visit date
+        type_billets: Tickets type
+        nb_billets: Number of tickets
+        email_visiteur: Your email
+        prix: The price of each ticket is automatically calculated based on the birth date.
+    infos_billets:
+        loop_info: Ticket n°
+        nom: Last name
+        prenom: First name
+        date_naissance: Birth date
+        pays: Country
+        tarif: Price
+    prix_total: Total price
+    modifier_billets: Modify your tickets
+    commander: Order
+

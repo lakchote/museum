@@ -10,7 +10,6 @@ namespace Twig;
 
 
 use Symfony\Component\Intl\Intl;
-use Locale;
 
 class AppExtension extends \Twig_Extension
 {
@@ -25,8 +24,8 @@ class AppExtension extends \Twig_Extension
         return 'app_extension';
     }
 
-    public function countryCodeToName($value)
+    public function countryCodeToName($value, $locale)
     {
-        return Intl::getRegionBundle()->getCountryName($value, 'fr');
+        return Intl::getRegionBundle()->getCountryName($value, $locale);
     }
 }

@@ -1,0 +1,22 @@
+header:
+    title: Musée du Louvre | Récapitulatif de votre commande
+content:
+    title: Récapitulatif de votre commande
+    infos_commande:
+        label: Informations liées à la commande
+        date_reservation: Date de réservation
+        type_billets: Type de billets
+        nb_billets: Nombre de billets
+        email_visiteur: Votre email
+        prix: Le prix de chaque billet est calculé automatiquement en fonction de la date de naissance.
+    infos_billets:
+        loop_info: Billet n°
+        nom: Nom
+        prenom: Prénom
+        date_naissance: Date de naissance
+        pays: Pays
+        tarif: Prix
+    prix_total: Prix total
+    modifier_billets: Modifier billets
+    commander: Commander
+
