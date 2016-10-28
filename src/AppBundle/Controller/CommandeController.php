@@ -27,7 +27,7 @@ class CommandeController extends Controller
 
     /**
      * @Route("/paiement/{id}", name="app_paiement")
-     * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
+     * @ParamConverter("commande", options={"repository_method" = "isNotFinishedAndPriceNotNull"})
      */
     public function paymentAction(Commande $commande, Request $request)
     {
@@ -53,7 +53,7 @@ class CommandeController extends Controller
 
     /**
      * @Route("/success/{id}", name="app_paiement_success")
-     * @ParamConverter("commande", options={"repository_method" = "isEmailNotSent"})
+     * @ParamConverter("commande", options={"repository_method" = "isEmailNotSentAndIsFinished"})
      */
     public function successAction(Commande $commande)
     {

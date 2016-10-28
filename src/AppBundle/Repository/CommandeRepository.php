@@ -35,11 +35,23 @@ class CommandeRepository extends EntityRepository
             ->getOneOrNullResult();
     }
 
-    public function isEmailNotSent($id)
+    public function isEmailNotSentAndIsFinished($id)
     {
         return $this->createQueryBuilder('c')
             ->where('c.id = :id')
             ->andWhere('c.isEmailSent = 0')
+            ->andWhere('c.isFinished = 1')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function isNotFinishedAndPriceNotNull($id)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.id = :id')
+            ->andWhere('c.prixTotal != 0')
+            ->andWhere('c.isFinished = 0')
             ->setParameter('id', $id)
             ->getQuery()
             ->getOneOrNullResult();
