@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Commande;
 use AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class IndexController extends Controller
 {
     /**
-     * @Route("/{_locale}", name="app_homepage", defaults={"_locale" = "fr"}, requirements={"_locale" = "fr|en"})
+     * @Route("/{_locale}", name="app_homepage",requirements={"_locale" = "fr|en"})
      */
     public function indexAction(Request $request)
     {
@@ -30,7 +29,8 @@ class IndexController extends Controller
             $em->persist($commande);
             $em->flush();
             return $this->redirectToRoute('app_billets', [
-                'id' => $commande->getId()
+                'id' => $commande->getId(),
+                '_locale' => $request->getLocale()
             ]);
         }
         return $this->render('index.html.twig', [
@@ -38,5 +38,14 @@ class IndexController extends Controller
         ]);
     }
 
-
+    /**
+     * @Route("/", name="app_homepage_locale")
+     */
+    public function localeAction(Request $request)
+    {
+        $locale = $request->getLocale();
+        return $this->redirectToRoute('app_homepage', [
+            '_locale' => $locale
+        ]);
+    }
 }

@@ -13,10 +13,10 @@ class BilletsController extends Controller
 {
 
     /**
-     * @Route("/commande/{id}", name="app_billets")
+     * @Route("{_locale}/commande/{id}", name="app_billets", requirements={"_locale" = "fr|en"})
      * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
-    public function billetsAction(Commande $commande, Request $request, $id)
+    public function billetsAction(Commande $commande, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         //Si la commande a déjà été persistée on ne crée pas de nouveaux billets
