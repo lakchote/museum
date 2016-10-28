@@ -1,0 +1,10 @@
+header:
+    title: Louvre Museum | Finalize order
+content:
+    title: Finalize your order
+    form:
+        card_number_placeholder: Card number
+        mm_yy: mm/yy
+        cvc: CVV
+    submit_button: Get your tickets
+    payment_error: There was a problem during payment

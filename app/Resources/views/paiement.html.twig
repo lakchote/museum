@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-Paiement
+{{ 'header.title'|trans({}, 'paiement') }}
 {% endblock %}
 
 {% block content %}
 <section class="row">
     <div class="col-md-12">
         <div class="row jumbotron">
-            <h1>Finalisation de la commande</h1>
+            <h1>{{ 'content.title'|trans({}, 'paiement') }}</h1>
         </div>
         <form action="" method="POST" id="payment-form" style="position:relative; left:8%;">
             <div class="col-xs-10 col-sm-6 col-sm-offset-2">
@@ -16,7 +16,7 @@ Paiement
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2">
-                <div class="alert alert-danger {{ error ? '' : 'hidden' }}"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i>{{ error }}</div>
+                <div class="alert alert-danger {{ error ? '' : 'hidden' }}"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i> {{ error }}</div>
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2 form-group">
@@ -24,7 +24,7 @@ Paiement
                 <span class="input-group-addon">
                      <i class="glyphicon glyphicon-credit-card" aria-hidden="true"></i>
                  </span>
-                    <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number" id="card-number" required placeholder="Numéro de carte bleue"/>
+                    <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number" id="card-number" required placeholder="{{ 'content.form.card_number_placeholder'|trans({}, 'paiement') }}"/>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@ Paiement
                 <span class="input-group-addon">
                      <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
                  </span>
-                    <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp" id="card-expiration" required="required" placeholder="mm/yy"/>
+                    <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp" id="card-expiration" required="required" placeholder="{{ 'content.form.mm_yy'|trans({}, 'paiement') }}"/>
                 </div>
             </div>
 
@@ -42,14 +42,14 @@ Paiement
                 <span class="input-group-addon">
                      <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
                  </span>
-                    <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc" id="card-cvc" required="required" placeholder="CVC (Ex: 456)"/>
+                    <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc" id="card-cvc" required="required" placeholder="{{ 'content.form.cvc'|trans({}, 'paiement') }}"/>
                 </div>
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2 text-center bottom-links">
                 <button type="submit" class="js-submit-button btn btn-success">
                     <i class="glyphicon glyphicon-ok-circle" aria-hidden="true"></i>
-                    Obtenir ses billets
+                    {{ 'content.submit_button'|trans({}, 'paiement') }}
                 </button>
             </div>
         </form>

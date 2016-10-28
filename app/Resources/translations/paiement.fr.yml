@@ -1,0 +1,10 @@
+header:
+    title: Musée du Louvre | Finalisation de la commande
+content:
+    title: Finalisation de la commande
+    form:
+        card_number_placeholder: Numéro de carte bleue
+        mm_yy: mm/aa
+        cvc: CVV
+    submit_button: Obtenir ses billets
+    payment_error: Il y a eu un problème lors du paiement

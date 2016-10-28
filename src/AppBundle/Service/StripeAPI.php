@@ -9,9 +9,16 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Commande;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 class StripeAPI
 {
+    private $translator;
+
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
     public function defineKey($apiKEY)
     {
         \Stripe\Stripe::setApiKey($apiKEY);
@@ -29,7 +36,8 @@ class StripeAPI
                 'description' => 'Commande de billets pour le musée du Louvre'
             ]);
         } catch (\Stripe\Error\Card $e) {
-            $error = ' Il y a eu un problème lors du paiement : ' . $e->getMessage();
+            $translation = $this->translator->trans('content.payment_error', array(), 'paiement');
+            $error = $translation. ' : ' . $e->getMessage();
         }
         return $error;
     }

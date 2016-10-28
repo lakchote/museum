@@ -32,3 +32,4 @@ services:
 
     stripe_api:
         class: AppBundle\Service\StripeAPI
+        autowire: true
