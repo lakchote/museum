@@ -1,31 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Billets de votre commande
+    {{ 'header.title'|trans({}, 'billets') }}
 {% endblock %}
 
 {% block content %}
     <section class="row">
         <div class="col-md-12">
             <div class="row jumbotron">
-                <h1>Billets à compléter</h1>
+                <h1>{{ 'content.title'|trans({}, 'billets') }}</h1>
             </div>
             <div class="alert alert-info">
                 <span class="label label-default"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Information</span>
-                <p>Le tarif réduit est un tarif accordé aux personnes ayant un statut particulier (étudiant, militaires, employés de musée...)<br/>
-                Il sera nécessaire de produire un justificatif de situation, afin de pouvoir en bénéficier sur place.</p>
+                <p>{{ 'content.tarif_reduit'|trans({}, 'billets')|raw }}</p>
             </div>
             {{ form_start(commande) }}
             {% for billets in commande.billets %}
-                <label>Billet n° {{ loop.index }}</label>
-                {{ form_row(billets.nom) }}
-                {{ form_row(billets.prenom) }}
-                {{ form_row(billets.pays) }}
-                {{ form_row(billets.dateNaissance) }}
-                {{ form_row(billets.isTarifReduit) }}
+                <label>{{ 'content.loop_info'|trans({}, 'billets') }}{{ loop.index }}</label>
+                {{ form_row(billets.nom, {'label' : 'content.label.nom'|trans({}, 'billets')}) }}
+                {{ form_row(billets.prenom, {'label' : 'content.label.prenom'|trans({}, 'billets')}) }}
+                {{ form_row(billets.pays, {'label' : 'content.label.pays'|trans({}, 'billets')}) }}
+                {{ form_row(billets.dateNaissance, {'label' : 'content.label.date_naissance'|trans({}, 'billets')}) }}
+                {{ form_row(billets.isTarifReduit, {'label' : 'content.label.tarif_reduit'|trans({}, 'billets')}) }}
             {% endfor %}
             <div class="text-center bottom-links">
-                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Valider</button>
+                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ 'content.submit_button'|trans({}, 'billets') }}</button>
             </div>
             {{ form_end(commande) }}
         </div>

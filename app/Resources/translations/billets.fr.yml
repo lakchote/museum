@@ -1,0 +1,13 @@
+header:
+    title: Musée du Louvre | Remplir vos billets
+content:
+    title: Remplir vos billets
+    tarif_reduit: Le tarif réduit est un tarif spécial accordé aux personnes bénéficiant d'un statut particulier (étudiant, militaire, employé de musée...)<br/>Il sera nécessaire de produire un justificatif sur place pour pouvoir en bénéficier.
+    loop_info : Billet n°
+    label:
+        nom: Nom
+        prenom: Prénom
+        pays: Pays
+        date_naissance: Date de naissance
+        tarif_reduit: Tarif réduit
+    submit_button: Envoyer

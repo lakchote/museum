@@ -1,0 +1,13 @@
+header:
+    title: Louvre Museum | Fill in your tickets
+content:
+    title: Fill in your tickets
+    tarif_reduit: The reduced price ticket is a price granted to people with a special status (student, military, museum employee...).<br/>You will need to provide a proof of your status at the museum to benefit from it.
+    loop_info : Ticket n°
+    label:
+        nom: Last name
+        prenom: First name
+        pays: Country
+        date_naissance: Birth date
+        tarif_reduit: Reduced price
+    submit_button: Submit

@@ -14,7 +14,6 @@ class ShowBilletsType extends AbstractType
     {
         $builder->add('billets', CollectionType::class,[
             'entry_type' => BilletType::class,
-            'allow_add' => true,
             'label' => '',
         ]);
     }
