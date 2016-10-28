@@ -57,10 +57,11 @@ class CommandeController extends Controller
      * @Route("{_locale}/success/{id}", name="app_paiement_success")
      * @ParamConverter("commande", options={"repository_method" = "isEmailNotSentAndIsFinished"})
      */
-    public function successAction(Commande $commande)
+    public function successAction(Commande $commande, Request $request)
     {
+        $locale = $request->getLocale();
         $em = $this->getDoctrine()->getManager();
-        $this->get('send_mail')->sendMailToUserWithCommande($commande);
+        $this->get('send_mail')->sendMailToUserWithCommande($commande, $locale);
         $commande->setIsEmailSent(true);
         $em->persist($commande);
         $em->flush();

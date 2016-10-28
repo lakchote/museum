@@ -15,8 +15,14 @@ content:
         prenom: First name
         date_naissance: Birth date
         pays: Country
-        tarif: Price
+        tarif: Rate
+        prix: Price
     prix_total: Total price
     modifier_billets: Modify your tickets
     commander: Order
-
+mail:
+    title: Louvre Museum - Order summary
+    salutation: Dear
+    intro_message: You will find below your order summary. Thank you for your trust.
+    restez_en_contact: Stay in touch
+    contact: Contact us

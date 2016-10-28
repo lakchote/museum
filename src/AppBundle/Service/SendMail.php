@@ -9,27 +9,32 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Commande;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 class SendMail
 {
     private $mailer;
     private $templating;
+    private $translator;
 
-    public function __construct(\Swift_Mailer $mailer, \Symfony\Bundle\TwigBundle\TwigEngine $twig)
+    public function __construct(\Swift_Mailer $mailer, \Symfony\Bundle\TwigBundle\TwigEngine $twig, Translator $translator)
     {
         $this->mailer = $mailer;
         $this->templating = $twig;
+        $this->translator = $translator;
     }
 
-    public function sendMailToUserWithCommande(Commande $commande)
+    public function sendMailToUserWithCommande(Commande $commande, $locale)
     {
+        $translation = $this->translator->trans('mail.title', array(), 'recapitulatif');
         $message = \Swift_Message::newInstance()
-            ->setSubject('Récapitulatif de votre commande')
+            ->setSubject($translation)
             ->setFrom('billetterie@louvre.fr')
             ->setTo($commande->getEmailVisiteur())
             ->setBody(
                 $this->templating->render('mail_recapitulatif_commande.html.twig', [
-                    'commande' => $commande
+                    'commande' => $commande,
+                    '_locale' => $locale
                 ]),
                 'text/html'
             );

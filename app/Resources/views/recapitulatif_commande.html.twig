@@ -54,7 +54,7 @@
                             {% endif %}
                         {% endif %}
                     </p>
-                    <p class="label label-info label-as-badge">{{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
+                    <p class="label label-info label-as-badge">{{ 'content.infos_billets.prix'|trans({}, 'recapitulatif') }}
                         : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }} €</p>
                 </div>
             {% endfor %}

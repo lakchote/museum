@@ -389,11 +389,11 @@
                                             <tr style="padding: 0; text-align: left; vertical-align: top;">
                                                 <th style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left;">
                                                     <h1 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 34px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">
-                                                        Cher {{ commande.billets|first.prenom }} {{ commande.billets|first.nom }},</h1>
+                                                        {{ 'mail.salutation'|trans({}, 'recapitulatif') }} {{ commande.billets|first.prenom }} {{ commande.billets|first.nom }}
+                                                        ,</h1>
                                                     <p class="lead"
                                                        style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: normal; line-height: 1.6; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                        Vous trouverez ci-dessous le récapitulatif de votre commande.
-                                                        Merci de votre confiance.</p>
+                                                        {{ 'mail.intro_message'|trans({}, 'recapitulatif') }}</p>
                                                     <table class="callout"
                                                            style="Margin-bottom: 16px; border-collapse: collapse; border-spacing: 0; margin-bottom: 16px; padding: 0; text-align: left; vertical-align: top; width: 100%;">
                                                         <tbody>
@@ -401,24 +401,27 @@
                                                             <th class="callout-inner primary"
                                                                 style="Margin: 0; background: #def0fc; border: 1px solid #444444; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 10px; text-align: left; width: 100%;">
                                                                 <h5 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">
-                                                                    Informations liées à la commande</h5>
+                                                                    {{ 'content.infos_commande.label'|trans({}, 'recapitulatif') }}</h5>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                    <strong>Date de réservation</strong>
+                                                                    <strong>{{ 'content.infos_commande.date_reservation'|trans({}, 'recapitulatif') }}</strong>
                                                                     : {{ commande.dateVisite|date('d-m-Y') }}</p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                    <strong>Type de billets</strong>
-                                                                    : {{ commande.typeBillet == 'demi_journee' ? 'Demi-journée' : 'Journée' }}
+                                                                    <strong>{{ 'content.infos_commande.type_billets'|trans({}, 'recapitulatif') }}</strong>
+                                                                    : {% if _locale == 'en' %}
+                                                                        {{ (commande.typeBillet == 'demi_journee') ? 'Half-day' : 'Full day' }}
+                                                                    {% else %}
+                                                                        {{ (commande.typeBillet == 'demi_journee') ? 'Demi-journée' : 'Journée' }}
+                                                                    {% endif %}
                                                                 </p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                    <strong>Nombre de billets</strong>
+                                                                    <strong>{{ 'content.infos_commande.nb_billets'|trans({}, 'recapitulatif') }}</strong>
                                                                     : {{ commande.billets.count }}</p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                    <strong>Prix total</strong>
+                                                                    <strong>{{ 'content.prix_total'|trans({}, 'recapitulatif') }}</strong>
                                                                     : {{ commande.prixTotal }} €</p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                    <em>Le prix de chaque billet est calculé
-                                                                        automatiquement en fonction de la date de
-                                                                        naissance.</em></p>
+                                                                    <em>{{ 'content.infos_commande.prix'|trans({}, 'recapitulatif') }}</em>
+                                                                </p>
                                                             </th>
                                                             <th class="expander"
                                                                 style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
@@ -433,20 +436,38 @@
                                                                 <th class="callout-inner secondary"
                                                                     style="Margin: 0; background: #ebebeb; border: 1px solid #444444; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 10px; text-align: left; width: 100%;">
                                                                     <h5 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">
-                                                                        Billet n° {{ loop.index }}</h5>
+                                                                        {{ 'content.infos_billets.loop_info'|trans({}, 'recapitulatif') }} {{ loop.index }}</h5>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                        Nom : {{ billet.nom }}</p>
+                                                                        {{ 'content.infos_billets.nom'|trans({}, 'recapitulatif') }}
+                                                                        : {{ billet.nom }}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                        Prénom : {{ billet.prenom }}</p>
+                                                                        {{ 'content.infos_billets.prenom'|trans({}, 'recapitulatif') }}
+                                                                        : {{ billet.prenom }}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                        Date de naissance
+                                                                        {{ 'content.infos_billets.date_naissance'|trans({}, 'recapitulatif') }}
                                                                         : {{ billet.dateNaissance|date('d-m-Y') }}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                        Pays : {{ billet.pays|countryName }}</p>
+                                                                        {{ 'content.infos_billets.pays'|trans({}, 'recapitulatif') }}
+                                                                        : {{ _locale == 'en' ? billet.pays|countryName('en') : billet.pays|countryName('fr') }}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                        Tarif : {{ billet.tarif.nom }}</p>
+                                                                        {{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
+                                                                        : {% if _locale == 'fr' %}
+                                                                            {{ billet.tarif.nom }}
+                                                                        {% else %}
+                                                                            {% if billet.tarif.nom == 'enfant' %}
+                                                                                child
+                                                                            {% elseif billet.tarif.nom == 'reduit' %}
+                                                                                reduced
+                                                                            {% elseif billet.tarif.nom == 'gratuit' %}
+                                                                                free
+                                                                            {% else %}
+                                                                                {{ billet.tarif.nom }}
+                                                                            {% endif %}
+                                                                        {% endif %}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
-                                                                        Prix : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }} €</p>
+                                                                        {{ 'content.infos_billets.prix'|trans({}, 'recapitulatif') }}
+                                                                        : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }}
+                                                                        €</p>
                                                                 </th>
                                                             </tr>
                                                             </tbody>
@@ -490,7 +511,8 @@
                                                         <tr style="padding: 0; text-align: left; vertical-align: top;">
                                                             <th style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left;">
                                                                 <h5 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">
-                                                                    Restez en contact :</h5>
+                                                                    {{ 'mail.restez_en_contact'|trans({}, 'recapitulatif') }}
+                                                                    :</h5>
                                                                 <table class="menu vertical"
                                                                        style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
                                                                     <tbody>
@@ -533,7 +555,8 @@
                                                         <tr style="padding: 0; text-align: left; vertical-align: top;">
                                                             <th style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left;">
                                                                 <h5 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">
-                                                                    Contactez-nous :</h5>
+                                                                    {{ 'mail.contact'|trans({}, 'recapitulatif') }}
+                                                                    :</h5>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">{{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base') }}</p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
                                                                     Email: <a href="mailto:billetterie@louvre.fr"

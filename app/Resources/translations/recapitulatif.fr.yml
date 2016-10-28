@@ -15,8 +15,15 @@ content:
         prenom: Prénom
         date_naissance: Date de naissance
         pays: Pays
-        tarif: Prix
+        tarif: Tarif
+        prix: Prix
     prix_total: Prix total
     modifier_billets: Modifier billets
     commander: Commander
+mail:
+    title: Musée du Louvre - Votre Commande
+    salutation: Cher
+    intro_message: Vous trouverez ci-dessous le récapitulatif de votre commande. Merci de votre confiance.
+    restez_en_contact: Restez en contact
+    contact: Contactez-nous
 
