@@ -29,7 +29,10 @@ class BilletsController extends Controller
            $this->get('tarif_resolver')->getTarifForEachBillet($commande);
             $em->persist($commande);
             $em->flush();
-            return $this->redirectToRoute('app_recapitulatif_commande', ['id' => $commande->getId()]);
+            return $this->redirectToRoute('app_recapitulatif_commande', [
+                'id' => $commande->getId(),
+                '_locale' => $request->getLocale()
+            ]);
         }
         return $this->render('billets.html.twig', [
             'commande' => $form->createView(),

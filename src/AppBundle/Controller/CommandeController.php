@@ -12,21 +12,22 @@ class CommandeController extends Controller
 {
 
     /**
-     * @Route("/commande/recapitulatif/{id}", name="app_recapitulatif_commande")
+     * @Route("{_locale}/commande/recapitulatif/{id}", name="app_recapitulatif_commande")
      * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
-    public function recapCommandeAction(Commande $commande) {
+    public function recapCommandeAction(Commande $commande, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $commande->setPrixTotal($this->get('total_price_for_commande')->calculateTotalPrice($commande));
         $em->persist($commande);
         $em->flush();
         return $this->render('recapitulatif_commande.html.twig', [
             'commande' => $commande,
+            '_locale' => $request->getLocale(),
         ]);
     }
 
     /**
-     * @Route("/paiement/{id}", name="app_paiement")
+     * @Route("{_locale}/paiement/{id}", name="app_paiement")
      * @ParamConverter("commande", options={"repository_method" = "isNotFinishedAndPriceNotNull"})
      */
     public function paymentAction(Commande $commande, Request $request)
@@ -41,7 +42,8 @@ class CommandeController extends Controller
                 $em->persist($commande);
                 $em->flush();
                 return $this->redirectToRoute('app_paiement_success', [
-                    'id' => $commande->getId()
+                    'id' => $commande->getId(),
+                    '_locale' => $request->getLocale(),
                 ]);
             }
         }
@@ -52,7 +54,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * @Route("/success/{id}", name="app_paiement_success")
+     * @Route("{_locale}/success/{id}", name="app_paiement_success")
      * @ParamConverter("commande", options={"repository_method" = "isEmailNotSentAndIsFinished"})
      */
     public function successAction(Commande $commande)
