@@ -56,8 +56,8 @@ class IndexController extends Controller
     public function forceLocaleAction(Request $request)
     {
         $this->get('session')->set('_locale', $request->getLocale());
-        return $this->redirectToRoute('app_homepage', [
-            '_locale' => $request->getLocale()
-        ]);
+        $referer = $request->headers->get('referer');
+        ($request->getLocale() == 'fr') ? $referer = preg_replace('/en/', 'fr', $referer, 1) : $referer = preg_replace('/fr/', 'en', $referer, 1);
+        return $this->redirect($referer);
     }
 }
