@@ -26,7 +26,7 @@ html, body {
     height: 20px;
 }
 
-header section
+header section, footer
 {
     background-color:#484848;
 }
@@ -36,11 +36,6 @@ footer,footer a {
 footer
 {
     margin-top:10px;
-    background-color:#484848;
-}
-em a:hover
-{
-	color:#fff;
 }
 
 footer a:hover {
@@ -84,4 +79,16 @@ fieldset legend {
 
 #footer-contact {
     color:yellow;
+}
+
+a:focus, a:active {
+    outline:none;
+}
+
+.navbar-default .navbar-nav>li>a:focus {
+    background-color: initial;
+}
+
+.btn-primary:hover {
+    background-color: #2780e3;
 }
