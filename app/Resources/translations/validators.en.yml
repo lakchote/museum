@@ -21,3 +21,17 @@ commande:
         not_blank: "You must specify your email address."
 
     invalid_message: "The two email adresses must match."
+
+billets:
+    nom:
+        length: The last name must be at least 2 characters long.
+        not_blank: You must specify your last name.
+    prenom:
+        length: The first name must be at least 2 characters long.
+        not_blank: You must specify your first name.
+    pays:
+        not_blank: You must choose your country.
+        country: This is not a valid country.
+    date_naissance:
+        not_blank: You must specify your birth date.
+        date: This is not a valid birth date format.

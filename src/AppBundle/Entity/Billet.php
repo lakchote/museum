@@ -26,8 +26,8 @@ class Billet
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\Length(min="3", minMessage="Le nom ne peut faire moins de 3 caractères.")
-     * @Assert\NotBlank(message="Vous devez spécifier le nom.")
+     * @Assert\Length(min="2", minMessage="billets.nom.length")
+     * @Assert\NotBlank(message="billets.nom.not_blank")
      */
     private $nom;
 
@@ -45,15 +45,15 @@ class Billet
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\Length(min="3",minMessage="Le prénom ne peut faire moins de 3 caractères.")
-     * @Assert\NotBlank(message="Vous devez spécifier le prénom.")
+     * @Assert\Length(min="2",minMessage="billets.prenom.length")
+     * @Assert\NotBlank(message="billets.prenom.not_blank")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Vous devez spécifier le pays.")
-     * @Assert\Country(message="Ceci n'est pas un pays valide")
+     * @Assert\NotBlank(message="billets.pays.not_blank")
+     * @Assert\Country(message="billets.pays.country")
      */
     private $pays;
 
@@ -64,8 +64,8 @@ class Billet
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Vous devez spécifier la date de naissance.")
-     * @Assert\Date(message="Ceci n'est pas un format de date de naissance valide.")
+     * @Assert\NotBlank(message="billets.date_naissance.not_blank")
+     * @Assert\Date(message="billets.date_naissance.date")
      */
     private $dateNaissance;
 

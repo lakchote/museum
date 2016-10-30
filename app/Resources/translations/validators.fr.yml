@@ -21,3 +21,17 @@ commande:
         not_blank: "Vous devez spécifier votre adresse mail."
 
     invalid_message: "Les deux adresses mails doivent être identiques."
+
+billets:
+    nom:
+        length: Le nom doit faire au moins 2 caractères.
+        not_blank: Vous devez indiquer votre nom.
+    prenom:
+        length: Le prénom doit faire au moins 2 caractères.
+        not_blank: Vous devez indiquer votre prénom.
+    pays:
+        not_blank: Vous devez choisir votre pays.
+        country: Ceci n'est pas un pays valide.
+    date_naissance:
+        not_blank: Vous devez indiquer votre date de naissance.
+        date: Le format de la date de naissance est invalide.
