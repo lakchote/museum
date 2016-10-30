@@ -12,7 +12,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Tarif;
 
 
-class TarifFixture implements FixtureInterface
+class LoadTarif implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {

@@ -16,9 +16,9 @@ class BilletRepository extends EntityRepository
     public function checkMaxCapacity($date)
     {
         return $this->createQueryBuilder('billet')
-            ->select('billet')
             ->leftJoin('billet.commande', 'commande')
             ->andWhere('commande.dateVisite = :date')
+            ->andWhere('commande.isFinished = 1')
             ->setParameter('date', $date)
             ->getQuery()
             ->getScalarResult();
