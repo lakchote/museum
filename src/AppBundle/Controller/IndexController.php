@@ -12,6 +12,7 @@ use AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class IndexController extends Controller
 {
@@ -58,6 +59,18 @@ class IndexController extends Controller
         $this->get('session')->set('_locale', $request->getLocale());
         $referer = $request->headers->get('referer');
         ($request->getLocale() == 'fr') ? $referer = preg_replace('/en/', 'fr', $referer, 1) : $referer = preg_replace('/fr/', 'en', $referer, 1);
-        return $this->redirect($referer);
+        if(!empty($referer)) {
+        return $this->redirect($referer); }
+        else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    /**
+     * @Route("/{_locale}/cgv", name="app_cgv")
+     */
+    public function cgvAction()
+    {
+        return $this->render('cgv.html.twig');
     }
 }
