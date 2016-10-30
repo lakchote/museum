@@ -45,9 +45,9 @@
                 </div>
                 <nav class="navbar navbar-default col-md-12 col-sm-12 sidebar-offcanvas">
                     <ul id="listMenu" class="nav navbar-nav">
-                        <li class="active"><a href="#">{{ 'homepage.menu.home'|trans({}, 'base', _locale) }}</a></li>
-                        <li><a href="#horairesInfos">{{ 'homepage.menu.hours'|trans({}, 'base', _locale) }}</a></li>
-                        <li><a href="#tarifsInfos">{{ 'homepage.menu.prices'|trans({}, 'base', _locale) }}</a></li>
+                        <li class="active"><a href="{{ path('app_homepage_locale') }}">{{ 'homepage.menu.home'|trans({}, 'base', _locale) }}</a></li>
+                        <li><a data-toggle="modal" href="#horairesInfos">{{ 'homepage.menu.hours'|trans({}, 'base', _locale) }}</a></li>
+                        <li><a data-toggle="modal" href="#tarifsInfos">{{ 'homepage.menu.prices'|trans({}, 'base', _locale) }}</a></li>
                     </ul>
                 </nav>
             </section>
@@ -55,9 +55,56 @@
                 <div class="col-md-12 image-header">
                 </div>
             </section>
+            <!-- Modals -->
+            <div id="horairesInfos" class="modal fade" role="dialog" aria-labelledby="titleLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="titleLabel">{{ 'homepage.modals.hours.title'|trans({}, 'base') }}</h4>
+                            <h5><strong>{{ 'homepage.modals.hours.subtitle'|trans({}, 'base') }}</strong></h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ 'homepage.modals.hours.opening_closing'|trans({}, 'base') }}</p>
+                            <p>{{ 'homepage.modals.hours.tickets_type'|trans({}, 'base') }}</p>
+                            <p style="color:red;"><strong>{{ 'homepage.modals.hours.holidays'|trans({}, 'base')|trim('"') }}</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tarifsInfos" class="modal fade" role="dialog" aria-labelledby="titleLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="titleLabel">{{ 'homepage.modals.rates.title'|trans({}, 'base') }}</h4>
+                            <h5><strong>{{ 'homepage.modals.rates.subtitle'|trans({}, 'base') }}</strong></h5>
+                        </div>
+                        <div class="modal-body">
+                            <p><em>{{ 'homepage.modals.rates.demi_journee'|trans({}, 'base') }}</em></p>
+                            <p>{{ 'homepage.modals.rates.intro'|trans({}, 'base') }}
+                                <ul>
+                                    <li>{{ 'homepage.modals.rates.tarif_gratuit'|trans({}, 'base') }}</li>
+                                    <li>{{ 'homepage.modals.rates.tarif_enfant'|trans({}, 'base') }}</li>
+                                    <li>{{ 'homepage.modals.rates.tarif_normal'|trans({}, 'base') }}</li>
+                                    <li>{{ 'homepage.modals.rates.tarif_senior'|trans({}, 'base') }}</li>
+                                    <li>{{ 'homepage.modals.rates.tarif_reduit'|trans({}, 'base') }}</li>
+                            </ul>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
     {% endblock %}
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
     {% block footer %}
         <footer class="row">
             <div class="col-md-12 col-xs-12  payments">
@@ -110,6 +157,7 @@
 </div>
 {% block javascripts %}
     <script src="{{ asset('vendor/jQuery/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/modal.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src=" {{ asset('js/form.js') }}"></script>
 {% endblock %}

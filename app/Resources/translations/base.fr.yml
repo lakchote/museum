@@ -13,3 +13,20 @@ homepage:
     hours: Horaires
     prices: Tarifs
   title: Musée du Louvre | Billetterie officielle
+  modals:
+    hours:
+        title: Horaires
+        subtitle: Ouvert tous les jours sauf le Mardi
+        tickets_type: Si vous choisissez le type de billets "Demi-journée", vous ne pourrez rentrer au musée qu'à partir de 14H.
+        opening_closing: Le Louvre est ouvert tous les jours (sauf Mardi) de 09h à 18h00.
+        holidays: "Fermé ces jours fériés : 1er Mai, 1er Novembre, 25 Décembre."
+    rates:
+        title: Tarifs
+        subtitle: Ce que nous proposons
+        demi_journee: Si vous choisissez le type de billets "Demi-journée", le prix de chaque billet sera divisé par deux mais vous ne pourrez rentrer qu'à partir de 14H00.
+        intro: "Le Louvre propose différents tarifs :"
+        tarif_gratuit: Entrée gratuite pour les enfants de moins de 4 ans
+        tarif_enfant: 8€/billet pour les enfants entre 4 et 12 ans
+        tarif_normal: 16€/billet pour les personnes entre 12 et 60 ans
+        tarif_senior: 12€/billet pour les personnes de plus de 60 ans
+        tarif_reduit: 10€/billet pour les personnes ayant un statut particulier (étudiant, employé de musée, militaire...)

@@ -11,5 +11,28 @@ homepage:
   menu:
     home: Homepage
     hours: Hours
-    prices: Prices
+    prices: Rates
   title: Louvre Museum | Official Ticketing Service
+  modals:
+    hours:
+        title: Hours and Admission
+        subtitle: Open everyday except Tuesday
+        tickets_type: If you choose the Half-day tickets type, you will be able to enter the museum starting from 2 p.m.
+        opening_closing: The Louvre is open every day (except Tuesday) from 9 a.m. to 6 p.m.
+        holidays: "Closed on the following holidays : May 1, November 1, December 25."
+    rates:
+        title: Rates
+        subtitle: What we offer
+        demi_journee: Note that if you choose the Half-day tickets type, the price for each ticket will be divided by two since you will only be able to attend the museum starting from 2 p.m.
+        intro: "The Louvre offer different rates :"
+        tarif_gratuit: Free admission to the Louvre for children under 4 years of age
+        tarif_enfant: 8€/ticket for children between 4 and 12 years old
+        tarif_normal: 16€/ticket for people between 12 years and 60 years old
+        tarif_senior: 12€/ticket for people over 60 years old
+        tarif_reduit: 10€/ticket for people under special status (student, museum employee, military...)
+        tarif_reduit: 10€/ticket for people under special status (student, museum employee, military...)
+
+
+
+
+
