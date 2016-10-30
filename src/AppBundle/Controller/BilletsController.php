@@ -13,7 +13,7 @@ class BilletsController extends Controller
 {
 
     /**
-     * @Route("{_locale}/commande/{id}", name="app_billets", requirements={"_locale" = "fr|en"})
+     * @Route("{_locale}/commande/{id}", name="app_billets")
      * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
     public function billetsAction(Commande $commande, Request $request)
