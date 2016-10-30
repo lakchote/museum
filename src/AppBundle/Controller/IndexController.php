@@ -43,9 +43,21 @@ class IndexController extends Controller
      */
     public function localeAction(Request $request)
     {
-        $locale = $request->getLocale();
+        //Pour afficher l'erreur 404 dans la bonne langue
+        $this->get('session')->set('_locale', $request->getLocale());
         return $this->redirectToRoute('app_homepage', [
-            '_locale' => $locale
+            '_locale' => $request->getLocale()
+        ]);
+    }
+
+    /**
+     * @Route("/set/{_locale}", name="app_user_setLocale")
+     */
+    public function forceLocaleAction(Request $request)
+    {
+        $this->get('session')->set('_locale', $request->getLocale());
+        return $this->redirectToRoute('app_homepage', [
+            '_locale' => $request->getLocale()
         ]);
     }
 }
