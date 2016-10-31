@@ -44,10 +44,11 @@ class IndexController extends Controller
      */
     public function localeAction(Request $request)
     {
+        ($request->getLocale() == 'fr') ? $locale = 'fr' : $locale = 'en';
         //Pour afficher l'erreur 404 dans la bonne langue
-        $this->get('session')->set('_locale', $request->getLocale());
+        $this->get('session')->set('_locale', $locale);
         return $this->redirectToRoute('app_homepage', [
-            '_locale' => $request->getLocale()
+            '_locale' => $locale
         ]);
     }
 
@@ -58,12 +59,9 @@ class IndexController extends Controller
     {
         $this->get('session')->set('_locale', $request->getLocale());
         $referer = $request->headers->get('referer');
+        if(empty($referer)) throw new NotFoundHttpException();
         ($request->getLocale() == 'fr') ? $referer = preg_replace('/en/', 'fr', $referer, 1) : $referer = preg_replace('/fr/', 'en', $referer, 1);
-        if(!empty($referer)) {
-        return $this->redirect($referer); }
-        else {
-            throw new NotFoundHttpException();
-        }
+        return $this->redirect($referer);
     }
 
     /**
