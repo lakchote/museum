@@ -16,7 +16,7 @@ email_visiteur:
     label_second_options: Répétez votre email
 
 nb_billets:
-    label: Nombre de tickets
+    label: Nombre de billets
 
 submit_button:
     value: Envoyer

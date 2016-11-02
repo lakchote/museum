@@ -1,6 +1,6 @@
 {% set _locale = app.session.get('_locale') %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ _locale }}">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
@@ -23,6 +23,9 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     {% endblock %}
+    <!-- Google analytics Code
+        Client Tracking ID needed
+     -->
 </head>
 <body>
 <div id="fb-root"></div>
@@ -31,15 +34,15 @@
         <header>
             <section class="row row-offcanvas row-offcanvas-left">
                 <p class="pull-left visible-xs">
-                    <button type="button" id="btnTextXS" class="btn btn-primary btn-md" data-toggle="offcanvas"><span class="sr-only">Toggle Navigation</span>Menu</button>
+                    <button type="button" id="btnTextXS" class="btn btn-primary btn-md" data-toggle="offcanvas">Menu</button>
                 </p>
                 <div class="navbar-header">
                     <a href="http://www.louvre.fr"><img src="{{ asset('img/logo.png') }}" id="image-logo" alt="Musée du Louvre" /></a>
                     <div class="col-md-12 pull-right">
                         {% if _locale == 'fr' %}
-                        <a href="{{ path('app_user_setLocale', {'_locale' : 'en'}) }}"><img src="{{ asset('img/GB.png') }}"/></a>
+                        <a href="{{ path('app_user_setLocale', {'_locale' : 'en'}) }}"><img src="{{ asset('img/GB.png') }}" alt="English language"/></a>
                         {% else %}
-                        <a href="{{ path('app_user_setLocale', {'_locale' : 'fr'}) }}"><img src="{{ asset('img/FR.png') }}"/></a>
+                        <a href="{{ path('app_user_setLocale', {'_locale' : 'fr'}) }}"><img src="{{ asset('img/FR.png') }}" alt="French language"/></a>
                         {% endif %}
                     </div>
                 </div>
@@ -61,7 +64,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="titleLabel">{{ 'homepage.modals.hours.title'|trans({}, 'base') }}</h4>
+                            <h4 class="modal-title" id="titleHoraires">{{ 'homepage.modals.hours.title'|trans({}, 'base') }}</h4>
                             <h5><strong>{{ 'homepage.modals.hours.subtitle'|trans({}, 'base') }}</strong></h5>
                         </div>
                         <div class="modal-body">
@@ -75,12 +78,12 @@
                     </div>
                 </div>
             </div>
-            <div id="tarifsInfos" class="modal fade" role="dialog" aria-labelledby="titleLabel">
+            <div id="tarifsInfos" class="modal fade" role="dialog" aria-labelledby="titleTarifs">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="titleLabel">{{ 'homepage.modals.rates.title'|trans({}, 'base') }}</h4>
+                            <h4 class="modal-title" id="titleTarifs">{{ 'homepage.modals.rates.title'|trans({}, 'base') }}</h4>
                             <h5><strong>{{ 'homepage.modals.rates.subtitle'|trans({}, 'base') }}</strong></h5>
                         </div>
                         <div class="modal-body">
@@ -118,8 +121,8 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <p class="small">
-                        <a href="mailto:billetterie@louvre.fr" id="footer-contact">{{ 'homepage.footer.links.contact'|trans({}, 'base', _locale) }}</a> -
-                        <a href="{{ path('app_cgv', {'_locale' : _locale}) }}"> {{ 'homepage.footer.links.cgv'|trans({}, 'base', _locale) }}</a>
+                        <a href="mailto:billetterie@louvre.fr" id="footer-contact" title="{{ 'homepage.footer.links.contact'|trans({}, 'base', _locale) }}">{{ 'homepage.footer.links.contact'|trans({}, 'base', _locale) }}</a> -
+                        <a href="{{ path('app_cgv', {'_locale' : _locale}) }}" title="{{ 'homepage.footer.links.cgv'|trans({}, 'base', _locale) }}"> {{ 'homepage.footer.links.cgv'|trans({}, 'base', _locale) }}</a>
                     </p>
                 </div>
                 <div class="col-md-4 text-center hidden-xs hidden-sm">
@@ -146,10 +149,10 @@
                     <p class="small visible-xs" style="position:relative; left:-2%;">
                         <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base', _locale) }} {{ 'homepage.footer.links.phone'|trans({}, 'base', _locale)}}
                     </p>
-                    <p class="small pull-right visible-sm">
+                    <p class="small pull-right hidden-xs">
                         <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base', _locale) }} {{ 'homepage.footer.links.phone'|trans({}, 'base', _locale)}}
                     </p>
-                    <span class="small visible-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base', _locale) }}&nbsp;</span>
+                    <span class="small visible-xs" id="copyright" aria-hidden="true">{{ 'homepage.footer.copyright'|trans({}, 'base', _locale) }}&nbsp;</span>
                 </div>
             </div>
         </footer>
@@ -162,7 +165,4 @@
     <script src=" {{ asset('js/form.js') }}"></script>
 {% endblock %}
 </body>
-<footer>
-
-</footer>
 </html>
