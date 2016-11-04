@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
+use AppBundle\Form\PaiementType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,7 +21,7 @@ class CommandeController extends Controller
         $commande->setPrixTotal($this->get('total_price_for_commande')->calculateTotalPrice($commande));
         $em->persist($commande);
         $em->flush();
-        return $this->render('recapitulatif_commande.html.twig', [
+        return $this->render('commande_controller/recapitulatif_commande.html.twig', [
             'commande' => $commande,
             '_locale' => $request->getLocale(),
         ]);
@@ -33,7 +34,9 @@ class CommandeController extends Controller
     public function paymentAction(Commande $commande, Request $request)
     {
         $error = false;
-        if($request->isMethod('POST')) {
+        $form = $this->createForm(PaiementType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted()) {
             $token = $request->get('stripeToken');
             $error = $this->get('stripe_api')->defineKey($this->getParameter('stripe_secret_key'))->createChargeForCustomer($commande, $token);
             if(!$error) {
@@ -47,9 +50,10 @@ class CommandeController extends Controller
                 ]);
             }
         }
-        return $this->render('paiement.html.twig', [
+        return $this->render('commande_controller/paiement.html.twig', [
             'stripe_public_key' => $this->getParameter('stripe_public_key'),
             'error' => $error,
+            'paiement' => $form->createView()
         ]);
     }
 
@@ -65,7 +69,7 @@ class CommandeController extends Controller
         $commande->setIsEmailSent(true);
         $em->persist($commande);
         $em->flush();
-        return $this->render('commande_finalisee.html.twig', [
+        return $this->render('commande_controller/commande_finalisee.html.twig', [
             'commande' => $commande
         ]);
     }

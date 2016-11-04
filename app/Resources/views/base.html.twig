@@ -1,4 +1,5 @@
-{% set _locale = app.session.get('_locale') %}
+{% set _locale = app.request.get('_locale') %}
+
 <!DOCTYPE html>
 <html lang="{{ _locale }}">
 <head>
@@ -7,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Coloration de la barre de navigation sur mobile -->
     <meta name="theme-color" content="#2b3e50"/>
-    <title>{% block title %}{{ 'homepage.title'|trans({}, 'base', _locale) }}{% endblock %}</title>
+    <title>{% block title %}{{ 'homepage.title'|trans({}, 'base') }}{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/bootstrap.min.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('louvre.ico') }}"/>
@@ -40,17 +41,17 @@
                     <a href="http://www.louvre.fr"><img src="{{ asset('img/logo.png') }}" id="image-logo" alt="Musée du Louvre" /></a>
                     <div class="col-md-12 pull-right">
                         {% if _locale == 'fr' %}
-                        <a href="{{ path('app_user_setLocale', {'_locale' : 'en'}) }}"><img src="{{ asset('img/GB.png') }}" alt="English language"/></a>
+                        <a href="{{ path('app_homepage', {'_locale' : 'en'}) }}"><img src="{{ asset('img/GB.png') }}" alt="English language"/></a>
                         {% else %}
-                        <a href="{{ path('app_user_setLocale', {'_locale' : 'fr'}) }}"><img src="{{ asset('img/FR.png') }}" alt="French language"/></a>
+                        <a href="{{ path('app_homepage', {'_locale' : 'fr'}) }}"><img src="{{ asset('img/FR.png') }}" alt="French language"/></a>
                         {% endif %}
                     </div>
                 </div>
                 <nav class="navbar navbar-default col-md-12 col-sm-12 sidebar-offcanvas">
                     <ul id="listMenu" class="nav navbar-nav">
-                        <li class="active"><a href="{{ path('app_homepage_locale') }}">{{ 'homepage.menu.home'|trans({}, 'base', _locale) }}</a></li>
-                        <li><a data-toggle="modal" href="#horairesInfos">{{ 'homepage.menu.hours'|trans({}, 'base', _locale) }}</a></li>
-                        <li><a data-toggle="modal" href="#tarifsInfos">{{ 'homepage.menu.prices'|trans({}, 'base', _locale) }}</a></li>
+                        <li class="active"><a href="{{ path('app_homepage', {'_locale' : _locale }) }}">{{ 'homepage.menu.home'|trans({}, 'base') }}</a></li>
+                        <li><a data-toggle="modal" href="#horairesInfos">{{ 'homepage.menu.hours'|trans({}, 'base') }}</a></li>
+                        <li><a data-toggle="modal" href="#tarifsInfos">{{ 'homepage.menu.prices'|trans({}, 'base') }}</a></li>
                     </ul>
                 </nav>
             </section>
@@ -112,7 +113,7 @@
         <footer class="row">
             <div class="col-md-12 col-xs-12  payments">
                 <div class="row">
-                    <p style="color:#000;"><strong>{{ 'homepage.footer.payment_info'|trans({}, 'base', _locale) }}</strong>
+                    <p style="color:#000;"><strong>{{ 'homepage.footer.payment_info'|trans({}, 'base') }}</strong>
                         <img src="{{ asset('img/mastercard.gif') }}" alt="Mastercard" class="payment-method"/>
                         <img src="{{ asset('img/visa.gif') }}" alt="Visa" class="payment-method"/>
                     </p>
@@ -121,8 +122,8 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <p class="small">
-                        <a href="mailto:billetterie@louvre.fr" id="footer-contact" title="{{ 'homepage.footer.links.contact'|trans({}, 'base', _locale) }}">{{ 'homepage.footer.links.contact'|trans({}, 'base', _locale) }}</a> -
-                        <a href="{{ path('app_cgv', {'_locale' : _locale}) }}" title="{{ 'homepage.footer.links.cgv'|trans({}, 'base', _locale) }}"> {{ 'homepage.footer.links.cgv'|trans({}, 'base', _locale) }}</a>
+                        <a href="mailto:billetterie@louvre.fr" id="footer-contact" title="{{ 'homepage.footer.links.contact'|trans({}, 'base') }}">{{ 'homepage.footer.links.contact'|trans({}, 'base') }}</a> -
+                        <a href="{{ path('app_cgv', {'_locale' : _locale}) }}" title="{{ 'homepage.footer.links.cgv'|trans({}, 'base') }}"> {{ 'homepage.footer.links.cgv'|trans({}, 'base') }}</a>
                     </p>
                 </div>
                 <div class="col-md-4 text-center hidden-xs hidden-sm">
@@ -143,16 +144,16 @@
 
                 </div>
                 <div class="col-md-4">
-                    <span class="small pull-right hidden-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base', _locale) }}</span>
+                    <span class="small pull-right hidden-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base') }}</span>
                 </div>
                 <div class="col-md-12 text-center">
                     <p class="small visible-xs" style="position:relative; left:-2%;">
-                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base', _locale) }} {{ 'homepage.footer.links.phone'|trans({}, 'base', _locale)}}
+                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
                     </p>
                     <p class="small pull-right hidden-xs">
-                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base', _locale) }} {{ 'homepage.footer.links.phone'|trans({}, 'base', _locale)}}
+                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
                     </p>
-                    <span class="small visible-xs" id="copyright" aria-hidden="true">{{ 'homepage.footer.copyright'|trans({}, 'base', _locale) }}&nbsp;</span>
+                    <span class="small visible-xs" id="copyright" aria-hidden="true">{{ 'homepage.footer.copyright'|trans({}, 'base') }}&nbsp;</span>
                 </div>
             </div>
         </footer>
@@ -162,7 +163,6 @@
     <script src="{{ asset('vendor/jQuery/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/modal.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src=" {{ asset('js/form.js') }}"></script>
 {% endblock %}
 </body>
 </html>

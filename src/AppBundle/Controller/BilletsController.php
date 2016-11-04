@@ -34,7 +34,7 @@ class BilletsController extends Controller
                 '_locale' => $request->getLocale()
             ]);
         }
-        return $this->render('billets.html.twig', [
+        return $this->render('billets_controller/billets.html.twig', [
             'commande' => $form->createView(),
         ]);
     }

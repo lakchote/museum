@@ -34,34 +34,9 @@ class IndexController extends Controller
                 '_locale' => $request->getLocale()
             ]);
         }
-        return $this->render('index.html.twig', [
+        return $this->render('index_controller/index.html.twig', [
             'commande' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/", name="app_homepage_locale")
-     */
-    public function localeAction(Request $request)
-    {
-        ($request->getLocale() == 'fr') ? $locale = 'fr' : $locale = 'en';
-        //Pour afficher l'erreur 404 dans la bonne langue
-        $this->get('session')->set('_locale', $locale);
-        return $this->redirectToRoute('app_homepage', [
-            '_locale' => $locale
-        ]);
-    }
-
-    /**
-     * @Route("/set/{_locale}", name="app_user_setLocale")
-     */
-    public function forceLocaleAction(Request $request)
-    {
-        $this->get('session')->set('_locale', $request->getLocale());
-        $referer = $request->headers->get('referer');
-        if(empty($referer)) throw new NotFoundHttpException();
-        ($request->getLocale() == 'fr') ? $referer = preg_replace('/en/', 'fr', $referer, 1) : $referer = preg_replace('/fr/', 'en', $referer, 1);
-        return $this->redirect($referer);
     }
 
     /**
@@ -69,6 +44,6 @@ class IndexController extends Controller
      */
     public function cgvAction()
     {
-        return $this->render('cgv.html.twig');
+        return $this->render('index_controller/cgv.html.twig');
     }
 }

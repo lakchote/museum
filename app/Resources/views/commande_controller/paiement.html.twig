@@ -11,6 +11,7 @@
             <h1>{{ 'content.title'|trans({}, 'paiement') }}</h1>
         </div>
         <form action="" method="POST" id="payment-form" style="position:relative; left:8%;">
+            {{ form_start(paiement) }}
             <div class="col-xs-10 col-sm-6 col-sm-offset-2">
                 <div class="alert alert-danger payment-errors hidden"><i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i>&nbsp;</div>
             </div>
@@ -20,30 +21,21 @@
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2 form-group">
-                <div class="input-group">
-                <span class="input-group-addon">
                      <i class="glyphicon glyphicon-credit-card" aria-hidden="true"></i>
-                 </span>
-                    <input data-stripe="number" type="text" autocomplete="off" class="form-control js-cc-number" id="card-number" required placeholder="{{ 'content.form.card_number_placeholder'|trans({}, 'paiement') }}"/>
-                </div>
+                    {{ form_label(paiement.ccNumber) }}
+                    {{ form_widget(paiement.ccNumber) }}
             </div>
 
             <div class="col-xs-10 col-sm-3 col-sm-offset-2 form-group">
-                <div class="input-group">
-                <span class="input-group-addon">
-                     <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
-                 </span>
-                    <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp" id="card-expiration" required="required" placeholder="{{ 'content.form.mm_yy'|trans({}, 'paiement') }}"/>
-                </div>
+                <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
+                    {{ form_label(paiement.ccExp) }}
+                    {{ form_widget(paiement.ccExp) }}
             </div>
 
             <div class="col-xs-10 col-sm-3 form-group">
-                <div class="input-group">
-                <span class="input-group-addon">
-                     <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
-                 </span>
-                    <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc" id="card-cvc" required="required" placeholder="{{ 'content.form.cvc'|trans({}, 'paiement') }}"/>
-                </div>
+                <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+                    {{ form_label(paiement.ccCVV) }}
+                    {{ form_widget(paiement.ccCVV) }}
             </div>
 
             <div class="col-xs-10 col-sm-6 col-sm-offset-2 text-center bottom-links">
@@ -52,6 +44,7 @@
                     {{ 'content.submit_button'|trans({}, 'paiement') }}
                 </button>
             </div>
+            {{ form_end(paiement) }}
         </form>
     </div>
 

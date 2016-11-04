@@ -18,7 +18,7 @@
             {{ form_row(commande.nbBillets, {'label' : 'nb_billets.label'|trans({}, 'commande')}) }}
 
             <div class="text-center bottom-links">
-                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok"
+                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"
                                                                                    aria-hidden="true"></span> {{ 'submit_button.value'|trans({}, 'commande') }}
                 </button>
             </div>
@@ -29,5 +29,6 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src=" {{ asset('js/form.js') }}"></script>
     <script src="{{ asset('vendor/jQuery/jquery-ui.min.js') }}"></script>
 {% endblock %}

@@ -26,38 +26,42 @@
                     : {{ commande.emailVisiteur }}</p>
                 <p><em>{{ 'content.infos_commande.prix'|trans({}, 'recapitulatif') }}</em></p>
             </div>
+            <div class="row">
             {% for billet in commande.billets %}
-                <p class="label label-default">{{ 'content.infos_billets.loop_info'|trans({}, 'recapitulatif') }} {{ loop.index }}</p>
-                <div class="well">
-                    <p><strong>{{ 'content.infos_billets.nom'|trans({}, 'recapitulatif') }} :</strong> {{ billet.nom }}
-                    </p>
-                    <p><strong>{{ 'content.infos_billets.prenom'|trans({}, 'recapitulatif') }}
-                            : </strong> {{ billet.prenom }}</p>
-                    <p><strong>{{ 'content.infos_billets.date_naissance'|trans({}, 'recapitulatif') }}
-                            : </strong>{{ billet.dateNaissance|date('d-m-Y') }}</p>
-                    <p><strong>{{ 'content.infos_billets.pays'|trans({}, 'recapitulatif') }}
-                            : </strong> {{ _locale == 'en' ? billet.pays|countryName('en') : billet.pays|countryName('fr') }}
-                    </p>
-                    <p><strong>{{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
-                            : </strong>
-                        {% if _locale == 'fr' %}
-                            {{ billet.tarif.nom }}
-                        {% else %}
-                            {% if billet.tarif.nom == 'enfant' %}
-                                child
-                            {% elseif billet.tarif.nom == 'reduit' %}
-                                reduced
-                            {% elseif billet.tarif.nom == 'gratuit' %}
-                                free
-                            {% else %}
+                <div class="col-sm-6">
+                    <p class="label label-default">{{ 'content.infos_billets.loop_info'|trans({}, 'recapitulatif') }} {{ loop.index }}</p>
+                    <div class="well">
+                        <p><strong>{{ 'content.infos_billets.nom'|trans({}, 'recapitulatif') }} :</strong> {{ billet.nom }}
+                        </p>
+                        <p><strong>{{ 'content.infos_billets.prenom'|trans({}, 'recapitulatif') }}
+                                : </strong> {{ billet.prenom }}</p>
+                        <p><strong>{{ 'content.infos_billets.date_naissance'|trans({}, 'recapitulatif') }}
+                                : </strong>{{ billet.dateNaissance|date('d-m-Y') }}</p>
+                        <p><strong>{{ 'content.infos_billets.pays'|trans({}, 'recapitulatif') }}
+                                : </strong> {{ _locale == 'en' ? billet.pays|countryName('en') : billet.pays|countryName('fr') }}
+                        </p>
+                        <p><strong>{{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
+                                : </strong>
+                            {% if _locale == 'fr' %}
                                 {{ billet.tarif.nom }}
+                            {% else %}
+                                {% if billet.tarif.nom == 'enfant' %}
+                                    child
+                                {% elseif billet.tarif.nom == 'reduit' %}
+                                    reduced
+                                {% elseif billet.tarif.nom == 'gratuit' %}
+                                    free
+                                {% else %}
+                                    {{ billet.tarif.nom }}
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </p>
-                    <p class="label label-info label-as-badge">{{ 'content.infos_billets.prix'|trans({}, 'recapitulatif') }}
-                        : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }} €</p>
+                        </p>
+                        <p class="label label-info label-as-badge">{{ 'content.infos_billets.prix'|trans({}, 'recapitulatif') }}
+                            : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }} €</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div class="col-md-12 text-center bottom-links">
             <span>{{ 'content.prix_total'|trans({}, 'recapitulatif') }} :</span> <strong>{{ commande.prixTotal }}

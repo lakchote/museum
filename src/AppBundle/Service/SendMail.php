@@ -32,7 +32,7 @@ class SendMail
             ->setFrom('billetterie@louvre.fr')
             ->setTo($commande->getEmailVisiteur())
             ->setBody(
-                $this->templating->render('mail_recapitulatif_commande.html.twig', [
+                $this->templating->render('commande_controller/mail_recapitulatif_commande.html.twig', [
                     'commande' => $commande,
                     '_locale' => $locale
                 ]),
