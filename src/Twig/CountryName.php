@@ -11,7 +11,7 @@ namespace Twig;
 
 use Symfony\Component\Intl\Intl;
 
-class AppExtension extends \Twig_Extension
+class CountryName extends \Twig_Extension
 {
     public function getFilters()
     {
@@ -21,7 +21,7 @@ class AppExtension extends \Twig_Extension
     }
     public function getName()
     {
-        return 'app_extension';
+        return 'twig_countryname';
     }
 
     public function countryCodeToName($value, $locale)

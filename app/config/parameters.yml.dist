@@ -21,3 +21,6 @@ parameters:
     #Stripe
     stripe_public_key: XXX
     stripe_secret_key: XXX
+
+    #Supported locales
+    locales_supported: ['fr', 'en']

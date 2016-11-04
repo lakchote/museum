@@ -18,8 +18,8 @@ services:
         class: AppBundle\Service\TotalPrice
 
     # Extension Twig pour convertir les codes régions des pays en noms
-    app_twig_extension:
-        class: Twig\AppExtension
+    twig_countryname:
+        class: Twig\CountryName
         tags:
             - { name : twig.extension }
 
@@ -33,3 +33,10 @@ services:
     stripe_api:
         class: AppBundle\Service\StripeAPI
         autowire: true
+
+    listener_redirectlocale:
+        class: AppBundle\EventListener\RedirectLocaleListener
+        arguments: ["%locale%", "%locales_supported%"]
+        tags:
+            - { name : kernel.event_listener, event : kernel.request }
+
