@@ -3,8 +3,13 @@ header:
 content:
     title: Finalisation de la commande
     form:
-        card_number_placeholder: Numéro de carte bleue
-        mm_yy: mm/aa
-        cvc: CVV
+        labels:
+            card_number: Numéro carte bleue
+            mm_yy: Date expiration
+            cvc: Code de sécurité
+        placeholders:
+            card_number: Numéro de carte bleue
+            mm_yy: mm/aa
+            cvc: CVV
     submit_button: Obtenir ses billets
     payment_error: Il y a eu un problème lors du paiement

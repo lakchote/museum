@@ -22,12 +22,17 @@ class CommandeType extends AbstractType
                 'type_billet.choices.half_day_label' => 'demi_journee',
                 ],
             'placeholder' => 'type_billet.placeholder',
+            'expanded' => true,
+            'multiple' => false,
+            'data' => 'journee',
+            'label' => 'type_billet.label'
         ])
             ->add('dateVisite', DateType::class, [
                 'attr' => ['class' => 'dateVisite'],
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'html5' => false,
+                'label' => 'date_visite.label'
             ])
             ->add('emailVisiteur', RepeatedType::class,[
                 'type' => EmailType::class,
@@ -37,6 +42,7 @@ class CommandeType extends AbstractType
             ])
             ->add('nbBillets', IntegerType::class,[
                 'attr' => ['min' => '1', 'max' => '100'],
+                'label' => 'nb_billets.label'
             ])
         ;
     }

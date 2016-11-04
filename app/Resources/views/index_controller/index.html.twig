@@ -12,10 +12,10 @@
                 <h1>{{ 'header_title.value'|trans({}, 'commande') }}</h1>
             </div>
             {{ form_start(commande) }}
-            {{ form_row(commande.typeBillet, {'label' : 'type_billet.label'|trans({}, 'commande')}) }}
-            {{ form_row(commande.dateVisite, {'label' : 'date_visite.label'|trans({}, 'commande')}) }}
+            {{ form_row(commande.typeBillet) }}
+            {{ form_row(commande.dateVisite) }}
             {{ form_row(commande.emailVisiteur) }}
-            {{ form_row(commande.nbBillets, {'label' : 'nb_billets.label'|trans({}, 'commande')}) }}
+            {{ form_row(commande.nbBillets) }}
 
             <div class="text-center bottom-links">
                 <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"

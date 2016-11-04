@@ -19,19 +19,26 @@ class BilletType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
+        $builder->add('nom', TextType::class, [
+            'label' => 'content.label.nom'
+        ])
+            ->add('prenom', TextType::class, [
+                'label' => 'content.label.prenom'
+            ])
             ->add('pays', CountryType::class, [
                     'placeholder' => '',
+                    'label' => 'content.label.pays'
             ])
             ->add('dateNaissance', BirthdayType::class, [
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
-                'attr' => ['placeholder' => '01/01/1990'],
+                'attr' => ['placeholder' => 'content.placeholder.date_naissance'],
                 'html5' => false,
+                'label' => 'content.label.date_naissance'
             ])
             ->add('isTarifReduit', CheckboxType::class,[
-                'label' => 'Tarif réduit'
+                'label' => 'content.label.tarif_reduit',
+                'required' => false
             ])
             ;
     }
@@ -39,7 +46,8 @@ class BilletType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Billet::class
+            'data_class' => Billet::class,
+            'translation_domain' => 'billets'
         ]);
     }
 
