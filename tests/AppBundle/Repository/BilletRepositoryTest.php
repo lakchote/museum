@@ -22,11 +22,11 @@ class BilletRepositoryTest extends KernelTestCase
 
     public function testcheckMaxCapacity()
     {
-        /** Nous avons dans notre fixture 3 commandes différentes avec comme date de visite '2017-03-03'
-         * Chacune comporte un billet, mais seulement une a été finalisée, les billets des 2 autres commandes ne doivent donc pas être pris en compte
+        /** Nous avons dans notre fixture 5 commandes différentes avec comme date de visite '2017-03-03'
+         * Chacune comporte un billet mais seulement 2 ont été finalisées, le nombre de billets comptabilisés pour ce jour doit donc être de 2
          */
         $date = '2017-03-03';
         $result = count($this->em->getRepository(Billet::class)->checkMaxCapacity($date));
-        $this->assertEquals(1, $result);
+        $this->assertEquals(2, $result);
     }
 }

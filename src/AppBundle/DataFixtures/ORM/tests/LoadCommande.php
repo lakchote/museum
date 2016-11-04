@@ -64,7 +64,7 @@ class LoadCommande implements FixtureInterface
         $c_finishedAndEmailSent = new Commande();
         $c_finishedAndEmailSent->setIsFinished(true);
         $c_finishedAndEmailSent->setDateVisite($date);
-        $c_finishedAndEmailSent->setEmailVisiteur('exemple@gmail.com');
+        $c_finishedAndEmailSent->setEmailVisiteur('l.akchote@gmail.com');
         $c_finishedAndEmailSent->setTypeBillet('journee');
         $c_finishedAndEmailSent->setNbBillets('1');
         $c_finishedAndEmailSent->setIsEmailSent(true);
@@ -79,7 +79,7 @@ class LoadCommande implements FixtureInterface
         $c_notFinished = new Commande();
         $c_notFinished->setIsFinished(false);
         $c_notFinished->setDateVisite($date);
-        $c_notFinished->setEmailVisiteur('exemple@gmail.com');
+        $c_notFinished->setEmailVisiteur('l.akchote@gmail.com');
         $c_notFinished->setTypeBillet('journee');
         $c_notFinished->setNbBillets('1');
         $c_notFinished->setPrixTotal('12');
@@ -94,7 +94,7 @@ class LoadCommande implements FixtureInterface
         $c_demiJournee= new Commande();
         $c_demiJournee->setIsFinished(false);
         $c_demiJournee->setDateVisite($date);
-        $c_demiJournee->setEmailVisiteur('exemple@gmail.com');
+        $c_demiJournee->setEmailVisiteur('l.akchote@gmail.com');
         $c_demiJournee->setTypeBillet('demi_journee');
         $c_demiJournee->setNbBillets('1');
         $c_demiJournee->setPrixTotal('12');
@@ -110,18 +110,33 @@ class LoadCommande implements FixtureInterface
         $c_totalPriceNull = new Commande();
         $c_totalPriceNull->setIsFinished(false);
         $c_totalPriceNull->setDateVisite($date);
-        $c_totalPriceNull->setEmailVisiteur('exemple@gmail.com');
+        $c_totalPriceNull->setEmailVisiteur('l.akchote@gmail.com');
         $c_totalPriceNull->setTypeBillet('journee');
         $c_totalPriceNull->setNbBillets('1');
         $c_totalPriceNull->setPrixTotal(0);
+        $billet = new Billet();
+        $billet->setDateNaissance($dateNaissance);
+        $billet->setNom('Test');
+        $billet->setPrenom('Test');
+        $billet->setPays('France');
+        $billet->setTarif($tarif_senior);
+        $c_totalPriceNull->addBillet($billet);
+
 
         $c_finishedEmailNotSent = new Commande();
         $c_finishedEmailNotSent ->setIsFinished(true);
         $c_finishedEmailNotSent ->setDateVisite($date);
-        $c_finishedEmailNotSent ->setEmailVisiteur('exemple@gmail.com');
+        $c_finishedEmailNotSent ->setEmailVisiteur('l.akchote@gmail.com');
         $c_finishedEmailNotSent ->setTypeBillet('journee');
         $c_finishedEmailNotSent ->setNbBillets('1');
         $c_finishedEmailNotSent ->setIsEmailSent(false);
+        $billet = new Billet();
+        $billet->setDateNaissance($dateNaissance);
+        $billet->setNom('Test');
+        $billet->setPrenom('Test');
+        $billet->setPays('France');
+        $billet->setTarif($tarif_senior);
+        $c_finishedEmailNotSent->addBillet($billet);
 
         $manager->persist($c_finishedAndEmailSent);
         $manager->persist($c_notFinished);
