@@ -14,7 +14,8 @@ class CommandeManager
 {
     public function createBilletsForCommande(Commande $commande)
     {
-        for ($i = 0; $i < $commande->getNbBillets(); $i++) {
+        $quantite = $commande->getNbBillets();
+        for ($i = 0; $i < $quantite; $i++) {
             $billet = new Billet();
             $commande->addBillet($billet);
         }

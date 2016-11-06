@@ -3,7 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
-use AppBundle\Form\PaiementType;
+use AppBundle\Form\Type\PaiementType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,6 +15,7 @@ class CommandeController extends Controller
 
     /**
      * @Route("{_locale}/commande/recapitulatif/{id}", name="app_recapitulatif_commande")
+     * @Method({"GET", "PATCH"})
      * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
     public function recapCommandeAction(Commande $commande, Request $request) {
@@ -29,6 +31,7 @@ class CommandeController extends Controller
 
     /**
      * @Route("{_locale}/paiement/{id}", name="app_paiement")
+     * @Method({"GET", "POST"})
      * @ParamConverter("commande", options={"repository_method" = "isNotFinishedAndPriceNotNull"})
      */
     public function paymentAction(Commande $commande, Request $request)
@@ -41,7 +44,7 @@ class CommandeController extends Controller
             $error = $this->get('stripe_api')->defineKey($this->getParameter('stripe_secret_key'))->createChargeForCustomer($commande, $token);
             if(!$error) {
                 $em = $this->getDoctrine()->getManager();
-                $commande->setIsFinished(true);
+                $commande->setFinished(true);
                 $em->persist($commande);
                 $em->flush();
                 return $this->redirectToRoute('app_paiement_success', [
@@ -59,6 +62,7 @@ class CommandeController extends Controller
 
     /**
      * @Route("{_locale}/success/{id}", name="app_paiement_success")
+     * @Method({"GET", "PATCH"})
      * @ParamConverter("commande", options={"repository_method" = "isEmailNotSentAndIsFinished"})
      */
     public function successAction(Commande $commande, Request $request)
@@ -66,7 +70,7 @@ class CommandeController extends Controller
         $locale = $request->getLocale();
         $em = $this->getDoctrine()->getManager();
         $this->get('send_mail')->sendMailToUserWithCommande($commande, $locale);
-        $commande->setIsEmailSent(true);
+        $commande->setEmailSent(true);
         $em->persist($commande);
         $em->flush();
         return $this->render('commande_controller/commande_finalisee.html.twig', [

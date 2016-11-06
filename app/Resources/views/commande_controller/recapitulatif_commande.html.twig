@@ -15,11 +15,7 @@
                 <p>{{ 'content.infos_commande.date_reservation'|trans({}, 'recapitulatif') }}
                     : {{ commande.dateVisite|date('d-m-Y') }} </p>
                 <p>{{ 'content.infos_commande.type_billets'|trans({}, 'recapitulatif') }} :
-                    {% if _locale == 'en' %}
-                        {{ (commande.typeBillet == 'demi_journee') ? 'Half-day' : 'Full day' }}
-                    {% else %}
-                        {{ (commande.typeBillet == 'demi_journee') ? 'Demi-journée' : 'Journée' }}
-                    {% endif %}</p>
+                    {{ commande.typeBillet == 'journee' ? 'type_billet.choices.full_day_label'|trans({}, 'commande') : 'type_billet.choices.half_day_label'|trans({}, 'commande') }}
                 <p>{{ 'content.infos_commande.nb_billets'|trans({}, 'recapitulatif') }}
                     : {{ commande.billets.count }}</p>
                 <p>{{ 'content.infos_commande.email_visiteur'|trans({}, 'recapitulatif') }}
@@ -42,19 +38,7 @@
                         </p>
                         <p><strong>{{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
                                 : </strong>
-                            {% if _locale == 'fr' %}
-                                {{ billet.tarif.nom }}
-                            {% else %}
-                                {% if billet.tarif.nom == 'enfant' %}
-                                    child
-                                {% elseif billet.tarif.nom == 'reduit' %}
-                                    reduced
-                                {% elseif billet.tarif.nom == 'gratuit' %}
-                                    free
-                                {% else %}
-                                    {{ billet.tarif.nom }}
-                                {% endif %}
-                            {% endif %}
+                            {{ billet.tarif.nom|trans({}, 'tarifs') }}
                         </p>
                         <p class="label label-info label-as-badge">{{ 'content.infos_billets.prix'|trans({}, 'recapitulatif') }}
                             : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }} €</p>

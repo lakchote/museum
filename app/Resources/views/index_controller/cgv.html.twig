@@ -11,7 +11,7 @@
             <h1>{{ 'content.title'|trans({}, 'cgv') }}</h1>
         </div>
         {% for i in 0..11 %}
-            <p>{{ ('content.donnees.' ~ i)|trans({},'cgv')|raw }}</p>
+            <p>{{ ('content.donnees.' ~ i)|trans({},'cgv')|nl2br }}</p>
         {% endfor %}
     </div>
 </section>

@@ -25,5 +25,3 @@
   If you want to run a *specific* test such as "TarifResolverTest" :
   
   `phpunit tests/AppBundle/Service/TarifResolverTest.php`
-  
-  

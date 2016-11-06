@@ -108,4 +108,12 @@ class Tarif
         $this->ageMax = $ageMax;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

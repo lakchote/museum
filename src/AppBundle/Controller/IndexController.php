@@ -8,16 +8,17 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\CommandeType;
+use AppBundle\Form\Type\CommandeType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class IndexController extends Controller
 {
     /**
      * @Route("/{_locale}", name="app_homepage")
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request)
     {
@@ -41,6 +42,7 @@ class IndexController extends Controller
 
     /**
      * @Route("/{_locale}/cgv", name="app_cgv")
+     * @Method({"GET"})
      */
     public function cgvAction()
     {

@@ -2,7 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\ShowBilletsType;
+use AppBundle\Form\Type\ShowBilletsType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Commande;
@@ -14,6 +15,7 @@ class BilletsController extends Controller
 
     /**
      * @Route("{_locale}/commande/{id}", name="app_billets")
+     * @Method({"GET", "POST"})
      * @ParamConverter("commande", options={"repository_method" = "isNotFinished"})
      */
     public function billetsAction(Commande $commande, Request $request)

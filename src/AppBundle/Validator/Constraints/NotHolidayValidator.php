@@ -16,7 +16,7 @@ class NotHolidayValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if ($value == null) {
+        if ($value === null) {
             return;
         }
         $joursFeries = ['05-01', '11-01', '12-25'];

@@ -2,5 +2,5 @@ header:
     title: Louvre Museum | Order finished
 content:
     title: Order finished
-    message_info: <p>Your order was successfully created. Thank you for your trust.</p><p>A confirmation mail has been sent to your email address (<strong>%email%</strong>) <br/>You will find your order summary, including the detailed content of each ticket.</p>
+    message_info: "Your order was successfully created.Thank you for your trust.\n\nA confirmation mail has been sent to your email address (%email%)\nYou will find your order summary, including the detailed content of each ticket."
     message_remerciement: We wish you a pleasant visit.

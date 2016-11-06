@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Billet;
 use Symfony\Component\Form\AbstractType;
@@ -10,10 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Country;
-use Symfony\Component\Validator\Constraints\Date;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class BilletType extends AbstractType
 {
@@ -36,7 +32,7 @@ class BilletType extends AbstractType
                 'html5' => false,
                 'label' => 'content.label.date_naissance'
             ])
-            ->add('isTarifReduit', CheckboxType::class,[
+            ->add('tarifReduit', CheckboxType::class,[
                 'label' => 'content.label.tarif_reduit',
                 'required' => false
             ])

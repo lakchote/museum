@@ -407,11 +407,7 @@
                                                                     : {{ commande.dateVisite|date('d-m-Y') }}</p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
                                                                     <strong>{{ 'content.infos_commande.type_billets'|trans({}, 'recapitulatif') }}</strong>
-                                                                    : {% if _locale == 'en' %}
-                                                                        {{ (commande.typeBillet == 'demi_journee') ? 'Half-day' : 'Full day' }}
-                                                                    {% else %}
-                                                                        {{ (commande.typeBillet == 'demi_journee') ? 'Demi-journée' : 'Journée' }}
-                                                                    {% endif %}
+                                                                    {{ commande.typeBillet == 'journee' ? 'type_billet.choices.full_day_label'|trans({}, 'commande') : 'type_billet.choices.half_day_label'|trans({}, 'commande') }}
                                                                 </p>
                                                                 <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
                                                                     <strong>{{ 'content.infos_commande.nb_billets'|trans({}, 'recapitulatif') }}</strong>
@@ -451,19 +447,7 @@
                                                                         : {{ _locale == 'en' ? billet.pays|countryName('en') : billet.pays|countryName('fr') }}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
                                                                         {{ 'content.infos_billets.tarif'|trans({}, 'recapitulatif') }}
-                                                                        : {% if _locale == 'fr' %}
-                                                                            {{ billet.tarif.nom }}
-                                                                        {% else %}
-                                                                            {% if billet.tarif.nom == 'enfant' %}
-                                                                                child
-                                                                            {% elseif billet.tarif.nom == 'reduit' %}
-                                                                                reduced
-                                                                            {% elseif billet.tarif.nom == 'gratuit' %}
-                                                                                free
-                                                                            {% else %}
-                                                                                {{ billet.tarif.nom }}
-                                                                            {% endif %}
-                                                                        {% endif %}</p>
+                                                                        : {{ billet.tarif.nom|trans({}, 'tarifs') }}</p>
                                                                     <p style="Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
                                                                         {{ 'content.infos_billets.prix'|trans({}, 'recapitulatif') }}
                                                                         : {{ commande.typeBillet == 'demi_journee' ? billet.tarif.prix/2 : billet.tarif.prix }}

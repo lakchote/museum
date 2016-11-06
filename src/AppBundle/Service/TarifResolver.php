@@ -9,7 +9,6 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Commande;
-use AppBundle\Entity\Billet;
 use AppBundle\Entity\Tarif;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -24,7 +23,7 @@ class TarifResolver
         $this->em = $em;
     }
 
-    public function getTarifForBillet($birthDate)
+    public function getTarifForBillet(\DateTime $birthDate)
     {
         $today = new \DateTime();
         $yearAsOfToday = $today->format('Y');
@@ -40,7 +39,7 @@ class TarifResolver
     public function getTarifForEachBillet(Commande $commande)
     {
         foreach ($commande->getBillets() as $billet) {
-            if ($billet->getIsTarifReduit()) {
+            if ($billet->isTarifReduit()) {
                 $this->tarif = $this->em->getRepository('AppBundle:Tarif')->findOneBy([
                     'nom' => 'reduit'
                 ]);

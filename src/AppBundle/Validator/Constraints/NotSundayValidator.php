@@ -17,7 +17,7 @@ class NotSundayValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if ($value == null) {
+        if ($value === null) {
             return;
         }
         $day = $value->format('w');

@@ -175,7 +175,7 @@ class Commande
      * @param mixed Billet
      * @return Commande
      */
-    public function addBillet($billet)
+    public function addBillet(Billet $billet)
     {
         $this->billets->add($billet);
         $billet->setCommande($this);
@@ -184,7 +184,7 @@ class Commande
     /**
      * @return boolean
      */
-    public function getIsFinished()
+    public function isFinished()
     {
         return $this->isFinished;
     }
@@ -192,7 +192,7 @@ class Commande
     /**
      * @param boolean $isFinished
      */
-    public function setIsFinished($isFinished)
+    public function setFinished($isFinished)
     {
         $this->isFinished = $isFinished;
     }
@@ -216,7 +216,7 @@ class Commande
     /**
      * @return boolean
      */
-    public function getIsEmailSent()
+    public function getEmailSent()
     {
         return $this->isEmailSent;
     }
@@ -224,7 +224,7 @@ class Commande
     /**
      * @param boolean $isEmailSent
      */
-    public function setIsEmailSent($isEmailSent)
+    public function setEmailSent($isEmailSent)
     {
         $this->isEmailSent = $isEmailSent;
     }

@@ -60,7 +60,7 @@ class Billet
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isTarifReduit = false;
+    private $tarifReduit = false;
 
     /**
      * @ORM\Column(type="date")
@@ -169,17 +169,26 @@ class Billet
     /**
      * @return mixed
      */
-    public function getIsTarifReduit()
+    public function isTarifReduit()
     {
-        return $this->isTarifReduit;
+        return $this->tarifReduit;
     }
 
     /**
-     * @param mixed $isTarifReduit
+     * @param mixed $tarifReduit
      */
-    public function setIsTarifReduit($isTarifReduit)
+    public function setTarifReduit($tarifReduit)
     {
-        $this->isTarifReduit = $isTarifReduit;
+        $this->tarifReduit = $tarifReduit;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
 }

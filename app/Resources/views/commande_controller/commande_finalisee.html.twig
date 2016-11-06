@@ -13,7 +13,7 @@
             </div>
         </div>
             <div class="well well-lg">
-                <p>{{ 'content.message_info'|trans({'%email%' : commande.emailVisiteur}, 'commande_finalisee')|raw }}</p>
+                <p>{{ 'content.message_info'|trans({'%email%' : commande.emailVisiteur}, 'commande_finalisee')|nl2br }}</p>
             </div>
             <p class="text-center"><em>{{ 'content.message_remerciement'|trans({}, 'commande_finalisee') }}</em></p>
     </section>

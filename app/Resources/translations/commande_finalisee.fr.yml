@@ -2,5 +2,5 @@ header:
     title: Musée du Louvre | Commande terminée
 content:
     title: Commande terminée
-    message_info: <p>Votre commande a bien été prise en compte. Nous vous remercions de votre confiance.</p><p>Un email de confirmation vous a été envoyé à l'adresse que vous avez indiqué (<strong>%email%</strong>) <br/>Vous y trouverez le récapitulatif de votre commande, incluant le contenu détaillé de chaque billet.</p>
+    message_info: "Votre commande a bien été prise en compte. Nous vous remercions de votre confiance.\n\nUn email de confirmation vous a été envoyé à l'adresse que vous avez indiqué (%email%)\nVous y trouverez le récapitulatif de votre commande, incluant le contenu détaillé de chaque billet."
     message_remerciement: Nous vous souhaitons une agréable visite.

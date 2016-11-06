@@ -15,7 +15,7 @@ class NotPastDayValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if ($value == null) {
+        if ($value === null) {
             return;
         }
             $today = new \DateTime();

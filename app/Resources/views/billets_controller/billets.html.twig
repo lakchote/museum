@@ -21,7 +21,7 @@
                 {{ form_row(billets.prenom) }}
                 {{ form_row(billets.pays) }}
                 {{ form_row(billets.dateNaissance) }}
-                {{ form_row(billets.isTarifReduit) }}
+                {{ form_row(billets.tarifReduit) }}
             {% endfor %}
             <div class="text-center bottom-links">
                 <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ 'content.submit_button'|trans({}, 'billets') }}</button>
