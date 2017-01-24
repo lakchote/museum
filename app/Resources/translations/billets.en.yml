@@ -11,5 +11,5 @@ content:
         date_naissance: Birth date
         tarif_reduit: Reduced price
     placeholder:
-        date_naissance: 01/01/1990
+        date_naissance: 01-01-1990
     submit_button: Submit

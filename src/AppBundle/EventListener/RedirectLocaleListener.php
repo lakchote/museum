@@ -8,18 +8,21 @@
 
 namespace AppBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class RedirectLocaleListener
 {
     private $defaultLocale;
     private $supportedLocales;
+    private $router;
 
-    public function __construct($defaultLocale, array $supportedLocales)
+    public function __construct($defaultLocale, array $supportedLocales, Router $router)
     {
         $this->defaultLocale = $defaultLocale;
         $this->supportedLocales = $supportedLocales;
+        $this->router = $router;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -30,7 +33,9 @@ class RedirectLocaleListener
             if (!in_array($locale, $this->supportedLocales)) {
                 $locale = $this->defaultLocale;
             }
-            return $event->setResponse(new RedirectResponse('/' . $locale));
+            if ($request->getPathInfo() == '/') {
+                return $event->setResponse(new RedirectResponse($this->router->generate('app_homepage', ['_locale' => $locale])));
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ services:
 
     listener_redirectlocale:
         class: AppBundle\EventListener\RedirectLocaleListener
-        arguments: ["%locale%", "%locales_supported%"]
+        arguments: ["%locale%", "%locales_supported%", '@router']
         tags:
             - { name : kernel.event_listener, event : kernel.request }
 
