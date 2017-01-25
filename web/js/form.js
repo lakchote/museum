@@ -36,15 +36,17 @@ $(function() {
             var today = new Date();
             var newDate = today.setDate((today.getDate() - 1));
             var jour = $.datepicker.formatDate('dd-mm', date);
+            if ($('#commande_typeBillet_0').is(':checked')) {
+                if(today.getHours() >= 14) {
+                    today.setDate(today.getDate()+1);
+                    return [(dimancheMardi !== 0) && (dimancheMardi !== 2) && ($.inArray(jour, joursFeries) == -1) && (newDate < date) && (today < date)];
+                }
+            }
             return [(dimancheMardi !== 0) && (dimancheMardi !== 2) && ($.inArray(jour, joursFeries) == -1) && (newDate < date)];
         },
         dateFormat: 'yy-mm-dd'
-    });
-
-    //On empêche la saisie de l'utilisateur via le clavier pour le forcer à utiliser le calendrier
-    $('.dateVisite').keypress(function(e) {
+    }).keypress(function(e) {
         e.preventDefault();
     });
 
-   
 });

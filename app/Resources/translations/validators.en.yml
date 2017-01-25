@@ -6,6 +6,7 @@ commande:
         not_sunday: "You can't book tickets for Sunday."
         not_tuesday: "You can't book tickets for Tuesday, the museum is closed."
         not_max_capacity: "The museum maximum capacity for the %jour% has been reached (%billets% tickets sold)."
+        past_14_hours: "You can't choose a full day ticket after 2 P.M."
 
     type_billet:
         not_blank: "You must choose the type of the ticket (either \"Full day\" or \"Half Day\")."

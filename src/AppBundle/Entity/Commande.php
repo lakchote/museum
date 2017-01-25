@@ -55,6 +55,7 @@ class Commande
      * @Assert\NotBlank(
      *     message="commande.type_billet.not_blank"
      * )
+     * @FormConstraint\BilletJournee()
      */
     private $typeBillet;
 

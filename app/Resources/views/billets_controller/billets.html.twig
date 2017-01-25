@@ -30,3 +30,8 @@
         </div>
     </section>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/billets.js') }}"></script>
+{% endblock %}

@@ -6,6 +6,7 @@ commande:
         not_sunday: "Vous ne pouvez réserver de billets le Dimanche."
         not_tuesday: "Vous ne pouvez réserver de billets le Mardi, le musée est fermé."
         not_max_capacity: "La capacité maximale du musée pour le %jour% a été atteinte(%billets% billets vendus)."
+        past_14_hours: "Vous ne pouvez choisir un billet journée après 14H."
 
     type_billet:
         not_blank: "Vous devez choisir le type de billet (\"Journée\" ou \"Demi-journée\")."
