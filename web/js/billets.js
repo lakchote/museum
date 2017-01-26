@@ -4,10 +4,14 @@ $(function() {
         var parentTarifReduit = this.parentNode.parentNode.parentNode;
         var birthDateValue = parentTarifReduit.previousElementSibling.childNodes[1].value;
         if(birthDateValue.length !== 10) {
-            e.preventDefault();
+            if(!e.isDefaultPrevented() && this.checked) {
+                e.preventDefault();
+            }
         }
         else if(!checkIfTarifReduitIsPossible(birthDateValue)) {
-            e.preventDefault();
+            if(!e.isDefaultPrevented() && this.checked) {
+                e.preventDefault();
+            }
             if(!document.getElementById('tarif-reduit-error')) {
                 var p = document.createElement('p');
                 p.id = 'tarif-reduit-error';
@@ -18,7 +22,7 @@ $(function() {
         }
         else {
             if(document.getElementById('tarif-reduit-error')) {
-                this.parentNode.parentNode.lastChild.remove();
+                this.parentNode.parentNode.removeChild(document.getElementById('tarif-reduit-error'));
             }
         }
     });
