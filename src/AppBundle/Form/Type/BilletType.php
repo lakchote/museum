@@ -27,7 +27,7 @@ class BilletType extends AbstractType
             ])
             ->add('dateNaissance', BirthdayType::class, [
                 'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
+                'format' => 'dd/MM/yyyy',
                 'attr' => ['placeholder' => 'content.placeholder.date_naissance'],
                 'html5' => false,
                 'label' => 'content.label.date_naissance'

@@ -33,6 +33,9 @@ billets:
     pays:
         not_blank: You must choose your country.
         country: This is not a valid country.
+    tarif_reduit:
+        not_valid: Children (0-12 years old) already benefit from a special rate which is more beneficial than the reduced price rate.
     date_naissance:
         not_blank: You must specify your birth date.
         date: This is not a valid birth date format.
+        not_valid: Birth date cannot be superior to current year.

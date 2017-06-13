@@ -11,28 +11,25 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Commande;
 use AppBundle\Entity\Tarif;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TarifResolver
 {
     private $em;
     private $tarif;
+    private $yearAsOfToday;
+    private $error;
 
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
+        $today = new \DateTime();
+        $this->yearAsOfToday = $today->format('Y');
     }
 
-    public function getTarifForBillet(\DateTime $birthDate)
+    private function getTarifForBillet(\DateTime $birthDate)
     {
-        $today = new \DateTime();
-        $yearAsOfToday = $today->format('Y');
         $yearOfBirth = $birthDate->format('Y');
-        if($yearOfBirth > $yearAsOfToday) {
-            return false;
-        }
-        $age = $yearAsOfToday - $yearOfBirth;
-
+        $age = $this->yearAsOfToday - $yearOfBirth;
         return $this->em->getRepository(Tarif::class)->returnTarifForBillet($age);
     }
 
@@ -40,15 +37,23 @@ class TarifResolver
     {
         foreach ($commande->getBillets() as $billet) {
             if ($billet->isTarifReduit()) {
+                if($this->yearAsOfToday - $billet->getDateNaissance()->format('Y') <= 12) {
+                    $this->error = 'billets.tarif_reduit.not_valid';
+                    break;
+                }
                 $this->tarif = $this->em->getRepository('AppBundle:Tarif')->findOneBy([
                     'nom' => 'reduit'
                 ]);
             } else {
-                if(!$this->tarif = $this->getTarifForBillet($billet->getDateNaissance())) {
-                    throw new NotFoundHttpException('La date de naissance ne peut être supérieure à l\'année en cours.');
-                }
+                $this->tarif = $this->getTarifForBillet($billet->getDateNaissance());
             }
             $billet->setTarif($this->tarif);
         }
+        return true;
+    }
+
+    public function getErrors()
+    {
+        return $this->error ?: false;
     }
 }

@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\Constraints as FormConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BilletRepository")
@@ -66,6 +67,7 @@ class Billet
      * @ORM\Column(type="date")
      * @Assert\NotBlank(message="billets.date_naissance.not_blank")
      * @Assert\Date(message="billets.date_naissance.date")
+     * @FormConstraint\BirthDate()
      */
     private $dateNaissance;
 

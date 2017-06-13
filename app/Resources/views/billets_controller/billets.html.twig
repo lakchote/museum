@@ -14,7 +14,13 @@
                 <span class="label label-default"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Information</span>
                 <p>{{ 'content.tarif_reduit'|trans({}, 'billets')|raw }}</p>
             </div>
+            {% if error %}
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{ error|trans({}, 'validators') }}
+                </div>
+            {% endif %}
             {{ form_start(commande) }}
+            {{ form_errors(commande) }}
             {% for billets in commande.billets %}
                 <label>{{ 'content.loop_info'|trans({}, 'billets') }}{{ loop.index }}</label>
                 {{ form_row(billets.nom) }}
@@ -29,9 +35,4 @@
             {{ form_end(commande) }}
         </div>
     </section>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('js/billets.js') }}"></script>
 {% endblock %}

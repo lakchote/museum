@@ -33,6 +33,9 @@ billets:
     pays:
         not_blank: Vous devez choisir votre pays.
         country: Ceci n'est pas un pays valide.
+    tarif_reduit:
+        not_valid: Les enfants (de 0 à 12 ans) bénéficient déjà d'un tarif plus avantageux que le tarif réduit.
     date_naissance:
         not_blank: Vous devez indiquer votre date de naissance.
         date: Le format de la date de naissance est invalide.
+        not_valid: La date de naissance ne peut être supérieure à l'année en cours.
