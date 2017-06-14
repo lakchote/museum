@@ -10,10 +10,10 @@ class BirthDateValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        $today = new \DateTime();
-        $yearAsOfToday = $today->format('Y');
+        if(!$value) return;
+        $currentYear = (new \DateTime())->format('Y');
         $yearOfBirth = $value->format('Y');
-        if($yearOfBirth > $yearAsOfToday) {
+        if($yearOfBirth > $currentYear) {
             $this->context->buildViolation($constraint->message)->addViolation();
         }
     }

@@ -37,10 +37,6 @@ class TarifResolver
     {
         foreach ($commande->getBillets() as $billet) {
             if ($billet->isTarifReduit()) {
-                if($this->yearAsOfToday - $billet->getDateNaissance()->format('Y') <= 12) {
-                    $this->error = 'billets.tarif_reduit.not_valid';
-                    break;
-                }
                 $this->tarif = $this->em->getRepository('AppBundle:Tarif')->findOneBy([
                     'nom' => 'reduit'
                 ]);
@@ -49,11 +45,5 @@ class TarifResolver
             }
             $billet->setTarif($this->tarif);
         }
-        return true;
-    }
-
-    public function getErrors()
-    {
-        return $this->error ?: false;
     }
 }

@@ -14,13 +14,7 @@
                 <span class="label label-default"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Information</span>
                 <p>{{ 'content.tarif_reduit'|trans({}, 'billets')|raw }}</p>
             </div>
-            {% if error %}
-                <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{ error|trans({}, 'validators') }}
-                </div>
-            {% endif %}
             {{ form_start(commande) }}
-            {{ form_errors(commande) }}
             {% for billets in commande.billets %}
                 <label>{{ 'content.loop_info'|trans({}, 'billets') }}{{ loop.index }}</label>
                 {{ form_row(billets.nom) }}
@@ -30,7 +24,7 @@
                 {{ form_row(billets.tarifReduit) }}
             {% endfor %}
             <div class="text-center bottom-links">
-                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ 'content.submit_button'|trans({}, 'billets') }}</button>
+                <button type="submit" class="btn btn-success" formnovalidate><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ 'content.submit_button'|trans({}, 'billets') }}</button>
             </div>
             {{ form_end(commande) }}
         </div>

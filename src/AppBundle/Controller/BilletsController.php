@@ -28,18 +28,16 @@ class BilletsController extends Controller
         $form = $this->createForm(ShowBilletsType::class, $commande);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-           if($this->get('tarif_resolver')->getTarifForEachBillet($commande) && !$this->get('tarif_resolver')->getErrors()) {
+               $this->get('tarif_resolver')->getTarifForEachBillet($commande);
                $em->persist($commande);
                $em->flush();
                return $this->redirectToRoute('app_recapitulatif_commande', [
                    'id' => $commande->getId(),
                    '_locale' => $request->getLocale()
                ]);
-           }
         }
         return $this->render('billets_controller/billets.html.twig', [
-            'commande' => $form->createView(),
-            'error' => $this->get('tarif_resolver')->getErrors()
+            'commande' => $form->createView()
         ]);
     }
 }

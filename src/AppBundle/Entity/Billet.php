@@ -60,6 +60,7 @@ class Billet
 
     /**
      * @ORM\Column(type="boolean")
+     * @FormConstraint\ReducedPrice()
      */
     private $tarifReduit = false;
 
