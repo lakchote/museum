@@ -14,6 +14,7 @@ homepage:
     prices: Rates
   title: Louvre Museum | Official Ticketing Service
   modals:
+    close: Close
     hours:
         title: Hours and Admission
         subtitle: Open everyday except Tuesday

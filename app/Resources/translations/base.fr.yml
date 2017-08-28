@@ -14,6 +14,7 @@ homepage:
     prices: Tarifs
   title: Musée du Louvre | Billetterie officielle
   modals:
+    close: Fermer
     hours:
         title: Horaires
         subtitle: Ouvert tous les jours sauf le Mardi
