@@ -17,7 +17,6 @@ class TarifResolver
     private $em;
     private $tarif;
     private $yearAsOfToday;
-    private $error;
 
     public function __construct(EntityManager $em)
     {
