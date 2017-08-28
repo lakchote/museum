@@ -41,9 +41,9 @@
                     <a href="http://www.louvre.fr"><img src="{{ asset('img/logo.png') }}" id="image-logo" alt="Musée du Louvre" /></a>
                     <div class="col-md-12 pull-right">
                         {% if _locale == 'fr' %}
-                        <a href="{{ path('app_homepage', {'_locale' : 'en'}) }}"><img src="{{ asset('img/GB.png') }}" alt="English language"/></a>
+                            <a href="{{ getCurrentURLWithLocale('en', app.request) }}"><img src="{{ asset('img/GB.png') }}" alt="English language"/></a>
                         {% else %}
-                        <a href="{{ path('app_homepage', {'_locale' : 'fr'}) }}"><img src="{{ asset('img/FR.png') }}" alt="French language"/></a>
+                            <a href="{{ getCurrentURLWithLocale('fr', app.request) }}"><img src="{{ asset('img/FR.png') }}" alt="French language"/></a>
                         {% endif %}
                     </div>
                 </div>
@@ -90,12 +90,12 @@
                         <div class="modal-body">
                             <p><em>{{ 'homepage.modals.rates.demi_journee'|trans({}, 'base') }}</em></p>
                             <p>{{ 'homepage.modals.rates.intro'|trans({}, 'base') }}
-                                <ul>
-                                    <li>{{ 'homepage.modals.rates.tarif_gratuit'|trans({}, 'base') }}</li>
-                                    <li>{{ 'homepage.modals.rates.tarif_enfant'|trans({}, 'base') }}</li>
-                                    <li>{{ 'homepage.modals.rates.tarif_normal'|trans({}, 'base') }}</li>
-                                    <li>{{ 'homepage.modals.rates.tarif_senior'|trans({}, 'base') }}</li>
-                                    <li>{{ 'homepage.modals.rates.tarif_reduit'|trans({}, 'base') }}</li>
+                            <ul>
+                                <li>{{ 'homepage.modals.rates.tarif_gratuit'|trans({}, 'base') }}</li>
+                                <li>{{ 'homepage.modals.rates.tarif_enfant'|trans({}, 'base') }}</li>
+                                <li>{{ 'homepage.modals.rates.tarif_normal'|trans({}, 'base') }}</li>
+                                <li>{{ 'homepage.modals.rates.tarif_senior'|trans({}, 'base') }}</li>
+                                <li>{{ 'homepage.modals.rates.tarif_reduit'|trans({}, 'base') }}</li>
                             </ul>
                             </p>
                         </div>

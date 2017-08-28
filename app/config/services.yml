@@ -17,9 +17,8 @@ services:
     total_price_for_commande:
         class: AppBundle\Service\TotalPrice
 
-    # Extension Twig pour convertir les codes régions des pays en noms
-    twig_countryname:
-        class: Twig\CountryName
+    twig_appextension:
+        class: Twig\AppExtension
         tags:
             - { name : twig.extension }
 
