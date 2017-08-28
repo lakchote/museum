@@ -33,9 +33,7 @@ class RedirectLocaleListener
             if (!in_array($locale, $this->supportedLocales)) {
                 $locale = $this->defaultLocale;
             }
-            if ($request->getPathInfo() == '/') {
-                return $event->setResponse(new RedirectResponse($this->router->generate('app_homepage', ['_locale' => $locale])));
-            }
+            return $event->setResponse(new RedirectResponse($this->router->generate('app_homepage', ['_locale' => $locale])));
         }
     }
 }
