@@ -21,26 +21,29 @@ Libraries used :
 Test instructions :
 -------------------
  
- If you didn't do it already, run composer to download the dependencies :
+ Run composer to download the dependencies :
  
- `composer install` (in "composer.json" 's directory)
+ `composer install`
  
- If database "*symfony*" already exists, drop it :
-  
-  `php bin/console doctrine:database:drop --force`
-  
-  Else, create it : 
+  Create the database : 
   
   `php bin/console doctrine:database:create`
   
-  Then, type these instructions :
+  Then, type these instructions (it will load entities and fixtures into the database) :
+  
+  `php bin/console doctrine:migrations:diff`
   
   `php bin/console doctrine:migrations:migrate`
   
-  `php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures/ORM/tests`
+  `php bin/console doctrine:fixtures:load`
   
-  Congratulations ! Now you can execute all the tests at once by typing `phpunit` in the console.
-  
+  Now you can execute all the tests at once by typing `phpunit` in the console.
   Or, if you want to run a *specific* test such as "TarifResolverTest" :
   
   `phpunit tests/AppBundle/Service/TarifResolverTest.php`
+  
+  **Stripe** payment testing 
+  --------------------------
+  
+  Use the following card number : *4242 4242 4242 4242* with any expiration date and CVC.
+  
