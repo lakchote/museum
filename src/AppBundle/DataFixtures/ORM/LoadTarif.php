@@ -1,18 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BRANDON HEAT
- * Date: 19/10/2016
- * Time: 17:28
- */
 
 namespace AppBundle\DataFixtures\ORM;
+
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Tarif;
 
 
-class LoadTarif implements FixtureInterface
+class LoadTarif implements FixtureInterface, OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -50,5 +46,10 @@ class LoadTarif implements FixtureInterface
         $manager->persist($tarif_senior);
         $manager->persist($tarif_reduit);
         $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 1;
     }
 }
