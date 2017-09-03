@@ -4,13 +4,23 @@ html, body {
     background-color: #d3d3d3;
 }
 
+
+.wrapper-page {
+    position: relative;
+    min-height: 100vh;
+    background-color: #fff;
+    padding-bottom: 120px;
+}
+
+footer {
+    position: absolute;
+    bottom:0;
+    max-width: 100%;
+}
+
 .image-header {
     height: 200px;
     background: url('../img/header.jpg');
-}
-
-.wrapper-page {
-    background-color: #fff;
 }
 
 #image-logo {

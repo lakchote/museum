@@ -25,6 +25,14 @@
   {
     overflow-x: hidden;
   }
+
+  .wrapper-page {
+    padding-bottom: 160px;
+  }
+
+  footer {
+    min-width: 100%;
+  }
   
   .row-offcanvas {
     position: relative;

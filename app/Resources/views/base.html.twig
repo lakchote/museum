@@ -112,14 +112,11 @@
     {% block footer %}
         <footer class="row">
             <div class="col-md-12 col-xs-12  payments">
-                <div class="row">
                     <p style="color:#000;"><strong>{{ 'homepage.footer.payment_info'|trans({}, 'base') }}</strong>
                         <img src="{{ asset('img/mastercard.gif') }}" alt="Mastercard" class="payment-method"/>
                         <img src="{{ asset('img/visa.gif') }}" alt="Visa" class="payment-method"/>
                     </p>
-                </div>
             </div>
-            <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <p class="small">
                         <a href="mailto:billetterie@louvre.fr" id="footer-contact" title="{{ 'homepage.footer.links.contact'|trans({}, 'base') }}">{{ 'homepage.footer.links.contact'|trans({}, 'base') }}</a> -
@@ -155,7 +152,6 @@
                     </p>
                     <span class="small visible-xs" id="copyright" aria-hidden="true">{{ 'homepage.footer.copyright'|trans({}, 'base') }}&nbsp;</span>
                 </div>
-            </div>
         </footer>
     {% endblock %}
 </div>
