@@ -14,9 +14,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('louvre.ico') }}"/>
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/mobile.css') }}">
-        <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.ttf') }}">
-        <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}">
-        <link rel="application/x-font-ttf" href="{{ asset('fonts/glyphicons-halflings-regular.woff2') }}">
+        <link rel="preload" as="font" type="font/ttf" href="{{ asset('fonts/glyphicons-halflings-regular.ttf') }}" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff" href="{{ asset('fonts/glyphicons-halflings-regular.woff') }}" crossorigin="anonymous">
+        <link rel="preload" as="font" type="font/woff2" href="{{ asset('fonts/glyphicons-halflings-regular.woff2') }}" crossorigin="anonymous">
     {% endblock %}
     {% block IECompatibility %}
         <!--[if lt IE 9]>
@@ -60,7 +60,7 @@
                 </div>
             </section>
             <!-- Modals -->
-            <div id="horairesInfos" class="modal fade" role="dialog" aria-labelledby="titleLabel">
+            <div id="horairesInfos" class="modal fade" role="dialog" aria-labelledby="titleHoraires">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -89,7 +89,7 @@
                         </div>
                         <div class="modal-body">
                             <p><em>{{ 'homepage.modals.rates.demi_journee'|trans({}, 'base') }}</em></p>
-                            <p>{{ 'homepage.modals.rates.intro'|trans({}, 'base') }}
+                            <p>{{ 'homepage.modals.rates.intro'|trans({}, 'base') }}</p>
                             <ul>
                                 <li>{{ 'homepage.modals.rates.tarif_gratuit'|trans({}, 'base') }}</li>
                                 <li>{{ 'homepage.modals.rates.tarif_enfant'|trans({}, 'base') }}</li>
@@ -97,7 +97,6 @@
                                 <li>{{ 'homepage.modals.rates.tarif_senior'|trans({}, 'base') }}</li>
                                 <li>{{ 'homepage.modals.rates.tarif_reduit'|trans({}, 'base') }}</li>
                             </ul>
-                            </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'homepage.modals.close'|trans({}, 'base') }}</button>
@@ -112,46 +111,46 @@
     {% block footer %}
         <footer class="row">
             <div class="col-md-12 col-xs-12  payments">
-                    <p style="color:#000;"><strong>{{ 'homepage.footer.payment_info'|trans({}, 'base') }}</strong>
-                        <img src="{{ asset('img/mastercard.gif') }}" alt="Mastercard" class="payment-method"/>
-                        <img src="{{ asset('img/visa.gif') }}" alt="Visa" class="payment-method"/>
-                    </p>
+                <p style="color:#000;"><strong>{{ 'homepage.footer.payment_info'|trans({}, 'base') }}</strong>
+                    <img src="{{ asset('img/mastercard.gif') }}" alt="Mastercard" class="payment-method"/>
+                    <img src="{{ asset('img/visa.gif') }}" alt="Visa" class="payment-method"/>
+                </p>
             </div>
-                <div class="col-md-4 col-sm-6">
-                    <p class="small">
-                        <a href="mailto:billetterie@louvre.fr" id="footer-contact" title="{{ 'homepage.footer.links.contact'|trans({}, 'base') }}">{{ 'homepage.footer.links.contact'|trans({}, 'base') }}</a> -
-                        <a href="{{ path('app_cgv', {'_locale' : _locale}) }}" title="{{ 'homepage.footer.links.cgv'|trans({}, 'base') }}"> {{ 'homepage.footer.links.cgv'|trans({}, 'base') }}</a>
-                    </p>
+            <div class="col-md-4 col-sm-6">
+                <p class="small">
+                    <a href="mailto:billetterie@louvre.fr" id="footer-contact" title="{{ 'homepage.footer.links.contact'|trans({}, 'base') }}">{{ 'homepage.footer.links.contact'|trans({}, 'base') }}</a> -
+                    <a href="{{ path('app_cgv', {'_locale' : _locale}) }}" title="{{ 'homepage.footer.links.cgv'|trans({}, 'base') }}"> {{ 'homepage.footer.links.cgv'|trans({}, 'base') }}</a>
+                </p>
+            </div>
+            <div class="col-md-4 text-center hidden-xs hidden-sm">
+                <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
+                     data-mobile-iframe="true">
+                    <a class="fb-xfbml-parse-ignore" target="_blank"
+                       href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
                 </div>
-                <div class="col-md-4 text-center hidden-xs hidden-sm">
-                    <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
-                         data-mobile-iframe="true">
-                        <a class="fb-xfbml-parse-ignore" target="_blank"
-                           href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
-                    </div>
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+            </div>
+            <div class="visible-xs visible-sm col-sm-2 text-center" style="margin-top:5px; position:relative; left:-8%;">
+                <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
+                     data-mobile-iframe="true">
+                    <a class="fb-xfbml-parse-ignore" target="_blank"
+                       href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
                 </div>
-                <div class="visible-xs visible-sm col-sm-2 text-center" style="margin-top:5px; position:relative; left:-8%;">
-                    <div class="fb-share-button" data-href="http://www.ticketlouvre.fr" data-layout="button"
-                         data-mobile-iframe="true">
-                        <a class="fb-xfbml-parse-ignore" target="_blank"
-                           href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ticketlouvre.fr%2F&amp;src=sdkpreparse"></a>
-                    </div>
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
 
-                </div>
-                <div class="col-md-4">
-                    <span class="small pull-right hidden-xs" id="copyright">{{ 'homepage.footer.copyright'|trans({}, 'base') }}</span>
-                </div>
-                <div class="col-md-12 text-center">
-                    <p class="small visible-xs" style="position:relative; left:-2%;">
-                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
-                    </p>
-                    <p class="small pull-right hidden-xs">
-                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
-                    </p>
-                    <span class="small visible-xs" id="copyright" aria-hidden="true">{{ 'homepage.footer.copyright'|trans({}, 'base') }}&nbsp;</span>
-                </div>
+            </div>
+            <div class="col-md-4">
+                <span class="small pull-right hidden-xs">{{ 'homepage.footer.copyright'|trans({}, 'base') }}</span>
+            </div>
+            <div class="col-md-12 text-center">
+                <p class="small visible-xs" style="position:relative; left:-2%;">
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
+                </p>
+                <p class="small pull-right hidden-xs">
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ 'homepage.footer.links.phone_title'|trans({}, 'base') }} {{ 'homepage.footer.links.phone'|trans({}, 'base')}}
+                </p>
+                <span class="small visible-xs" aria-hidden="true">{{ 'homepage.footer.copyright'|trans({}, 'base') }}&nbsp;</span>
+            </div>
         </footer>
     {% endblock %}
 </div>
