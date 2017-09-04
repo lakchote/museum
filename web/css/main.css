@@ -9,13 +9,14 @@ html, body {
     position: relative;
     min-height: 100vh;
     background-color: #fff;
-    padding-bottom: 120px;
+    padding-bottom: 130px;
 }
 
 footer {
     position: absolute;
     bottom:0;
     max-width: 100%;
+    min-width: 100%;
 }
 
 .image-header {
