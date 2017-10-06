@@ -7,7 +7,7 @@ Entirely made with the **[Symfony framework](https://symfony.com/)**, it handles
 You can read more about the constraints and the context [here](https://openclassrooms.com/courses/projet-developpez-un-back-end-pour-un-client).
 
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8bee5ead-5fdd-4073-aa69-16c00bc01527/big.png)](https://insight.sensiolabs.com/projects/8bee5ead-5fdd-4073-aa69-16c00bc01527)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e8d7fac7-a902-4647-b5a1-1b6d9ccd1a63/small.png)](https://insight.sensiolabs.com/projects/e8d7fac7-a902-4647-b5a1-1b6d9ccd1a63)
 
 Libraries used :
 ----------------
